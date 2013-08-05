@@ -7,42 +7,25 @@
             <div class="box-title">
                 <h3>
                     <i class="icon-user"></i>
-                    Sửa chuyên mục
+                    Sửa nhóm
                 </h3>
             </div>
 
             <div class="box-content nopadding">
-                <form action="<?php echo URL . 'backend/category/saveEdit' ?>" method="post" class="form-horizontal form-bordered">
+                <form action="<?php echo URL . 'backend/groups/saveEdit' ?>" method="post" class="form-horizontal form-bordered">
                     <div class="control-group">
-                        <label for="textfield" class="control-label">Tên chuyên mục</label>
+                        <label for="textfield" class="control-label">Tên nhóm</label>
                         <div class="controls">
-                            <input type="hidden" name="id" value="<?php echo $this->category['id']; ?>"/>
-                            <input type="text" name="name" value="<?php if (isset($this->category['name'])) echo $this->category['name']; ?>" placeholder="Nhập tên chuyên mục">
+                            <input type="hidden" name="id" value="<?php echo $this->group['id']; ?>"/>
+                            <input type="text" name="name" value="<?php if (isset($this->group['name'])) echo $this->group['name']; ?>" placeholder="Nhập tên chuyên mục">
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('name'); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="textfield" class="control-label">Mô tả</label>
                         <div class="controls">
-                            <textarea id="textarea" class="input-block-level" rows="5" name="summary" placeholder="Nhập tóm tắt"><?php echo $this->category['summary'] ?></textarea>
+                            <textarea id="textarea" class="input-block-level" rows="5" name="summary" placeholder="Nhập tóm tắt"><?php echo $this->group['summary'] ?></textarea>
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('summary'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="select">Vị trí</label>
-                        <div class="controls">
-                            <select class="input-large" id="select" name="position">
-                                <option value="">Lựa chọn</option>
-                                <?php for ($i = 1; $i <= $this->position ; $i++) { ?>
-                                    <option value="<?php echo $i; ?>" 
-                                    <?php
-                                    if (isset($this->category['position']) && $this->category['position'] == $i)
-                                        echo "selected='selected'"
-                                        ?>><?php echo $i; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('position'); ?>
                         </div>
                     </div>
                     <div class="control-group">
@@ -52,9 +35,29 @@
                                 <option value="">Lựa chọn</option>
                                 <?php foreach ($this->type as $key => $value) { ?>
                                     <option value="<?php echo $key; ?>"
-                                            <?php if (isset($this->category['type']) && $this->category['type'] == $key) echo "selected='selected'" ?>>
+                                            <?php if (isset($this->group['type']) && $this->group['type'] == $key) echo "selected='selected'" ?>>
                                                 <?php echo $value; ?>
                                     </option>
+                                <?php } ?>
+                            </select>
+                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('position'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="select">Trạng thái</label>
+                        <div class="controls">
+                            <select class="input-large" id="select" name="status">
+                                <option value="">Lựa chọn</option>
+                                <?php
+                                foreach ($this->status as $key => $value) {
+                                    ?>
+                                    <option value="<?php echo $key; ?>"
+                                    <?php
+                                    if (isset($this->group['status']) && $this->group['status'] == $key)
+                                        echo "selected='selected'"
+                                        ?>        
+                                            >
+                                        <?php echo $value; ?></option>
                                 <?php } ?>
                             </select>
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('type'); ?>
