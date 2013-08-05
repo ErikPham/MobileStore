@@ -27,7 +27,7 @@ class News extends Controller {
             'type' => 'string',
             'required' => true,
             'min' => 0,
-            'max' => 1,
+            'max' => 999999999999,
             'trim' => true
         ),
         'category_id' => array(
@@ -98,36 +98,36 @@ class News extends Controller {
 
     function saveEdit() {
         if (Request::isPost()) {
-//            $this->valid->addRules(self::$rules);
-//            $this->valid->addSource($_POST);
-//            $this->valid->run();
-//            $this->valid->changeLabel($this->change_lable);
-//            $this->view->title = 'Có lỗi xảy ra';
+            $this->valid->addRules(self::$rules);
+            $this->valid->addSource($_POST);
+            $this->valid->run();
+            $this->valid->changeLabel($this->change_lable);
+            $this->view->title = 'Có lỗi xảy ra';
             if (Request::isPostNumber('id')) {
                 $id = Request::post('id');
                 $data = $_POST;
-                print_r($data) ;
-//                if ($this->valid->isValid()) {
+                print_r($data);
+                if ($this->valid->isValid()) {
                     if ($this->model->saveEdit($data, $id)) {
                         $this->view->title = 'Cập nhập chuyên mục thành công';
                         $this->view->message = $this->util->alertMessage('Bạn đã cập nhập chuyên mục thành công', 'Thành công', 'success');
                     } else {
                         $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi thông tin hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
                     }
-//                } else {
-//                    if (isset($this->valid->error['diff_key'])) {
-//                        $message = 'Kiểm tra dữ liệu đầu vào';
-//                    } else {
-//                        $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu';
-//                    }
-//                    $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
-//                    $this->util->errors = $this->valid->errors;
-//                }
-//                $this->view->cats = $this->model->getCategoryNews();
-//                $this->view->status = $this->model->getStatus();
-//                $this->view->news = $_POST;
-//                $this->view->util = $this->util;
-//                $this->view->render('news/edit');
+                } else {
+                    if (isset($this->valid->error['diff_key'])) {
+                        $message = 'Kiểm tra dữ liệu đầu vào';
+                    } else {
+                        $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu';
+                    }
+                    $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
+                    $this->util->errors = $this->valid->errors;
+                }
+                $this->view->cats = $this->model->getCategoryNews();
+                $this->view->status = $this->model->getStatus();
+                $this->view->news = $_POST;
+                $this->view->util = $this->util;
+                $this->view->render('news/edit');
             } else {
                 Util::redirectTo('backend/news');
             }
@@ -162,7 +162,7 @@ class News extends Controller {
             }
             $this->view->cats = $this->model->getCategoryNews();
             $this->view->status = $this->model->getStatus();
-            $this->view->news = $_POST;
+            $this->view->category = $_POST;
             $this->view->util = $this->util;
             $this->view->render('news/add');
         } else {

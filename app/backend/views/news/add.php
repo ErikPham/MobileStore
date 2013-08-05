@@ -19,7 +19,7 @@
                             <input class="input-xxlarge" type="text" name="title" value="<?php if (isset($_POST['title'])) echo $_POST['title']; ?>" placeholder="Nhập tên tiêu đề bài viết">
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('title'); ?>
                             <input type="hidden" value="<?php echo Session::get('userid');?>" name="user_id"/>
-                            <input type="hidden" value="<?php echo date("Y-m-d H:i:s");?>" name="post_date"/>
+                            <input type="hidden" value="<?php echo date("Y-m-d");?>" name="post_date"/>
                         </div>
                     </div>
                     <div class="control-group">
