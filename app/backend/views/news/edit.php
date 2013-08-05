@@ -43,7 +43,7 @@
                                 <?php
                                 foreach ($this->cats as $cate) {
                                     ?>
-                                    <option value="<?php echo $cate['id']; ?>"
+                                    <option value="<?php echo $cate['idty']; ?>"
                                     <?php
                                     if (isset($this->new['category_id']) && $this->new['category_id'] == $cate['id'])
                                         echo "selected='selected'"
