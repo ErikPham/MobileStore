@@ -3,8 +3,6 @@ define('SITE_PATH', realpath(dirname(__FILE__)) . '/');
 define('URL', "http://localhost/mobilestore/");
 define('HASH_GENERAL_KEY', 'MixitUp200');
 define('HASH_PASSWORD_KEY', 'PhucPM');
-//Test lại cái này xem nào.
-//Hehe
 require './config/config.php';
 $imports = $config['import'];
 function __autoload($class) {
