@@ -13,7 +13,7 @@ class Groups_Model extends Model {
 
     public function getEdit($id) {
         $options = array('where' => 'id = ' . $id);
-        return $this->selectOneRow('*', 'groups',$options, null, MYSQLI_ASSOC);
+        return $group = $this->selectOneRow('*', 'groups', $options, null, MYSQLI_ASSOC);
     }
 
     public function getAllGroups() {

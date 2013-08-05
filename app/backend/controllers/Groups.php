@@ -67,7 +67,7 @@ class Groups extends Controller {
             $this->view->group = $this->model->getEdit($id);
             $this->view->type = $this->model->getArrayType();
             $this->view->status = $this->model->getStatus();
-            $this->view->title = 'Sửa chuyên mục';
+            $this->view->title = 'Cập nhập nhóm';
             $this->view->render('groups/edit');
         } else {
             Util::redirectTo('backend/category');
@@ -128,8 +128,6 @@ class Groups extends Controller {
             $this->view->title = 'Có lỗi xảy ra';
             $id = Request::post('id');
             $data = $_POST;
-            print_r($data);
-            exit();
             if ($this->valid->isValid()) {
                 if ($this->model->saveUpdate($data, $id)) {
                     $this->view->title = 'Cập nhập chuyên mục thành công';
