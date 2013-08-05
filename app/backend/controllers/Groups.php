@@ -131,7 +131,7 @@ class Groups extends Controller {
             print_r($data);
             exit();
             if ($this->valid->isValid()) {
-                if ($this->model->saveEdit($data, $id)) {
+                if ($this->model->saveUpdate($data, $id)) {
                     $this->view->title = 'Cập nhập chuyên mục thành công';
                     $this->view->message = $this->util->alertMessage('Bạn đã cập nhập chuyên mục thành công', 'Thành công', 'success');
                 } else {

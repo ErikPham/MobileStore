@@ -24,7 +24,7 @@ class Groups_Model extends Model {
         return $this->insert($data, 'groups');
     }
 
-    public function saveEdit($data, $id) {
+    public function saveUpdate($data, $id) {
         return $this->update($data, 'groups', 'id = ' . $id);
     }
 
