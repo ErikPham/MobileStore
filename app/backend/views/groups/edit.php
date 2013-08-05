@@ -24,7 +24,7 @@
                     <div class="control-group">
                         <label for="textfield" class="control-label">Mô tả</label>
                         <div class="controls">
-                            <textarea id="textarea" class="input-block-level" rows="5" name="summary" placeholder="Nhập tóm tắt"><?php echo $this->group['summary'] ?></textarea>
+                            <textarea id="textarea" class="input-block-level" rows="5" name="summary" placeholder="Nhập tóm tắt"><?php echo $this->group['summary']; ?></textarea>
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('summary'); ?>
                         </div>
                     </div>

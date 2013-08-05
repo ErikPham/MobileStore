@@ -66,7 +66,7 @@ class Groups extends Controller {
             $id = URI::getSegment(2);
             $this->view->group = $this->model->getEdit($id);
             $this->view->type = $this->model->getArrayType();
-            $this->view->position = $this->model->getCountPosition();
+            $this->view->status = $this->model->getStatus();
             $this->view->title = 'Sửa chuyên mục';
             $this->view->render('groups/edit');
         } else {
@@ -97,7 +97,6 @@ class Groups extends Controller {
                 if ($this->model->saveAdd($data)) {
                     $this->view->title = 'Thêm mới nhóm thành công';
                     $this->view->message = $this->util->alertMessage('Bạn đã thêm mới nhóm thành công', 'Thành công', 'success');
-                    $category = array();
                 } else {
                     $this->view->message = $this->util->alertMessage('Đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
                 }
@@ -127,33 +126,31 @@ class Groups extends Controller {
             $this->valid->run();
             $this->valid->changeLabel($this->change_lable);
             $this->view->title = 'Có lỗi xảy ra';
-            if (Request::isPostNumber('id')) {
-                $id = Request::post('id');
-                $data = $_POST;
-                if ($this->valid->isValid()) {
-                    if ($this->model->saveEdit($data, $id)) {
-                        $this->view->title = 'Cập nhập chuyên mục thành công';
-                        $this->view->message = $this->util->alertMessage('Bạn đã cập nhập chuyên mục thành công', 'Thành công', 'success');
-                    } else {
-                        $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi thông tin hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
-                    }
+            $id = Request::post('id');
+            $data = $_POST;
+            print_r($data);
+            exit();
+            if ($this->valid->isValid()) {
+                if ($this->model->saveEdit($data, $id)) {
+                    $this->view->title = 'Cập nhập chuyên mục thành công';
+                    $this->view->message = $this->util->alertMessage('Bạn đã cập nhập chuyên mục thành công', 'Thành công', 'success');
                 } else {
-                    if (isset($this->valid->error['diff_key'])) {
-                        $message = 'Kiểm tra dữ liệu đầu vào';
-                    } else {
-                        $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu';
-                    }
-                    $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
-                    $this->util->errors = $this->valid->errors;
+                    $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi thông tin hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
                 }
-                $this->view->type = $this->model->getArrayType();
-                $this->view->status = $this->model->getStatus();
-                $this->view->groups = $_POST;
-                $this->view->util = $this->util;
-                $this->view->render('groups/edit');
             } else {
-                Util::redirectTo('backend/groups');
+                if (isset($this->valid->error['diff_key'])) {
+                    $message = 'Kiểm tra dữ liệu đầu vào';
+                } else {
+                    $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu';
+                }
+                $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
+                $this->util->errors = $this->valid->errors;
             }
+            $this->view->type = $this->model->getArrayType();
+            $this->view->status = $this->model->getStatus();
+            $this->view->groups = $_POST;
+            $this->view->util = $this->util;
+            $this->view->render('groups/edit');
         } else {
             Util::redirectTo('backend/groups');
         }
