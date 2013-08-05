@@ -31,7 +31,7 @@
                                 <td><?php echo $new['title']; ?></td>
                                 <td><?php echo String::theExcerpt($new['description']); ?></td>
                                 <td>
-                                    <?php echo $new['category_id'] == 1 ? 'Sản phẩm' : 'Tin tức'; ?>
+                                    <?php echo $new['name'];?>
                                 </td>
                                 <td><?php echo $new['post_date']; ?></td>
                                 <td>
