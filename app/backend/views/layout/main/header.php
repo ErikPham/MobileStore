@@ -126,6 +126,21 @@
                             </li>
                         </ul>
                     </li>
+                    <li <?php Util::liActive('groups') ?>>
+                        <a href="<?php echo URL ?>backend/groups" data-toggle="dropdown" class='dropdown-toggle'>
+                            <i class="icon-edit"></i>
+                            <span>Nhóm</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo URL ?>backend/groups/add">Thêm nhóm</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo URL ?>backend/groups">Danh sách nhóm</a>
+                            </li>
+                        </ul>
+                    </li>
                     
                 </ul>
                 <div class="user">

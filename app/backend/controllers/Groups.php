@@ -70,7 +70,7 @@ class Groups extends Controller {
             $this->view->title = 'Cập nhập nhóm';
             $this->view->render('groups/edit');
         } else {
-            Util::redirectTo('backend/category');
+            Util::redirectTo('backend/groups');
         }
     }
 
