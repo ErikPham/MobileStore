@@ -22,7 +22,7 @@ class news_model extends Model {
 
     public function getCategoryNews() {
         $options = array('where' => 'type = 2');
-        return $cate = $this->selectAll('id as idty, type, name', 'category', $options, null, MYSQLI_ASSOC);
+        return $cate = $this->selectAll('id, type, name', 'category', $options, null, MYSQLI_ASSOC);
     }
 
     public function getEdit($id) {
