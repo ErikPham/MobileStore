@@ -39,7 +39,7 @@ class Upload {
         $this->fileSizeAllowed = 1048576;
     }
 
-    public function setInfoUpload($name){
+    public static function setInfoUpload($name){
         $file = $_FILES[$name];
         $this->fileName = $file['name'];
         $this->fileType = $this->getFileExtension();

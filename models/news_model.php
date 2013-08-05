@@ -24,11 +24,24 @@ class news_model extends Model {
         $options = array('where' => 'type = 2');
         return $cate = $this->selectAll('id, type, name', 'category', $options, null, MYSQLI_ASSOC);
     }
+    
+    public function getEdit($id){
+        $options = array('where' =>'id =' .$id);
+        return $this->selectOneRow('*', 'news', $options, null, MYSQLI_ASSOC);
+    }
 
     public function saveAdd($data) {
         return $this->insert($data, 'news');
     }
 
+    public function saveEdit($data, $id) {
+        $options = array('where' =>'id =' .$id);
+        return $this->update($data, 'news', $options);
+    }
+
+    public function deleteNew($id) {
+       return $this->delete('news', 'id =' .$id);
+    }
 }
 
 ?>
