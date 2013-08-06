@@ -12,7 +12,7 @@ class news_model extends Model {
     }
 
     public function getAllNews() {
-        $news = $this->selectAllTable('*', 'news join category on news.category_id = category.id where type= 2', MYSQLI_ASSOC);
+        $news = $this->selectAllTable('news.*,category.id as idcate, name', ' news join category on news.category_id = category.id where type= 2', MYSQLI_ASSOC);
         return $news;
     }
 
@@ -27,7 +27,7 @@ class news_model extends Model {
 
     public function getEdit($id) {
         $options = array('where' => 'id =' . $id);
-        return $this->selectOneRow('*', 'news', $options, null, MYSQLI_ASSOC);
+        return $new = $this->selectOneRow('*', 'news', $options, null, MYSQLI_ASSOC);
     }
 
     public function saveAdd($data) {

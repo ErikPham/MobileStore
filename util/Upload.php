@@ -35,7 +35,7 @@ class Upload {
 
     public function __construct(){
         $this->fileAllowed = array('gif', 'png', 'jpg');
-        $this->uploadDir = "upload/images/";
+        $this->uploadDir = SITE_PATH."publics/upload/images/";
         $this->fileSizeAllowed = 1048576;
     }
 

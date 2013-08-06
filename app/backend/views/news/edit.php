@@ -43,7 +43,7 @@
                                 <?php
                                 foreach ($this->cats as $cate) {
                                     ?>
-                                    <option value="<?php echo $cate['idty']; ?>"
+                                    <option value="<?php echo $cate['id']; ?>"
                                     <?php
                                     if (isset($this->new['category_id']) && $this->new['category_id'] == $cate['id'])
                                         echo "selected='selected'"
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Thêm mới</button>
+                        <button class="btn btn-primary" type="submit">Sửa</button>
                     </div>
                 </form>
             </div>

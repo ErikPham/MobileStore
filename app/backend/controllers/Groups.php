@@ -146,7 +146,7 @@ class Groups extends Controller {
             }
             $this->view->type = $this->model->getArrayType();
             $this->view->status = $this->model->getStatus();
-            $this->view->groups = $_POST;
+            $this->view->group = $_POST;
             $this->view->util = $this->util;
             $this->view->render('groups/edit');
         } else {

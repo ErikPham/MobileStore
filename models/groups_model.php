@@ -3,7 +3,7 @@
 class Groups_Model extends Model {
 
     public function getArrayType() {
-        $data = array('1' => 'Admin', '2' => 'Sản phẩm');
+        $data = array('1' => 'Nhóm thành viên', '2' => 'Sản phẩm');
         return $type = $this->selectArray($data);
     }
 

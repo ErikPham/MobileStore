@@ -14,7 +14,7 @@
                             <th>STT</th>
                             <th>Tên nhóm</th>
                             <th class="hidden-350">Mô tả</th>
-                            <th class="hidden-1024">phân loại</th>
+                            <th class="hidden-1024">Phân loại</th>
                             <th class="hidden-480">Trạng thái</th>
                             <th>Thao tác</th>
                         </tr>
@@ -30,7 +30,7 @@
                                 <td><?php echo $group['name']; ?></td>
                                 <td><?php echo $group['summary']; ?></td>
                                 <td>
-                                    <?php echo ($group['type'] == 1) ? 'Admin' : 'Sản phẩm'; ?>
+                                    <?php echo ($group['type'] == 1) ? 'Nhóm thành viên' : 'Sản phẩm'; ?>
                                 </td>
                                 <td><?php echo ($group['status'] == 1) ? 'Đã duyệt' : 'Chưa duyệt'; ?></td>
                                 <td>

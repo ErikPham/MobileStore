@@ -103,10 +103,10 @@ class News extends Controller {
             $this->valid->run();
             $this->valid->changeLabel($this->change_lable);
             $this->view->title = 'Có lỗi xảy ra';
+
             if (Request::isPostNumber('id')) {
                 $id = Request::post('id');
                 $data = $_POST;
-                print_r($data);
                 if ($this->valid->isValid()) {
                     if ($this->model->saveEdit($data, $id)) {
                         $this->view->title = 'Cập nhập chuyên mục thành công';
@@ -125,7 +125,7 @@ class News extends Controller {
                 }
                 $this->view->cats = $this->model->getCategoryNews();
                 $this->view->status = $this->model->getStatus();
-                $this->view->news = $_POST;
+                $this->view->new = $_POST;
                 $this->view->util = $this->util;
                 $this->view->render('news/edit');
             } else {
