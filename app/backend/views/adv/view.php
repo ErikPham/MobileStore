@@ -38,7 +38,6 @@
                                 <td><?php echo $adv['post_date']; ?></td>
                                 <td><?php echo ($adv['status'] == 0) ? 'Chưa xét duyệt' : 'Đã duyệt'; ?></td>
                                 <td>
-                                    
                                     <a class="btn btn-success" title="Xem chi tiết" href="<?php echo URL . 'backend/adv/detail/' . $adv['id'] . '/' . Util::toSlug($adv['title']); ?>"><i class="icon-eye-open"></i></a>
                                     <a class="del btn btn-primary" title="Xóa" href="<?php echo URL . 'backend/adv/delete/' . $adv['id'] . '/' . Util::toSlug($adv['title']); ?>"> <i class="icon-trash"></i></a>
                                 </td>
