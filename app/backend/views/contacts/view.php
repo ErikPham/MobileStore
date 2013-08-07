@@ -36,14 +36,15 @@
                                 if ($contact['status'] == 1) {
                                     ?>
                                     <div class="accordion-heading status_true" id="border-button">
-                                        <a href="" class="accordion_contact" title="<?php echo $contact['title']; ?>">
+                                        <a href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>">
                                             <strong class='title_contact'><?php echo $contact['title']; ?></strong>
                                             <strong class='content_contact'><?php echo $contact['content']; ?></strong>
                                         </a>
+                                        <p class="meta_data">Ngay đăng</p>
                                     </div>
                                 <?php } else { ?>
                                     <div class="accordion-heading" id="border-button">
-                                        <a href="" class="accordion_contact" title="<?php echo $contact['title']; ?>">
+                                        <a href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>">
                                             <strong class='title_contact'><?php echo $contact['title']; ?></strong>
                                             <strong class='content_contact'><?php echo $contact['content']; ?></strong>
                                         </a>
