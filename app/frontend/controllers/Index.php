@@ -10,8 +10,12 @@ class Index extends Controller {
     public function index() {
         $this->view->title = 'Index Page';
         $this->view->productLatests = $this->model->getProductLatests();
+        $this->view->productHighPrices = $this->model->getProductHighPrices();
         $this->view->render('index/index');
     }
+    
+    
+    
 }
 
 ?>

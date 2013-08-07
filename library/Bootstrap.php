@@ -55,6 +55,7 @@ class Bootstrap extends URI {
     private function index() {
         require CONTRONLLER . 'index.php';
         $controller = new Index();
+        $controller->loadModel('index');
         $controller->index();
     }
 

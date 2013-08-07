@@ -10,6 +10,11 @@ class index_model extends Model {
         $options = array('limit' => '10','order' => 'id DESC');
         return $this->selectAll(array('id', 'name', 'price', 'thumb'), 'products_temp_5', $options, null, MYSQLI_ASSOC);
     }
+    
+    function getProductHighPrices() {
+        $options = array('limit' => '25','order' => 'price DESC');
+        return $this->selectAll(array('id', 'name', 'price', 'thumb'), 'products_temp_5', $options, null, MYSQLI_ASSOC);
+    }
 
 }
 

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset=utf-8 />
-        <title>Template</title>
+        <title><?php echo $this->title; ?></title>
         <link href="http://www.pavothemes.com/demo/pav_metro_store/image/data/cart.png" rel="icon" />
         <link rel="stylesheet" type="text/css" href="<?php echo Publics . 'frontend/'; ?>css/bootstrap.css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
