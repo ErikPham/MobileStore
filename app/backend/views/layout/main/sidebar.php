@@ -25,4 +25,24 @@
                 </li>
             </ul>
         </div>
+
+        <div class="subnav">
+            <div class="subnav-title">
+                <a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Quản lý quyền</span></a>
+            </div>
+            <ul class="subnav-menu">
+                <li>
+                    <a href="<?php echo URL ?>backend/permissions/add_acl">Quản lý module</a>
+                </li>
+                <li>
+                    <a href="<?php echo URL ?>backend/permissions/acl_group">Quản lý nhóm quyền</a>
+                </li>
+                <li>
+                    <a href="#">Pages</a>
+                </li>
+                <li>
+                    <a href="#">Comments</a>
+                </li>
+            </ul>
+        </div>
     </div>
