@@ -21,8 +21,22 @@ class contacts_model extends Model {
     }
 
     public function getCountContactsNew() {
-        $options = array('where'=>'status = 0');
+        $options = array('where' => 'status = 0');
         return $count = $this->selectCount('id', 'count', 'contacts', $options, null, MYSQLI_NUM);
+    }
+
+    public function getIdContact($id) {
+        $options = array('where' => 'id = ' . $id);
+        return $this->selectOneRow('*', 'contacts', $options, null, MYSQLI_ASSOC);
+    }
+
+    public function updateStatus($id) {
+        $data = array('status =1');
+        return $this->update($data, 'contacts', 'id=' . $id);
+    }
+    
+    public function replyContact($data){
+        return $this->insert($data, 'reply_contacts');
     }
 
 }

@@ -26,7 +26,7 @@
 * Create : DAOLV
 * Createdate: 07-08-2013
 */
-.accordion-heading a.accordion_contact{
+a.accordion_contact{
     color: #333333;
     display: block;
     height: 20px;
@@ -34,14 +34,17 @@
     margin: 0 0 5px;
     overflow: hidden;
     padding: 5px 0 0 5px;
-    width: 100%;
+    width: 90%;
+    float: left;
 }
-.accordion_contact:hover{
+#border-button .accordion_contact:hover{
     text-decoration: none;
     cursor: pointer;
+    background: none;
 }
 #border-button{
     border-bottom: 1px solid #bbb;
+    overflow: hidden;
 }
 .title_contact{
      border-right: 1px solid #BBBBBB;
@@ -59,4 +62,11 @@
 }
 ul{
     list-style: none;
+}
+.meta_data{
+    color: #999999;
+    float: right;
+    line-height: 20px;
+    margin: 5px 2px 0 0;
+    width: 9%;
 }
