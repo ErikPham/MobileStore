@@ -32,7 +32,7 @@
                     <div class="pull-left"><div class="btn-toolbar">
                             <div class="btn-group"><a title="" rel="tooltip" class="btn" href="#" data-original-title="Refresh results"><i class="icon-refresh"></i></a></div>
                             <div class="btn-group">
-                                <a title="" rel="tooltip" class="btn" href="#" data-original-title="Delete"><i class="icon-trash"></i></a>
+                                <a title="" rel="tooltip" class="btn del" href="#" data-original-title="Delete"><i class="icon-trash"></i></a>
                             </div>
                         </div></div>
                     <div class="pull-right">
@@ -65,7 +65,6 @@
                                     <td class="table-checkbox hidden-350">
                                         <input type="checkbox" class="selectable">
                                     </td>
-
                                     <td class="table-fixed-medium">
                                         <a style="color: green;" href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['title']; ?></a>
                                     </td>

@@ -40,8 +40,19 @@ class Contacts extends Controller {
         if (URI::getSegment(2)) {
             $id = URI::getSegment(2);
             $this->view->contact = $this->model->getIdContact($id);
-            $this->view->title = 'Chi tiết hộp thư đến';
+            $this->view->title = 'Hộp thư đến';
             $this->view->render('contacts/detail');
+        } else {
+            Util::redirectTo('backend/contacts');
+        }
+    }
+
+    public function delete() {
+        if (URI::getSegment(2)) {
+            $id = URI::getSegment(2);
+            if ($this->model->deleteContact($id)) {
+                Util::redirectTo('backend/contacts');
+            }
         } else {
             Util::redirectTo('backend/contacts');
         }
@@ -59,15 +70,14 @@ class Contacts extends Controller {
                 if ($this->model->replyContact($_POST)) {
                     $this->view->title = 'Trả lời thư thành công';
                     $this->view->message = $this->util->alertMessage('Bạn đã trả lời thư', 'Thành công', 'success');
-//                    if ($id == 0) {
-//                        if ($this->model->updateStatus($id)) {
-//                            $this->view->contact = $this->model->getIdContact($id);
-//                            Util::redirectTo('contacts/index');
-//                        }
-//                    } else {
-//                        $this->view->contact = $this->model->getIdContact($id);
-//                        Util::redirectTo('contacts/index');
-//                    }
+                    if ($id == 0) {
+                        if ($this->model->updateStatus($id)) {
+                            //$this->view->contact = $this->model->getIdContact($id);
+                            Util::redirectTo('backend/contacts');
+                        }
+                    } else {
+                        Util::redirectTo('backend/contacts');
+                    }
                 } else {
                     $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi nhập nội dung mới hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
                 }
@@ -82,9 +92,9 @@ class Contacts extends Controller {
             }
             $this->view->contact = $_POST;
             $this->view->util = $this->util;
-            $this->view->render('contacts/index');
+            Util::redirectTo('backend/contacts');
         } else {
-            Util::redirectTo('contacts/index');
+            Util::redirectTo('backend/contacts');
         }
     }
 

@@ -34,9 +34,13 @@ class contacts_model extends Model {
         $data = array('status =1');
         return $this->update($data, 'contacts', 'id=' . $id);
     }
-    
-    public function replyContact($data){
+
+    public function replyContact($data) {
         return $this->insert($data, 'reply_contacts');
+    }
+
+    public function deleteContact($id) {
+        return $this->delete('contacts', 'id=' . $id);
     }
 
 }
