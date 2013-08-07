@@ -1,6 +1,7 @@
 <?php
 define('SITE_PATH', realpath(dirname(__FILE__)) . '/');
 define('URL', "http://localhost/mobilestore/");
+define('Publics',  URL . 'publics/');
 define('HASH_GENERAL_KEY', 'MixitUp200');
 define('HASH_PASSWORD_KEY', 'PhucPM');
 require './config/config.php';
