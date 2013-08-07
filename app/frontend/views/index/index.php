@@ -1,12 +1,3 @@
-<?php
-/*
-  echo "<pre>";
-  print_r($this->productLatests);
-  exit();
- * *
- */
-?>
-
 <section id="slideshow">
     <div class="container">
         <div class="carousel slid pavcontentslider" id="pavcontentslider10">
@@ -160,7 +151,7 @@
                         </div>
                         <!--end #productcarousel1-->
                         <script type="text/javascript">
-            $('#productcarousel1').carousel({interval: false, auto: false, pause: 'hover'});
+                             $('#productcarousel1').carousel({interval: false, auto: false, pause: 'hover'});
                         </script>
                     </div>
                     <!--end .box-content-->
@@ -217,8 +208,9 @@
                                             <?php
                                             if ($index % 2 == 0 && $index != $count) {
                                                 echo '</div>
-                                </div><div class="item">
-                                            <div class="row-fluid box-product">';
+                                                    </div>
+                                            <div class="item">
+                                                <div class="row-fluid box-product">';
                                             }
                                             $index++;
                                         endforeach;
@@ -229,7 +221,7 @@
                         </div>
                         <!--end #productcarousel1-->
                         <script type="text/javascript">
-            $('#productcarousel2').carousel({interval: false, auto: false, pause: 'hover'});
+                            $('#productcarousel2').carousel({interval: false, auto: false, pause: 'hover'});
                         </script>
                     </div>
                     <!--end .box-content-->
