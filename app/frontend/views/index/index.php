@@ -115,7 +115,6 @@
                                         <?php
                                         $index = 1;
                                         foreach ($this->productLatests as $ListLatests):
-                                            $index++;
                                             $urlDetailProduct = URL . 'product/detail/' . $ListLatests['id'] . '/' . Util::toSlug($ListLatests['name']);
                                             ?>
                                             <div class="span6 product-block">
@@ -145,12 +144,12 @@
                                                 </div>
                                             </div>
                                             <?php
-                                            if ($index % 2 == 1) {
+                                            if ($index % 2 == 0) {
                                                 echo '</div>
                                 </div><div class="item">
                                             <div class="row-fluid box-product">';
                                             }
-                                            
+                                            $index++;
                                         endforeach;
                                         ?>
                                     </div>
