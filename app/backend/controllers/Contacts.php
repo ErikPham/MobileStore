@@ -54,18 +54,20 @@ class Contacts extends Controller {
             $this->valid->run();
             $this->valid->changeLabel($this->change_lable);
             $this->view->title = 'Có lỗi xảy ra';
+            $id = $_POST['id_contacts'];
             if ($this->valid->isValid()) {
                 if ($this->model->replyContact($_POST)) {
                     $this->view->title = 'Trả lời thư thành công';
                     $this->view->message = $this->util->alertMessage('Bạn đã trả lời thư', 'Thành công', 'success');
-                    $id = $_POST['id_contacts'];
-                    if ($id == 0) {
-                        if ($this->model->updateStatus($id)) {
-                            $this->view->render('contacts/detail');
-                        }
-                    } else {
-                        $this->view->render('contacts/detail');
-                    }
+//                    if ($id == 0) {
+//                        if ($this->model->updateStatus($id)) {
+//                            $this->view->contact = $this->model->getIdContact($id);
+//                            Util::redirectTo('contacts/index');
+//                        }
+//                    } else {
+//                        $this->view->contact = $this->model->getIdContact($id);
+//                        Util::redirectTo('contacts/index');
+//                    }
                 } else {
                     $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi nhập nội dung mới hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
                 }
@@ -80,7 +82,9 @@ class Contacts extends Controller {
             }
             $this->view->contact = $_POST;
             $this->view->util = $this->util;
-            $this->view->render('contacts/detail');
+            $this->view->render('contacts/index');
+        } else {
+            Util::redirectTo('contacts/index');
         }
     }
 

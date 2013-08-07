@@ -38,9 +38,6 @@
                     <div class="pull-right">
                         <div class="btn-toolbar">
                             <div class="btn-group">
-                                <span><strong>1-25</strong> of <strong>348</strong></span>
-                            </div>
-                            <div class="btn-group">
                                 <a data-toggle="dropdown" class="btn" href="#"><i class="icon-angle-left"></i></a>
                                 <a data-toggle="dropdown" class="btn" href="#"><i class="icon-angle-right"></i></a>
                             </div>

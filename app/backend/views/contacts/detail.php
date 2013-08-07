@@ -1,4 +1,7 @@
 <div class="row-fluid">
+    <?php
+        echo isset($this->message) ? $this->message : '';
+    ?>
     <div class="span12">
         <div class="box">
             <div class="box-title">
@@ -25,26 +28,21 @@
                             <span class="time"><i class=" icon-calendar"></i>&nbsp;<?php echo $this->contact['contact_date']; ?></span>
                         </div>
                     </li>
-                    <li class="typing">
-                        <span class="name"><?php echo Session::get('username'); ?></span>&nbsp;đang trả lời<img alt="" src="<?php echo URL ?>/publics/img/loading.gif">
-                    </li>
-                    <li class="insert">
-                        <form action="<?php echo URL . 'backend/contacts/saveReply'; ?>" method="POST" id="message-form">
-                            <div class="hidden">
-                                <input type="hidden" name="id_contacts" value="<?php echo $this->contact['id']; ?>"/>
-                                <input type="hidden" name="author_id" value="<?php echo Session::get('userid'); ?>"/>
-                                <input type="hidden" name="post_date" value="<?php echo date("Y-d-m"); ?>"/>
-                            </div>
-                            <div class="text">
-                                <input type="text" class="input-block-level" placeholder="Nhập thư trả lời..." name="content">
-                            </div>
-                            <div class="submit">
-                                <button type="submit"><i class="icon-share-alt"></i></button>
-                            </div>
-                        </form>
-                    </li>
                 </ul>
+                <form method="post" action="<?php echo URL . 'backend/contacts/saveReply';?>" class="form-horizontal form-bordered">
+                    <div class="hidden">
+                        <input type="hidden" name="id_contacts" value="<?php echo $this->contact['id']; ?>"/>
+                        <input type="hidden" name="author_id" value="<?php echo Session::get('userid'); ?>"/>
+                        <input type="hidden" name="post_date" value="<?php echo date("Y-d-m"); ?>"/>
+                    </div>
+                    <div class="text">
+                        <input type="text" class="input-block-level" placeholder="Nhập thư trả lời..." name="content"/>
+                        <?php if (isset($this->util->errors)) $this->util->alertErrorField('content'); ?>
+                    </div>
+                    <div class="submit">
+                        <button type="submit"><i class="icon-share-alt"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
