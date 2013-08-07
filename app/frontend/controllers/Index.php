@@ -14,8 +14,6 @@ class Index extends Controller {
         $this->view->render('index/index');
     }
     
-    
-    
 }
 
 ?>

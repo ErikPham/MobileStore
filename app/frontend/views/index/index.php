@@ -1,12 +1,3 @@
-<?php
-/*
-  echo "<pre>";
-  print_r($this->productLatests);
-  exit();
- * *
- */
-?>
-
 <section id="slideshow">
     <div class="container">
         <div class="carousel slid pavcontentslider" id="pavcontentslider10">
@@ -114,19 +105,21 @@
                                     <div class="row-fluid box-product">
                                         <?php
                                         $index = 1;
-                                        foreach ($this->productLatests as $ListLatests):
-                                            $urlDetailProduct = URL . 'product/detail/' . $ListLatests['id'] . '/' . Util::toSlug($ListLatests['name']);
+                                        $count = count($this->productLatests);
+
+                                        foreach ($this->productLatests as $product):
+                                            $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
                                             ?>
                                             <div class="span6 product-block">
                                                 <div class="product-inner">
                                                     <div class="product_block">
                                                         <div class="image">
-                                                            <a href="<?php echo $urlDetailProduct; ?>"><img alt="Samsung Galaxy Tab 10.1" src="<?php echo Publics . $ListLatests['thumb']; ?>"></a>
+                                                            <a href="<?php echo $urlDetailProduct; ?>"><img alt="Samsung Galaxy Tab 10.1" src="<?php echo Publics . $product['thumb']; ?>"></a>
                                                         </div>
                                                         <div class="product_info">
-                                                            <h3 class="name"><a href="<?php echo $urlDetailProduct; ?>"><?php echo $ListLatests['name']; ?></a></h3>
+                                                            <h3 class="name"><a href="<?php echo $urlDetailProduct; ?>"><?php echo $product['name']; ?></a></h3>
                                                             <div class="price">
-                                                                <span class="price-new"><?php echo number_format($ListLatests['price']); ?> VNĐ</span>
+                                                                <span class="price-new"><?php echo number_format($product['price'] . '000'); ?> VNĐ</span>
                                                             </div>
                                                             <div class="pav-action clearfix">
                                                                 <div class="cart">
@@ -144,7 +137,7 @@
                                                 </div>
                                             </div>
                                             <?php
-                                            if ($index % 2 == 0) {
+                                            if ($index % 2 == 0 && $index != $count) {
                                                 echo '</div>
                                 </div><div class="item">
                                             <div class="row-fluid box-product">';
@@ -158,7 +151,7 @@
                         </div>
                         <!--end #productcarousel1-->
                         <script type="text/javascript">
-            $('#productcarousel1').carousel({interval: false, auto: false, pause: 'hover'});
+                             $('#productcarousel1').carousel({interval: false, auto: false, pause: 'hover'});
                         </script>
                     </div>
                     <!--end .box-content-->
@@ -179,143 +172,56 @@
                             <div class="carousel-inner">
                                 <div class="item active">
                                     <div class="row-fluid box-product">
-                                        <div class="span6 product-block">
-                                            <div class="product-inner">
-                                                <div class="product_block">
-                                                    <span class="product-label-special label">Sale</span>
-                                                    <div class="image">
-                                                        <a href="#"><img alt="Samsung Galaxy Tab 10.1" src="images/data/product09-220x170.jpg"></a>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                        <div class="description">
-                                                            Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
+                                        <?php
+                                        $index = 1;
+                                        $count = count($this->productLatests);
+
+                                        foreach ($this->productLatests as $product):
+                                            $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
+                                            ?>
+                                            <div class="span6 product-block">
+                                                <div class="product-inner">
+                                                    <div class="product_block">
+                                                        <div class="image">
+                                                            <a href="<?php echo $urlDetailProduct; ?>"><img alt="Samsung Galaxy Tab 10.1" src="<?php echo Publics . $product['thumb']; ?>"></a>
                                                         </div>
-                                                        <div class="price">
-                                                            <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                        </div>
-                                                        <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                        <div class="pav-action clearfix">
-                                                            <div class="cart">
-                                                                <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
+                                                        <div class="product_info">
+                                                            <h3 class="name"><a href="<?php echo $urlDetailProduct; ?>"><?php echo $product['name']; ?></a></h3>
+                                                            <div class="price">
+                                                                <span class="price-new"><?php echo number_format($product['price'] . '000'); ?> VNĐ</span>
                                                             </div>
-                                                            <div class="wishlist">
-                                                                <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                            </div>
-                                                            <div class="compare">
-                                                                <a onclick="addToCompare('49');">Add to Compare</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="span6 product-block">
-                                            <div class="product-inner">
-                                                <div class="product_block">
-                                                    <span class="product-label-special label">Sale</span>
-                                                    <div class="image">
-                                                        <a href="#"><img alt="Samsung Galaxy Tab 10.1" src="images/data/product09-220x170.jpg"></a>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                        <div class="description">
-                                                            Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                        </div>
-                                                        <div class="price">
-                                                            <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                        </div>
-                                                        <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                        <div class="pav-action clearfix">
-                                                            <div class="cart">
-                                                                <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                            </div>
-                                                            <div class="wishlist">
-                                                                <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                            </div>
-                                                            <div class="compare">
-                                                                <a onclick="addToCompare('49');">Add to Compare</a>
+                                                            <div class="pav-action clearfix">
+                                                                <div class="cart">
+                                                                    <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
+                                                                </div>
+                                                                <div class="wishlist">
+                                                                    <a onclick="addToWishList('49');">Add to Wish List</a>
+                                                                </div>
+                                                                <div class="compare">
+                                                                    <a onclick="addToCompare('49');">Add to Compare</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <?php
+                                            if ($index % 2 == 0 && $index != $count) {
+                                                echo '</div>
+                                                    </div>
+                                            <div class="item">
+                                                <div class="row-fluid box-product">';
+                                            }
+                                            $index++;
+                                        endforeach;
+                                        ?>
                                     </div>
                                 </div>
-                                <!--end .item-->
-                                <div class="item">
-                                    <div class="row-fluid box-product">
-                                        <div class="span6 product-block">
-                                            <div class="product-inner">
-                                                <div class="product_block">
-                                                    <span class="product-label-special label">Sale</span>
-                                                    <div class="image">
-                                                        <a href="#"><img alt="Samsung Galaxy Tab 10.1" src="images/data/product09-220x170.jpg"></a>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                        <div class="description">
-                                                            Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                        </div>
-                                                        <div class="price">
-                                                            <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                        </div>
-                                                        <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                        <div class="pav-action clearfix">
-                                                            <div class="cart">
-                                                                <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                            </div>
-                                                            <div class="wishlist">
-                                                                <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                            </div>
-                                                            <div class="compare">
-                                                                <a onclick="addToCompare('49');">Add to Compare</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="span6 product-block">
-                                            <div class="product-inner">
-                                                <div class="product_block">
-                                                    <span class="product-label-special label">Sale</span>
-                                                    <div class="image">
-                                                        <a href="#"><img alt="Samsung Galaxy Tab 10.1" src="images/data/product09-220x170.jpg"></a>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                        <div class="description">
-                                                            Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                        </div>
-                                                        <div class="price">
-                                                            <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                        </div>
-                                                        <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                        <div class="pav-action clearfix">
-                                                            <div class="cart">
-                                                                <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                            </div>
-                                                            <div class="wishlist">
-                                                                <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                            </div>
-                                                            <div class="compare">
-                                                                <a onclick="addToCompare('49');">Add to Compare</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end .item-->
-                            </div>
+                            </div><!--end.carousel-inner-->
                         </div>
                         <!--end #productcarousel1-->
                         <script type="text/javascript">
-            $('#productcarousel2').carousel({interval: false, auto: false, pause: 'hover'});
+                            $('#productcarousel2').carousel({interval: false, auto: false, pause: 'hover'});
                         </script>
                     </div>
                     <!--end .box-content-->
@@ -345,177 +251,81 @@
                                         <a data-slide="prev" href="#productcarousel3" class="carousel-control left">‹</a>
                                         <a data-slide="next" href="#productcarousel3" class="carousel-control right">›</a>
                                     </div>
+
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <div class="row-fluid box-product">
-                                                <div class="span3 product-block">
-                                                    <div class="product-inner">
-                                                        <div class="product_block">
-                                                            <span class="product-label-special label">Sale</span>
-                                                            <div class="image">
-                                                                <a href="#">
-                                                                    <img src="images/product09-220x170.jpg" alt="Product"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="product_info">
-                                                                <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                                <div class="description">
-                                                                    Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
+                                                <?php
+                                                $index = 1;
+                                                $count = count($this->productHighPrices);
+
+                                                foreach ($this->productHighPrices as $product):
+                                                    $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
+                                                    ?>
+                                                    <div class="span3 product-block">
+                                                        <div class="product-inner">
+                                                            <div class="product_block">
+                                                                <div class="image">
+                                                                    <a href="<?php echo $urlDetailProduct; ?>"><img alt="Samsung Galaxy Tab 10.1" src="<?php echo Publics . $product['thumb']; ?>"></a>
                                                                 </div>
-                                                                <div class="price">
-                                                                    <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                                </div>
-                                                                <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                                <div class="pav-action clearfix">
-                                                                    <div class="cart">
-                                                                        <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
+                                                                <div class="product_info">
+                                                                    <h3 class="name"><a href="<?php echo $urlDetailProduct; ?>"><?php echo $product['name']; ?></a></h3>
+                                                                    <div class="price">
+                                                                        <span class="price-new"><?php echo number_format($product['price'] . '000'); ?> VNĐ</span>
                                                                     </div>
-                                                                    <div class="wishlist">
-                                                                        <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                                    </div>
-                                                                    <div class="compare">
-                                                                        <a onclick="addToCompare('49');">Add to Compare</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end .span3-->
-                                                <div class="span3 product-block">
-                                                    <div class="product-inner">
-                                                        <div class="product_block">
-                                                            <span class="product-label-special label">Sale</span>
-                                                            <div class="image">
-                                                                <a href="#">
-                                                                    <img src="images/product09-220x170.jpg" alt="Product"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="product_info">
-                                                                <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                                <div class="description">
-                                                                    Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                                </div>
-                                                                <div class="price">
-                                                                    <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                                </div>
-                                                                <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                                <div class="pav-action clearfix">
-                                                                    <div class="cart">
-                                                                        <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                                    </div>
-                                                                    <div class="wishlist">
-                                                                        <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                                    </div>
-                                                                    <div class="compare">
-                                                                        <a onclick="addToCompare('49');">Add to Compare</a>
+                                                                    <div class="pav-action clearfix">
+                                                                        <div class="cart">
+                                                                            <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
+                                                                        </div>
+                                                                        <div class="wishlist">
+                                                                            <a onclick="addToWishList('49');">Add to Wish List</a>
+                                                                        </div>
+                                                                        <div class="compare">
+                                                                            <a onclick="addToCompare('49');">Add to Compare</a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!--end .span3-->
-                                                <div class="span3 product-block">
-                                                    <div class="product-inner">
-                                                        <div class="product_block">
-                                                            <span class="product-label-special label">Sale</span>
-                                                            <div class="image">
-                                                                <a href="#">
-                                                                    <img src="images/product09-220x170.jpg" alt="Product"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="product_info">
-                                                                <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                                <div class="description">
-                                                                    Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                                </div>
-                                                                <div class="price">
-                                                                    <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                                </div>
-                                                                <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                                <div class="pav-action clearfix">
-                                                                    <div class="cart">
-                                                                        <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                                    </div>
-                                                                    <div class="wishlist">
-                                                                        <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                                    </div>
-                                                                    <div class="compare">
-                                                                        <a onclick="addToCompare('49');">Add to Compare</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end .span3-->
-                                                <div class="span3 product-block">
-                                                    <div class="product-inner">
-                                                        <div class="product_block">
-                                                            <span class="product-label-special label">Sale</span>
-                                                            <div class="image">
-                                                                <a href="#">
-                                                                    <img src="images/product09-220x170.jpg" alt="Product"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="product_info">
-                                                                <h3 class="name"><a href="#">Samsung Galaxy Tab 10.1</a></h3>
-                                                                <div class="description">
-                                                                    Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, m...
-                                                                </div>
-                                                                <div class="price">
-                                                                    <span class="price-old">$236.99</span> <span class="price-new">$96.00</span>
-                                                                </div>
-                                                                <div class="rating"><img alt="text_reviews" src="images/stars-5.png"></div>
-                                                                <div class="pav-action clearfix">
-                                                                    <div class="cart">
-                                                                        <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
-                                                                    </div>
-                                                                    <div class="wishlist">
-                                                                        <a onclick="addToWishList('49');">Add to Wish List</a>
-                                                                    </div>
-                                                                    <div class="compare">
-                                                                        <a onclick="addToCompare('49');">Add to Compare</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end .span3-->
+                                                    <?php
+                                                    if ($index % 4 == 0 && $index != $count) {
+                                                        echo '</div>
+                                </div><div class="item">
+                                            <div class="row-fluid box-product">';
+                                                    }
+                                                    $index++;
+                                                endforeach;
+                                                ?>
                                             </div>
                                         </div>
-                                        <!--end .item-->
-                                    </div>
+                                    </div><!--end.carousel-inner-->
                                 </div>
-                            </div>
-                        </div>
-                        <!--end .productcarousel-->
-                        <div class="box pav-custom">
-                            <section class="box-content">
-                                <div class="pav-content-bottom">
-                                    <div class="row-fluid">
-                                        <div class="span3"><img src="images/static3.png" alt=""></div>
-                                        <div class="span7">
-                                            <h3>100 kindle fire hd <span>$3.99</span> or less</h3>
-                                            <p>Nunc gavida nisl utrices loborti molis temp tempor quam congue turpis sed psum blandit donec vitae laoreet vestibulum lobortis mattis sapien bero cursus congue urna mauris.</p>
+                                <!--end .productcarousel-->
+                                <div class="box pav-custom">
+                                    <section class="box-content">
+                                        <div class="pav-content-bottom">
+                                            <div class="row-fluid">
+                                                <div class="span3"><img src="images/static3.png" alt=""></div>
+                                                <div class="span7">
+                                                    <h3>100 kindle fire hd <span>$3.99</span> or less</h3>
+                                                    <p>Nunc gavida nisl utrices loborti molis temp tempor quam congue turpis sed psum blandit donec vitae laoreet vestibulum lobortis mattis sapien bero cursus congue urna mauris.</p>
+                                                </div>
+                                                <div class="span2"><a href="#" data-size="" data-position="top-left" data-align="right" class="circlehover with-symbol"><span class="text">Find out more</span> </a></div>
+                                            </div>
                                         </div>
-                                        <div class="span2"><a href="#" data-size="" data-position="top-left" data-align="right" class="circlehover with-symbol"><span class="text">Find out more</span> </a></div>
-                                    </div>
+                                    </section>
                                 </div>
-                            </section>
+                                <!--end .pav-custom-->
+                            </div>
+                            <!--end .content-bottom-->
                         </div>
-                        <!--end .pav-custom-->
+                        <!--end .content-->
                     </div>
-                    <!--end .content-bottom-->
+                    <!--end .span12-->
                 </div>
-                <!--end .content-->
+                <!--end .row-fluid-->
             </div>
-            <!--end .span12-->
-        </div>
-        <!--end .row-fluid-->
-    </div>
-    <!--end .container-->
-</section>
-<!--end #columns-->
+            <!--end .container-->
+            </section>
+            <!--end #columns-->
