@@ -4,6 +4,9 @@
         <div class="row-fluid">
             <div class="span12">
                 <div id="content">
+                    <?php
+                        echo isset($this->message) ? $this->message : "";
+                    ?>
                     <div class="breadcrumb">
                         <a href="#">Home</a> &raquo;
                         <a href="#">Account</a> &raquo;
@@ -29,13 +32,13 @@
                                             <div class="content clearfix">
                                                 <p>Tôi là một khách hàng cũ</p>
                                                 <b>Tài khoản:</b><br>
-                                                <input type="text" value="" name="email">
+                                                <input type="text" value="" name="username">
                                                 <br>
                                                 <br>
                                                 <b>Mật khẩu:</b><br>
                                                 <input type="password" value="" name="password">
                                                 <br>
-                                                <a href="<?php echo URL .'account/forgotten/lay-lai-mat-khau.html' ?>">Forgotten Password</a><br>
+                                                <a href="<?php echo URL .'account/forgotten/lay-lai-mat-khau.html' ?>">Quên mật khẩu?</a><br>
                                                 <br>
                                                 <input type="submit" class="button" value="Login">
                                             </div>

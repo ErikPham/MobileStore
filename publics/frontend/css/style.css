@@ -295,7 +295,7 @@ ul, ul li, ol, ol li {
 	display: block;
 }
 #content {
-	min-height: 400px;
+	min-height: 300px;
 	margin-bottom: 20px;
 }
 
@@ -3866,4 +3866,7 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 .product-info .zoomWindow{
 	top: -10px !important;
 	left: 290px !important;
+}
+.alert-error,.alert-info, .alert-success, .alert-block{
+    margin: 10px 0px 15px 0px;
 }
