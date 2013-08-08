@@ -2,55 +2,39 @@
 <!--[if IE 8 ]><html class="ie8"<![endif]-->
 <!--[if IE 9 ]><html class="ie9"<![endif]-->
 <html dir="ltr" lang="en">
-<head>
-<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<!-- Mobile viewport optimized: h5bp.com/viewport -->
-<meta name="viewport" content="width=device-width">
-<meta charset="UTF-8" />
-<title>Pavo Metro - Responsive Opencart theme</title>
-<base href="http://www.pavothemes.com/demo/pav_metro_store/" />
-<meta name="description" content="Pavo Metro - Responsive Opencart theme" />
-<link href="http://www.pavothemes.com/demo/pav_metro_store/image/data/cart.png" rel="icon" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/style.css" />
-<style type="text/javascript">
-		
-			body{
-			background:url( "image/") repeat  left top !important;
-		}
-		
-	</style>
- 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavproductcarousel.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavcontentslider.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavblog.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavgallery.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/colorbox.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavmegamenu.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/js/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap-responsive.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/theme-responsive.css" />
-
-
-
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/base.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/common.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/bootstrap/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox-min.js"></script>
-<script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/tabs.js"></script>
-
-
-<!--[if lt IE 9]>
-<script src="catalog/view/javascript/html5.js"></script>
-<![endif]-->
-</head>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width">
+        <meta charset="UTF-8" />
+        <title><?php echo $this->title; ?></title>
+        <base href="http://www.pavothemes.com/demo/pav_metro_store/" />
+        <meta name="description" content="Pavo Metro - Responsive Opencart theme" />
+        <link href="http://www.pavothemes.com/demo/pav_metro_store/image/data/cart.png" rel="icon" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavproductcarousel.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavcontentslider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavblog.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavgallery.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/colorbox.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/pavmegamenu.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/js/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/theme-responsive.css" />
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/base.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/common.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox-min.js"></script>
+        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/tabs.js"></script>
+        <!--[if lt IE 9]>
+        <script src="catalog/view/javascript/html5.js"></script>
+        <![endif]-->
+    </head>
     <body class="fs12 page-common-home pattern5 active">
         <div id="page-container">
             <header id="header">
@@ -60,9 +44,9 @@
                             <div class="span3 rowleft">
                                 <div class="pav-lancur">
                                     <div id="language">
-                                        <img title="English" alt="English" src="images/flags/gb.png">
-                                        <img title="German" alt="German" src="images/flags/de.png">
-                                        <img title="France" alt="France" src="images/flags/fr.png">
+                                        <img title="English" alt="English" src="<?php echo Publics; ?>frontend/images/flags/gb.png">
+                                        <img title="German" alt="German" src="<?php echo Publics; ?>frontend/images/flags/de.png">
+                                        <img title="France" alt="France" src="<?php echo Publics; ?>frontend/images/flags/fr.png">
                                     </div>
                                     <div id="currency">
                                         <a title="Euro">€</a>
@@ -75,7 +59,7 @@
                                 <div class="row-fluid">
                                     <div class="span6 hidden-phone" id="welcome">
                                         <div class="pav-welcome pull-right">
-                                            Welcome visitor you can <a href="#">login</a> or <a href="#">create an account</a>.
+                                            Xin chào, bạn có thể <a href="<?php echo URL .'account/register/dang-ky-tai-khoan.html' ?>">đăng ký</a> hoặc <a href="<?php echo URL .'account/login/dang-nhap-tai-khoan.html' ?>">đăng nhập</a>.
                                         </div>
                                     </div>
                                     <div class="span6" id="links">
@@ -100,8 +84,8 @@
                                 </div>
                             </div>
                             <div class="span3" id="logo">
-                                <a href="#">
-                                    <img alt="Pavo Metro - Responsive Opencart theme" src="<?php echo Publics; ?>frontend/images/logo.png">
+                                <a href="<?php echo URL; ?>">
+                                    <img alt="" src="<?php echo Publics; ?>frontend/images/logo.png">
                                 </a>
                             </div>
                         </div>
@@ -174,3 +158,8 @@
                 </div>
             </header>
             <!--end #header-->
+            <section id="sys-notification">
+                <div class="container">
+                    <div id="notification"></div>
+                </div>
+            </section>

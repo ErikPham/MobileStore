@@ -14,7 +14,7 @@ html {
 }
 body {
 	background-color: #ffffff;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	margin: 0px;
 	padding: 0px;
 	font-size: 12px;
@@ -25,7 +25,7 @@ strong {
 }
 body, td, th, input, textarea, select, a, font {
 	font-size: 12px;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 label, input, button, select, textarea {
 	font-size: 12px;
@@ -296,7 +296,13 @@ ul, ul li, ol, ol li {
 }
 #content {
 	min-height: 400px;
+	margin-bottom: 20px;
 }
+
+.homePage #content{
+	margin-bottom: 0px;
+}
+
 .sidebar .box ul.box-sub li {
 	border: 0;
 }
@@ -1298,11 +1304,12 @@ ul.box-filter > li ul {
 	margin-bottom: 0;
 	margin-top: 40px;
 	position: absolute;
-	top: -130px;
+	top: -120px;
 	text-align: center;
 	width: auto;
 	margin-left: 0;
-	left: 30%;
+	left: 0%;
+	font-family: Arial;
 }
 .product-compare a {
 	text-decoration: none;
@@ -1454,7 +1461,7 @@ ul.box-filter > li ul {
 	position: relative;
 }
 
-/* label for sale */
+/* label for saleï¿½*/
 
 .product-label-special
 {
@@ -3763,14 +3770,14 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 }
 /* End */
 
-/* showcase */
+/* showcaseï¿½*/
 
 .pav-showcase .box-product [class*="span6"]{
 	width: 50%;
 	margin: 0;
 }
 
-/* fix blog module */
+/* fix blog moduleï¿½*/
 .sidebar .pav-blog-category .pav-category .head a {
 	background-image: url("../images/arrow_menu_hover.png");
 	background-repeat: no-repeat;
@@ -3781,7 +3788,7 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 }
 
 
-/* 4 Product */
+/* 4 Productï¿½*/
 .product-grid .pav-span3 .pav-action{
 	text-align: center;
 }
@@ -3803,7 +3810,7 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 	font-size: 15px;
 }
 
-/* 5 Product */
+/* 5 Productï¿½*/
 .product-grid .pav-span2 .pav-action{
 	text-align: center;
 }

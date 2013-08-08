@@ -228,7 +228,7 @@
 <section id="columns">
     <div class="container">
         <div class="row-fluid">
-            <div class="span12">
+            <div class="span12 homePage">
                 <div id="content">
                     <div class="content-bottom content-page">
                         <div class="box productcarousel">
