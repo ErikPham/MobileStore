@@ -1,6 +1,6 @@
 <section id="slideshow">
     <div class="container">
-        <div class="carousel slid pavcontentslider" id="pavcontentslider10">
+        <div class="carousel slid pavcontentslider" id="pavcontentslider">
             <div class="carousel-inner">
                 <div class="item">
                     <div class="banner-info">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="item">
                     <div class="banner-info">
-                        <h4>Mauris sed 2013 donec</h4>
+                        <h4>Mauris sed 2014 donec</h4>
                         <div class="banner-desc">
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing quis; habitant morbi tristique senectus et netus et malesuada fames ac urpis egestas.</p>
                         </div>
@@ -43,18 +43,9 @@
                     </div>
                 </div>
             </div>
-            <a data-slide="prev" href="#pavcontentslider10" class="carousel-control left hidden-tablet hidden-phone">‹</a>
-            <a data-slide="next" href="#pavcontentslider10" class="carousel-control right hidden-tablet hidden-phone">›</a>
-            <ol class="carousel-indicators">
-                <li class="" data-slide-to="0" data-target="#pavcontentslider10"></li>
-                <li class="" data-slide-to="1" data-target="#pavcontentslider10"></li>
-                <li class="active" data-slide-to="2" data-target="#pavcontentslider10"></li>
-                <li class="" data-slide-to="3" data-target="#pavcontentslider10"></li>
-            </ol>
+            <a data-slide="prev" href="#pavcontentslider" class="carousel-control left hidden-tablet hidden-phone">‹</a>
+            <a data-slide="next" href="#pavcontentslider" class="carousel-control right hidden-tablet hidden-phone">›</a> 
         </div>
-        <script type="text/javascript">
-            $('#pavcontentslider10').carousel({interval: 8000, auto: true, pause: 'hover'});
-        </script>
     </div>
 </section>
 <!--end #slideshow-->
@@ -92,7 +83,7 @@
             <div class="span6">
                 <div class="box productcarousel">
                     <h3 class="box-heading">
-                        <span class="tcolor">Latest</span>
+                        <span class="tcolor">Cao cấp</span>
                     </h3>
                     <div class="box-content">
                         <div id="productcarousel1" class="box-products slide">
@@ -105,10 +96,13 @@
                                     <div class="row-fluid box-product">
                                         <?php
                                         $index = 1;
-                                        $count = count($this->productLatests);
+                                        $count = count($this->productHighUp);
 
-                                        foreach ($this->productLatests as $product):
-                                            $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
+                                        foreach ($this->productHighUp as $product):
+                                            $end = $product['id'] . '/' . Util::toSlug($product['name']);
+                                            $urlDetailProduct = URL . 'product/detail/' . $end;
+                                            $urlAddToCart = URL . 'cart/add/' . $end;
+                                            $urlAddWish = URL . 'wish/add/' . $end;
                                             ?>
                                             <div class="span6 product-block">
                                                 <div class="product-inner">
@@ -123,10 +117,10 @@
                                                             </div>
                                                             <div class="pav-action clearfix">
                                                                 <div class="cart">
-                                                                    <input type="button" class="button" onclick="addToCart('49');" value="Add to Cart">
+                                                                    <a class="button addCart" id="<?php echo $product['id']; ?>" href="<?php echo $urlAddToCart; ?>">Add to Cart</a>
                                                                 </div>
                                                                 <div class="wishlist">
-                                                                    <a onclick="addToWishList('49');">Add to Wish List</a>
+                                                                    <a href="<?php echo $urlAddWish; ?>" class="addWish">Add to Wish List</a>
                                                                 </div>
                                                                 <div class="compare">
                                                                     <a onclick="addToCompare('49');">Add to Compare</a>
@@ -138,9 +132,11 @@
                                             </div>
                                             <?php
                                             if ($index % 2 == 0 && $index != $count) {
-                                                echo '</div>
-                                </div><div class="item">
-                                            <div class="row-fluid box-product">';
+                                                echo
+                                                '   </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="row-fluid box-product">';
                                             }
                                             $index++;
                                         endforeach;
@@ -150,9 +146,6 @@
                             </div><!--end.carousel-inner-->
                         </div>
                         <!--end #productcarousel1-->
-                        <script type="text/javascript">
-                             $('#productcarousel1').carousel({interval: false, auto: false, pause: 'hover'});
-                        </script>
                     </div>
                     <!--end .box-content-->
                 </div>
@@ -161,7 +154,7 @@
             <div class="span6">
                 <div class="box productcarousel">
                     <h3 class="box-heading">
-                        <span class="tcolor"> Most</span> Viewed
+                        <span class="tcolor">Trung cấp</span>
                     </h3>
                     <div class="box-content">
                         <div id="productcarousel2" class="box-products slide">
@@ -174,9 +167,9 @@
                                     <div class="row-fluid box-product">
                                         <?php
                                         $index = 1;
-                                        $count = count($this->productLatests);
+                                        $count = count($this->productMid);
 
-                                        foreach ($this->productLatests as $product):
+                                        foreach ($this->productMid as $product):
                                             $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
                                             ?>
                                             <div class="span6 product-block">
@@ -207,10 +200,11 @@
                                             </div>
                                             <?php
                                             if ($index % 2 == 0 && $index != $count) {
-                                                echo '</div>
+                                                echo
+                                                '   </div>
                                                     </div>
-                                            <div class="item">
-                                                <div class="row-fluid box-product">';
+                                                    <div class="item">
+                                                        <div class="row-fluid box-product">';
                                             }
                                             $index++;
                                         endforeach;
@@ -220,9 +214,6 @@
                             </div><!--end.carousel-inner-->
                         </div>
                         <!--end #productcarousel1-->
-                        <script type="text/javascript">
-                            $('#productcarousel2').carousel({interval: false, auto: false, pause: 'hover'});
-                        </script>
                     </div>
                     <!--end .box-content-->
                 </div>
@@ -234,7 +225,6 @@
     <!--end .container-->
 </div>
 <!--end .pavo-showcase-->
-
 <section id="columns">
     <div class="container">
         <div class="row-fluid">
@@ -242,8 +232,8 @@
                 <div id="content">
                     <div class="content-bottom content-page">
                         <div class="box productcarousel">
-                            <h3 class="box-heading"><span class="tcolor">
-                                    Special</span>
+                            <h3 class="box-heading">
+                                <span class="tcolor">Phổ thông</span>
                             </h3>
                             <div class="box-content">
                                 <div id="productcarousel3" class="box-products slide">
@@ -251,15 +241,14 @@
                                         <a data-slide="prev" href="#productcarousel3" class="carousel-control left">‹</a>
                                         <a data-slide="next" href="#productcarousel3" class="carousel-control right">›</a>
                                     </div>
-
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <div class="row-fluid box-product">
                                                 <?php
                                                 $index = 1;
-                                                $count = count($this->productHighPrices);
+                                                $count = count($this->productAppellative);
 
-                                                foreach ($this->productHighPrices as $product):
+                                                foreach ($this->productAppellative as $product):
                                                     $urlDetailProduct = URL . 'product/detail/' . $product['id'] . '/' . Util::toSlug($product['name']);
                                                     ?>
                                                     <div class="span3 product-block">
@@ -290,42 +279,31 @@
                                                     </div>
                                                     <?php
                                                     if ($index % 4 == 0 && $index != $count) {
-                                                        echo '</div>
-                                </div><div class="item">
-                                            <div class="row-fluid box-product">';
+                                                        echo
+                                                        '   </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <div class="row-fluid box-product">';
                                                     }
                                                     $index++;
                                                 endforeach;
                                                 ?>
                                             </div>
-                                        </div>
-                                    </div><!--end.carousel-inner-->
+                                        </div><!--end .item-->
+                                    </div>
                                 </div>
-                                <!--end .productcarousel-->
-                                <div class="box pav-custom">
-                                    <section class="box-content">
-                                        <div class="pav-content-bottom">
-                                            <div class="row-fluid">
-                                                <div class="span3"><img src="images/static3.png" alt=""></div>
-                                                <div class="span7">
-                                                    <h3>100 kindle fire hd <span>$3.99</span> or less</h3>
-                                                    <p>Nunc gavida nisl utrices loborti molis temp tempor quam congue turpis sed psum blandit donec vitae laoreet vestibulum lobortis mattis sapien bero cursus congue urna mauris.</p>
-                                                </div>
-                                                <div class="span2"><a href="#" data-size="" data-position="top-left" data-align="right" class="circlehover with-symbol"><span class="text">Find out more</span> </a></div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                                <!--end .pav-custom-->
                             </div>
-                            <!--end .content-bottom-->
                         </div>
-                        <!--end .content-->
+                        <!--end .productcarousel-->
                     </div>
-                    <!--end .span12-->
+                    <!--end .content-bottom-->
                 </div>
-                <!--end .row-fluid-->
+                <!--end .content-->
             </div>
-            <!--end .container-->
-            </section>
-            <!--end #columns-->
+            <!--end .span12-->
+        </div>
+        <!--end .row-fluid-->
+    </div>
+    <!--end .container-->
+</section>
+<!--end #columns-->
