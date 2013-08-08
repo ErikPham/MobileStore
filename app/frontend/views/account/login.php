@@ -30,7 +30,6 @@
                                         <h2>Khách hàng cũ</h2>
                                         <form enctype="multipart/form-data" method="post" action="<?php echo URL .'account/login/dang-nhap-tai-khoan.html' ?>">
                                             <div class="content clearfix">
-                                                <p>Tôi là một khách hàng cũ</p>
                                                 <b>Tài khoản:</b><br>
                                                 <input type="text" value="" name="username">
                                                 <br>
@@ -40,7 +39,7 @@
                                                 <br>
                                                 <a href="<?php echo URL .'account/forgotten/lay-lai-mat-khau.html' ?>">Quên mật khẩu?</a><br>
                                                 <br>
-                                                <input type="submit" class="button" value="Login">
+                                                <input type="submit" class="button" value="Đăng nhập">
                                             </div>
                                         </form>
                                     </div>
