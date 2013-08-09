@@ -4,6 +4,9 @@
         <div class="row-fluid">
             <div class="span12">
                 <div id="content">
+                    <?php
+                        echo isset($this->message) ? $this->message : '';
+                    ?>
                     <div class="breadcrumb">
                         <a href="#">Home</a> &raquo;
                         <a href="#">Account</a> &raquo;
@@ -19,22 +22,30 @@
                                     <tbody>
                                         <tr>
                                             <td><span class="required">*</span> Tên đăng nhập:</td>
-                                            <td><input type="text" value="" name="firstname">
+                                            <td>
+                                                <input type="text" name="username" value="<?php echo isset($this->account['username']) ? $this->account['username'] : ''; ?>">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('username'); ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Mật khẩu:</td>
-                                            <td><input type="text" value="" name="lastname">
+                                            <td>
+                                                <input type="text" name="password" value=""/>
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('password'); ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Nhập lại mật khẩu:</td>
-                                            <td><input type="text" value="" name="email">
+                                            <td>
+                                                <input type="text" value="" name="confirm">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('confirm'); ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Email:</td>
-                                            <td><input type="text" value="" name="telephone">
+                                            <td>
+                                                <input type="text"  name="email" value="<?php echo isset($this->account['email']) ? $this->account['email'] : ''; ?>">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('email'); ?>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -46,33 +57,30 @@
                                     <tbody>
                                         <tr>
                                             <td><span class="required">*</span> Họ tên:</td>
-                                            <td><input type="text" value="" name="firstname">
+                                            <td>
+                                                <input type="text"  name="fullname" value="<?php echo isset($this->account['fullname']) ? $this->account['fullname'] : ''; ?>">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('fullname'); ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Giới tính:</td>
                                             <td>
-                                                <input type="radio" value="1" name="sex"> Nam 
-                                                 <input type="radio" checked="checked" value="0" name="sex"> Nữ
+                                                <input type="radio" checked="checked"value="1" name="sex"> Nam 
+                                                <input type="radio" value="0" name="sex"> Nữ
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Số điện thoại:</td>
                                             <td>
-                                                <input type="text" value="" name="email">
+                                                <input type="text"  name="mobile" value="<?php echo isset($this->account['mobile']) ? $this->account['mobile'] : ''; ?>">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('mobile'); ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td> Địa chỉ:</td>
                                             <td>
-                                                <textarea></textarea>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td> Sở thích:</td>
-                                            <td>
-                                                <textarea></textarea>
+                                                <textarea name="address"><?php echo isset($this->account['address']) ? $this->account['address'] : ''; ?></textarea>
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('address'); ?>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -85,8 +93,8 @@
                                         <tr>
                                             <td>Theo dõi:</td>
                                             <td>
-                                                <input type="radio" value="1" name="newsletter"> Có  
-                                                 <input type="radio" checked="checked" value="0" name="newsletter"> Không
+                                                <input type="radio" value="1" name="subscribe"> Có  
+                                                <input type="radio" checked="0" value="0" name="subscribe"> Không
                                             </td>
                                         </tr>
                                     </tbody>
@@ -94,9 +102,6 @@
                             </div>
                             <div class="buttons">
                                 <div class="right">
-                                    I have read and agree to the
-                                    <a href="#" class="colorbox cboxElement"><b>Privacy Policy</b></a>
-                                    <input type="checkbox" value="1" name="agree">
                                     <input type="submit" class="button" value="Continue">
                                 </div>
                             </div>

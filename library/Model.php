@@ -123,7 +123,7 @@ class Model extends Connection {
 
     public function formatInsert($data, $tableName) {
         $filedArr = array_keys($data);
-        $fieldNames = '(' . implode(', ', $filedArr) . ')';
+        $fieldNames = '(`' . implode('`, `', $filedArr) . '`)';
         if ($this->type == 'pdo') {
             $fieldValues = '(:' . implode(', :', $filedArr) . ')';
         } else {
@@ -136,6 +136,7 @@ class Model extends Connection {
     public function insert($data, $table) {
         $tmp = false;
         $sql = $this->formatInsert($data, $table);
+        echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->execute($sql, $data);
             if ($stmt->rowCount() > 0) {

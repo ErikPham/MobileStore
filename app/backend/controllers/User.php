@@ -39,7 +39,7 @@ class User extends Controller {
         'address' => 'Địa chỉ',
         'bio' => 'Sở thích'
     );
-    public $validClass;
+    public $valid;
 
     function __construct() {
         parent::__construct();
@@ -115,7 +115,7 @@ class User extends Controller {
             if ($this->valid->isValid()) {
                 $this->view->title = 'Có lỗi xảy ra';
                 if (Request::existsPost('old') && $this->model->checkPassword(HASH::create('sha1', $_POST['old'], HASH_PASSWORD_KEY), Session::get('userid'))) {
-                    if (Request::post('new') && Request::post('confirm') && !is_null(Request::post('new'))) {
+                    if (Request::post('new') == Request::post('confirm') && !is_null(Request::post('new'))) {
                         $password = HASH::create('sha1', Request::post('new'), HASH_PASSWORD_KEY);
                         if ($this->model->savePassword(array('password' => $password), Session::get('userid'))) {
                             $this->view->title = 'Thay đổi thông tin thành công';

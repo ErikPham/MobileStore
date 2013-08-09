@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width">
         <meta charset="UTF-8" />
         <title><?php echo $this->title; ?></title>
-        <base href="http://www.pavothemes.com/demo/pav_metro_store/" />
         <meta name="description" content="Pavo Metro - Responsive Opencart theme" />
         <link href="http://www.pavothemes.com/demo/pav_metro_store/image/data/cart.png" rel="icon" />
         <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap.css" />
