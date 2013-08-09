@@ -1,4 +1,7 @@
-<div class="row-fluid">		
+<div class="row-fluid">
+    <?php
+        echo isset($this->message) ? $this->message : '';
+    ?>
     <div class="span8">
         <div class="box box-color box-bordered">
             <div class="box-title">
@@ -40,7 +43,7 @@
                     </tr>
                     <tr>
                         <td>Mô tả</td>
-                        <td><?php echo String::theExcerpt($this->adv['content']); ?></td>
+                        <td><?php echo $this->adv['content']; ?></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -48,7 +51,7 @@
                             <button class="btn btn-small btn-inverse" onclick="window.history.back();"><i class="icon-circle-arrow-left white"></i> Quay lại</button>
                             <a class="del btn btn-primary" href="<?php echo URL . 'backend/adv/delete/' . $this->adv['id'] . '/' . Util::toSlug($this->adv['title']); ?>"><i class="icon-trash"></i> Xóa</a>
                             <?php if ($this->adv['status'] == 0) { ?>
-                                <a class="btn btn-success" href="<?php echo URL . 'backend/adv/updateStatus/' . $this->adv['id'] . '/' . Util::toSlug($this->adv['title']); ?>"><i class="icon-check"></i> Xác nhận</a>
+                                <a class="btn btn-success update" href="<?php echo URL . 'backend/adv/updateStatus/' . $this->adv['id'] . '/' . Util::toSlug($this->adv['title']); ?>"><i class="icon-check"></i> Xác nhận</a>
                             <?php } ?>
                         </td>
                     </tr>
