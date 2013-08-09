@@ -737,6 +737,7 @@ table.radio tr.highlight:hover td {
     background: #F1FFDD;
     cursor: pointer;
 }
+/*
 .pagination{
     background: #efefef;
     padding: 10px;
@@ -773,6 +774,7 @@ table.radio tr.highlight:hover td {
     line-height: 22px;
     height: auto;
 }
+*/
 /* button */
 a.button, input.button {
     cursor: pointer;
@@ -1298,13 +1300,13 @@ ul.box-filter > li ul {
     border: 0 none;
 }
 #content h1 {
-    font-size: 30px;
-    height: 50px;
+    font-size: 18px;
+    height: 35px;
     line-height: 35px;
     margin-bottom: 0;
     margin-top: 40px;
     position: absolute;
-    top: -120px;
+    top: -105px;
     text-align: center;
     width: auto;
     margin-left: 0;
@@ -3277,9 +3279,9 @@ table.form span.warning, table.form span.error, table.form span.success {
     background: url('../images/top_category.png') repeat-x 0 0;
 }
 #pav-page-title {
-    min-height: 130px;
+    min-height: 100px;
     height: auto !important;
-    height: 130px;
+    height: 100px;
 }
 .category-info h1 {
     font-size: 48px;
@@ -3377,6 +3379,7 @@ a:hover, #pav-mass-bottom h3 span, .pagination .links a:hover,.pagination .links
 #mainmenu .navbar .navbar-inner ul.nav li ul.dropdown-mega li:hover a {
     color: #FFFFFF;
 }
+
 /* End Theme Skin Style */
 .circlehover:before {
     content: "";
@@ -3894,3 +3897,5 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 .veryLong{
     width: 450px;
 }
+
+/* Custom  pagination */

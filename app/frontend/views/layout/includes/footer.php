@@ -1,29 +1,3 @@
-<section id="pav-mass-bottom">
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="box pav-custom  special_offers">
-                    <section class="box-content">
-                        <div class="pav-special-offers">
-                            <h3><span>Our </span> Special Offers</h3>
-                            <div class="row-fluid">
-                                <div class="span4">
-                                    <div class="pav-block-spring-collection clearfix"><img src="<?php echo Publics . 'frontend/'; ?>images/spring-collection.png" class="pull-left" alt="Spring Collection"></div>
-                                </div>
-                                <div class="span4">
-                                    <div class="pav-block-extra clearfix"><img src="<?php echo Publics . 'frontend/'; ?>images/extra.png" class="pull-left" alt="All Products"></div>
-                                </div>
-                                <div class="span4">
-                                    <div class="pav-block-new-collection clearfix"><img src="<?php echo Publics . 'frontend/'; ?>images/new-collection.png" class="pull-left" alt="New Collection"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!--end #pav-mass-bottom-->
 <section id="footer">
     <div class="footer-center">

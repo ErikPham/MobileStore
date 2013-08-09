@@ -50,8 +50,26 @@ class news_model extends Model {
 
     function getAllNewsLimit($start, $display) {
         $options = array('where' => 'status = 1', 'limit' => "$start,$display");
-        return $this->selectAll('news.id, title, description, fullname, name, category_id', 'news join category on news.category_id = category.id join accounts on accounts.id = news.account_id', $options, null, MYSQLI_ASSOC);
+        return $this->selectAll('news.id, title, description, fullname, name, category_id, views', 'news join category on news.category_id = category.id join accounts on accounts.id = news.account_id', $options, null, MYSQLI_ASSOC);
     }
+    
+    //Category
+    function getCountCategory($id){
+        $options = array('where' => "category_id = $id");
+        return $this->selectCount('id', 'count', 'news', $options, null, 2);
+    }
+    
+    function getAllNewsCategoryLimit($id, $start, $display) {
+        $options = array('where' => "status = 1 AND category_id = $id", 'limit' => "$start,$display");
+        return $this->selectAll('news.id, title, description, fullname, name, category_id, views', 'news join category on news.category_id = category.id join accounts on accounts.id = news.account_id', $options, null, MYSQLI_ASSOC);
+    }
+    
+    //Update views
+    function updateViews($data,$id){
+        return $this->update($data, 'news', "id = {$id}");
+    }
+    
+    
 
 }
 

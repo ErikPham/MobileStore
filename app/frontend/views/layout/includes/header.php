@@ -117,7 +117,7 @@
                                                         </li>
                                                       
                                                         <li class="parent dropdown pav-parrent">
-                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
+                                                            <a href="<?php echo URL.'news/view/tin-tuc.html' ?>" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
                                                             <div class="dropdown-menu level1">
                                                                 <div class="dropdown-menu-inner">
                                                                     <ul>
