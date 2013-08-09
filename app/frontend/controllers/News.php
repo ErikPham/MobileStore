@@ -4,7 +4,7 @@ class News extends Controller {
 
     function __construct() {
         parent::__construct();
-        $this->view->layout = 'home';
+        $this->view->layout = 'news';
         $this->view->pavHeader = 'Tin tức';
     }
 
@@ -14,6 +14,7 @@ class News extends Controller {
 
     function view() {
         $display = 10;
+        $this->view->viewmosts = $this->model->viewMost();
         $total = is_numeric(URI::getSegment(3)) ? URI::getSegment(3) : $this->model->getContNews();
         $pagination = new Pagination($total, $display);
         $start = is_numeric(URI::getSegment(2)) ? URI::getSegment(2) : 0;
@@ -36,6 +37,7 @@ class News extends Controller {
         if (!empty($data)) {
             $view = $data['views'];
             $views = array('views' => $view + 1);
+            $this->view->viewmosts = $this->model->viewMost();
             $this->model->updateViews($views, $id);
             $this->view->pavHeader = $data['title'];
             $this->view->title = $data['title'];
@@ -57,6 +59,7 @@ class News extends Controller {
 
         $data = $this->model->getAllNewsCategoryLimit($id, $start, $display);
         if (!empty($data)) {
+            $this->view->viewmosts = $this->model->viewMost();
             $this->view->news = $data;
             $pagination->link = URL . 'news/category/' . $id . '/';
             $this->view->title = $data[0]['name'];

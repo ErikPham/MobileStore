@@ -19,7 +19,7 @@
                                 <?php
                                 if (!is_null($this->news)):
                                     foreach ($this->news as $new):
-                                        $url = URL . 'news/viewdetail/' . $new['id'] .'/'. Util::toSlug($new['title']);
+                                        $url = URL . 'news/viewdetail/' . $new['id'] . '/' . Util::toSlug($new['title']);
                                         $urlCategory = URL . 'news/category/' . $new['category_id'] . '/' . Util::toSlug($new['name']);
                                         ?>
                                         <div class="pavcol1">
@@ -69,6 +69,5 @@
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
-</section>
+
+            
