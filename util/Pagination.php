@@ -17,7 +17,7 @@ class Pagination {
     }
 
     public function setLink($start,$page,$name){
-        return "<a href='".$this->link."?s={$start}&p={$page}'>{$name}</a>";
+        return "<a href='".$this->link."{$start}/{$page}'>{$name}</a>";
     }
 
     public function createLinks(){

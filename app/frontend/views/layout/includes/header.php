@@ -68,21 +68,20 @@
                                     <div class="span6" id="links">
                                         <div class="pav-links pull-right">
                                             <!-- <a href="" class="first"></a> -->
-                                            <a id="wishlist-total" href="#">Wish List (1)</a>
-                                            <a href="#">My Account</a>
-                                            <a href="#">Shopping Cart</a>
-                                            <a class="last" href="#">Checkout</a>
+                                            <a id="wishlist-total" href="#">Sản phẩm yêu thích</a>
+                                            <a href="<?php echo URL . 'account'?>">Quản lý tài khoản</a>
+                                            <a href="#">Giỏ hàng</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="clearfix pull-right" id="cart">
                                     <div class="heading">
                                         <span class="pav-icon"></span>
-                                        <span class="pav-label">Shopping Cart</span>
-                                        <a><span id="cart-total">0 item(s) - $0.00</span></a>
+                                        <span class="pav-label">Giỏ hàng</span>
+                                        <a><span id="cart-total">0 sản phẩm - 0.00 VNĐ</span></a>
                                     </div>
                                     <div class="content">
-                                        <div class="empty">Your shopping cart is empty!</div>
+                                        <div class="empty">Giỏ hàng đang trống!</div>
                                     </div>
                                 </div>
                             </div>
@@ -107,37 +106,30 @@
                                                     <span class="icon-bar"></span>
                                                     <span class="icon-bar"></span>
                                                 </a>
-                                                <span class="hidden-tablet hidden-desktop">Navigation</span>
+                                                <span class="hidden-tablet hidden-desktop">Menu</span>
                                                 <div class="nav-collapse collapse">
                                                     <ul class="nav megamenu">
                                                         <li class="home first">
-                                                            <a href="#"><span class="menu-title">Home</span></a>
+                                                            <a href="<?php echo URL; ?>"><span class="menu-title">Home</span></a>
                                                         </li>
                                                         <li>
-                                                            <a href="#"><span class="menu-title">Watches</span></a>
+                                                            <a href="#"><span class="menu-title">Sản phẩm</span></a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#"><span class="menu-title">Tablets</span></a>
-                                                        </li>
+                                                      
                                                         <li class="parent dropdown pav-parrent">
-                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Digital</span><b class="caret"></b></a>
+                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
                                                             <div class="dropdown-menu level1">
                                                                 <div class="dropdown-menu-inner">
                                                                     <ul>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Macs</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Books</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Printer</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Monitors</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Web Cameras</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Scanners</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Computer</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Macs</span></a></li>
+                                                                        <li class=" "><a href="#"><span class="menu-title">Xã hội</span></a></li>
+                                                                        <li class=" "><a href="#"><span class="menu-title">Startup</span></a></li>
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="pav-blog-menu">
-                                                            <a href="#"><span class="menu-title">Blog</span></a>
+                                                            <a href="<?php echo URL . 'contacts/send/'. Util::toSlug('lien he voi chung toi')?>"><span class="menu-title">Liên hệ</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>

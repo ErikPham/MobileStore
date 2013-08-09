@@ -14,7 +14,7 @@
                     </div>
                     <div class="account-register">
                         <h1>Đăng ký tài khoản</h1>
-                        <p>Nếu bạn đã có tài khoản, xin vui lòng trang <a href="#"> đăng nhập</a>.</p>
+                        <p>Nếu bạn đã có tài khoản, xin vui lòng vào trang <a href="#"> đăng nhập</a>.</p>
                         <form enctype="multipart/form-data" method="post" action="#">
                             <h2>Thông tin tài khoản</h2>
                             <div class="content">

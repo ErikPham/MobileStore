@@ -42,6 +42,10 @@ class contacts_model extends Model {
     public function deleteContact($id) {
         return $this->delete('contacts', 'id=' . $id);
     }
+    
+    public function sendContact($data){
+        return $this->insert($data, 'contacts');
+    }
 
 }
 

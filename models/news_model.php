@@ -42,6 +42,17 @@ class news_model extends Model {
         return $this->delete('news', 'id =' . $id);
     }
 
+    //News Home
+    function getContNews() {
+        $options = array('where' => 'status = 1');
+        return $this->selectCount('id', 'count', 'news', $options, null, 2);
+    }
+
+    function getAllNewsLimit($start, $display) {
+        $options = array('where' => 'status = 1', 'limit' => "$start,$display");
+        return $this->selectAll('news.id, title, description, fullname, name, category_id', 'news join category on news.category_id = category.id join accounts on accounts.id = news.account_id', $options, null, MYSQLI_ASSOC);
+    }
+
 }
 
 ?>

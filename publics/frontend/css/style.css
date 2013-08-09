@@ -3877,3 +3877,20 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
 .alert-error,.alert-info, .alert-success, .alert-block{
     margin: 10px 0px 15px 0px;
 }
+
+/*Custom Form*/
+.sort{
+    width: 100px;
+}
+
+.medium{
+    width: 250px;
+}
+
+.long{
+    width: 300px;
+}
+
+.veryLong{
+    width: 450px;
+}
