@@ -9,6 +9,7 @@ return $config = array(
     'import' => array(
         'util.subutil.cainaynua.*',
         'util.*'
-    )
+    ),
+    'timezone' => 'Asia/Ho_Chi_Minh'
 )
 ?>
