@@ -5,10 +5,13 @@ class View {
     public $title;
     public $layout;
     public $viewFile;
-    
+
     public function render($name) {
         $this->viewFile = $name;
-        require  LAYOUT . $this->layout . '.php';
+        $layout = LAYOUT . $this->layout . '.php';
+        if (file_exists($layout)) {
+            require LAYOUT . $this->layout . '.php';
+        }
     }
 
     public function loadView() {

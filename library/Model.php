@@ -202,6 +202,8 @@ class Model extends Connection {
         $tmp = false;
         $where = (!is_null($criteria)) ? " WHERE {$criteria}" : "";
         $sql = "DELETE FROM {$tableName} {$where}";
+        
+        echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->execute($sql);
             if ($stmt->rowCount() > 0) {
