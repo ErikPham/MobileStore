@@ -65,7 +65,7 @@ class Contacts extends Controller {
             $this->valid->run();
             $this->valid->changeLabel($this->change_lable);
             $this->view->title = 'Có lỗi xảy ra';
-            $id = $_POST['id_contacts'];
+            //$id = $_POST['id_contacts'];
             if ($this->valid->isValid()) {
                 if ($this->model->replyContact($_POST)) {
                     $this->view->title = 'Trả lời thư thành công';

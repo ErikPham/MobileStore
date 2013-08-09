@@ -17,11 +17,12 @@
             <div class="box-content nopadding" style="display: block;">
                 <ul class="messages">
                     <li class="left">
-                        <div class="delete"><a class="del" href="<?php echo URL . 'backend/contacts/delete/' . $this->contact['id'] . '/' . Util::toSlug($this->contact['title']); ?>"><i class="icon-trash"></i></a></div>
+                        
                         <div class="image">
                             <img alt="" src="<?php echo URL ?>publics/img/demo/user-2.jpg">
                         </div>
                         <div class="message">
+                            <div class="delete" style="float: right;"><a class="del" href="<?php echo URL . 'backend/contacts/delete/' . $this->contact['id'] . '/' . Util::toSlug($this->contact['title']); ?>"><i class="icon-trash"></i></a></div>
                             <span class="caret"></span>
                             <span class="name"><?php echo $this->contact['name']; ?></span>
                             <p><strong><?php echo $this->contact['title']; ?></strong></p>

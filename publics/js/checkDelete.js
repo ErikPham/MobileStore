@@ -4,5 +4,11 @@ $(document).ready(function() {
             return false;
         }
     });
+
+    $(".update").click(function(){
+       if (!confirm("Bạn có chắc chắn xử lý tin này không?")) {
+            return false;
+        } 
+    });
 });
 
