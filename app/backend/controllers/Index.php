@@ -4,9 +4,8 @@ class Index extends Controller {
 
     function __construct() {
         parent::__construct();
-        Session::init();
-        if (Session::get('username') == null) {
-            Util::redirectTo('backend/login');
+        if (Session::get('auth') != 1) {
+            Util::redirectTo('backend/account/login');
         }
         $this->view->layout = 'main';
     }

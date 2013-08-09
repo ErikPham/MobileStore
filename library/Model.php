@@ -171,7 +171,7 @@ class Model extends Connection {
         } else {
             foreach ($data as $k => $v) {
                 ($index != 0) ? $fields .= ', ' : '';
-                $fields .= "{$k} = '{$v}'";
+                $fields .= "`{$k}` = '{$v}'";
                 $index++;
             }
         }

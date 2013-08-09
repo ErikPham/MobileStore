@@ -18,8 +18,8 @@
                         <div class="controls">
                             <input class="input-xxlarge" type="text" name="title" value="<?php if (isset($_POST['title'])) echo $_POST['title']; ?>" placeholder="Nhập tên tiêu đề bài viết">
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('title'); ?>
-                            <input type="hidden" value="<?php echo Session::get('userid');?>" name="user_id"/>
-                            <input type="hidden" value="<?php echo date("Y-m-d");?>" name="post_date"/>
+                            <input type="hidden" value="<?php echo Session::get('user_id');?>" name="account_id"/>
+                            <input type="hidden" value="<?php echo time();?>" name="post_date"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -40,7 +40,7 @@
                     <div class="control-group">
                         <label class="control-label" for="textfield">Hình ảnh</label>
                         <div class="controls">
-                            <input type="file" name="image" class="btn pl_start btn-success"/>
+                            <input type="file" name="image" class="btn btn-primary"/>
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('image'); ?>
                         </div>
                     </div>

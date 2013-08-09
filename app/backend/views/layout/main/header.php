@@ -148,13 +148,13 @@
                         <a href="#" class='dropdown-toggle' data-toggle="dropdown"><?php echo Session::get('username'); ?> <img src="<?php echo URL ?>publics/img/demo/user-avatar.jpg" alt=""></a>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a href="<?php echo URL ?>backend/user/editprofile">Đổi thông tin cá nhân</a>
+                                <a href="<?php echo URL ?>backend/account/editprofile">Đổi thông tin cá nhân</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL ?>backend/user/changepassword">Đổi mật khẩu</a>
+                                <a href="<?php echo URL ?>backend/account/changepassword">Đổi mật khẩu</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL ?>backend/user/logout">Thoát</a>
+                                <a href="<?php echo URL ?>backend/account/logout">Thoát</a>
                             </li>
                         </ul>
                     </div>

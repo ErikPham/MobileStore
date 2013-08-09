@@ -16,7 +16,7 @@
                     <div class="control-group">
                         <label for="textfield" class="control-label">Tiêu đề</label>
                         <div class="controls">
-                            <input type="hidden" value="<?php echo $this->new['id'];?>" name="id"/>
+                            <input type="hidden" value="<?php echo $this->new['id']; ?>" name="id"/>
                             <input class="input-xxlarge" type="text" name="title" value="<?php if (isset($this->new['title'])) echo $this->new['title']; ?>" placeholder="Nhập tên tiêu đề bài viết">
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('title'); ?>
                         </div>
@@ -48,10 +48,10 @@
                                     if (isset($this->new['category_id']) && $this->new['category_id'] == $cate['id'])
                                         echo "selected='selected'"
                                         ?>>
-                                    <?php echo $cate['name']; ?></option>
-                            <?php } ?>
+                                        <?php echo $cate['name']; ?></option>
+                                <?php } ?>
                             </select>
-<?php if (isset($this->util->errors)) $this->util->alertErrorField('category_id'); ?>
+                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('category_id'); ?>
                         </div>
                     </div>
 
@@ -69,10 +69,10 @@
                                         echo "selected='selected'"
                                         ?>        
                                             >
-                                    <?php echo $value; ?></option>
-                            <?php } ?>
+                                        <?php echo $value; ?></option>
+                                <?php } ?>
                             </select>
-<?php if (isset($this->util->errors)) $this->util->alertErrorField('status'); ?>
+                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('status'); ?>
                         </div>
                     </div>
                     <div class="form-actions">

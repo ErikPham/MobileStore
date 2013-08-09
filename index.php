@@ -1,11 +1,15 @@
 <?php
+@session_start();
 define('SITE_PATH', realpath(dirname(__FILE__)) . '/');
 define('URL', "http://localhost/mobilestore/");
 define('Publics',  URL . 'publics/');
 define('HASH_GENERAL_KEY', 'MixitUp200');
 define('HASH_PASSWORD_KEY', 'PhucPM');
+define('SESSION_KEY', 'PhucPM');
 require './config/config.php';
 $imports = $config['import'];
+$timezone = $config['timezone'];
+date_default_timezone_set($timezone);
 
 
 function __autoload($class) {

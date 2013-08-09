@@ -10,7 +10,7 @@ class Account extends Controller {
             'required' => true,
             'min' => 6,
             'max' => 32,
-            'exists' => 'users',
+            'exists' => 'accounts',
             'trim' => true
         ),
         'password' => array(
@@ -30,7 +30,7 @@ class Account extends Controller {
             'required' => true,
             'min' => 10,
             'max' => 150,
-            'exists' => 'users',
+            'exists' => 'accounts',
             'trim' => true
         ),
         'fullname' => array(
@@ -98,15 +98,16 @@ class Account extends Controller {
                 unset($_POST['confirm']);
                 if ($this->model->register($_POST) && $flag) {
                     $this->view->title = 'Đăng ký tài khoản thành công';
-                    $message = "Chúc mừng bạn đã đăng ký tài khoản thành công tại MobileStore.Com\n. Để hoành thành việc đăng ký bạn vui lòng vào đường link sau: ".URL."account/active/{$key}/kich-hoat-tai-khoan.html";
+                    $email = base64_encode(Request::post('email'));
+                    $message = "Chúc mừng bạn đã đăng ký tài khoản thành công tại MobileStore.Com.\nClick vào đường link " . URL . "account/active/{$email}/{$key}/kich-hoat-tai-khoan.html  để kích hoạt tài khoản";
                     $mail = new Mail();
-                    if($mail->Send(Request::post('email'), Request::post('fullname'), 'Đăng ký tài khoản thành công', $message)){
+                    if ($mail->Send(Request::post('email'), Request::post('fullname'), 'Đăng ký tài khoản thành công', $message)) {
                         $this->view->message = $this->util->alertMessage('Bạn đã đăng ký tài khoản thành công. Vui lòng kiểm tra email để kích hoạt', 'Thành công', 'success');
-                    }else{
+                    } else {
                         $this->view->message = $this->util->alertMessage('Chúng tôi không thể gửi được email kích hoạt cho bạn. Bạn vui lòng sử dụng chức năng gửi lại mã kích hoạt. Xin cảm ơn', 'Có lỗi', 'error');
                     }
-                    
-                    
+
+
                     $_POST = array();
                 } else {
                     $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
@@ -122,7 +123,7 @@ class Account extends Controller {
                 $this->view->account = $_POST;
             }
         }
-        
+
         $this->view->util = $this->util;
         $this->view->render('account/register');
     }
@@ -136,11 +137,32 @@ class Account extends Controller {
             if ($this->model->checkLogin($data) == true) {
                 Util::redirectTo('index');
             } else {
-                $this->view->message = Util::alertMessage('Tên tài khoản hoặc mật khẩu sai', 'Có lỗi');
+                $this->view->message = Util::alertMessage('Tên tài khoản, mật khẩu sai. Hoặc tài khoản của bạn chưa được kích hoạt', 'Có lỗi');
             }
         }
         $this->view->title = 'Đăng nhập tài khoản';
         $this->view->render('account/login');
+    }
+    
+    public function logout(){
+        Session::destroy();
+        Util::redirectTo();
+    }
+
+    public function active() {
+        $email = base64_decode(URI::getSegment(2));
+        $key = URI::getSegment(3);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if ($this->model->activeAccount($email, $key)) {
+                $this->view->message = $this->util->alertMessage('Chúc mừng bạn đã kích hoạt thành công. Bây giờ bạn có thể đăng nhập tài khoản', 'Thành công', 'success');
+            } else {
+                $this->view->message = $this->util->alertMessage('Đường link kích hoạt của bạn không hợp lệ. Vui lòng kiểm tra lại', 'Có lỗi');
+            }
+            $this->view->title = 'Kích hoạt tài khoản';
+            $this->view->render('account/login');
+        } else {
+            Util::redirectTo('index');
+        }
     }
 
 }

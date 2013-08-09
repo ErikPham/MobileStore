@@ -33,7 +33,7 @@
                                 <td>
                                     <?php echo $new['name'];?>
                                 </td>
-                                <td><?php echo $new['post_date']; ?></td>
+                                <td><?php echo Date::getDatetime($new['post_date']);?></td>
                                 <td>
                                     <?php echo ($new['status'] == 1) ? 'Đã duyệt' : 'Chưa duyệt'; ?>
                                 </td>

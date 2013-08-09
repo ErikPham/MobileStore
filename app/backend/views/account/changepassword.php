@@ -12,7 +12,7 @@
             </div>
 
             <div class="box-content nopadding">
-                <form action="<?php echo URL . 'backend/user/savepassword' ?>" method="post" class="form-horizontal form-bordered">
+                <form action="<?php echo URL . 'backend/account/savepassword' ?>" method="post" class="form-horizontal form-bordered">
                     <div class="control-group">
                         <label for="textfield" class="control-label">Mật khẩu cũ</label>
                         <div class="controls">

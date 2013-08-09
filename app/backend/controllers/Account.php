@@ -1,6 +1,6 @@
 <?php
 
-class User extends Controller {
+class Account extends Controller {
 
     private $util;
     public static $rules = array(
@@ -19,13 +19,6 @@ class User extends Controller {
             'trim' => true
         ),
         'address' => array(
-            'type' => 'string',
-            'required' => false,
-            'min' => 10,
-            'max' => 255,
-            'trim' => true
-        ),
-        'bio' => array(
             'type' => 'string',
             'required' => false,
             'min' => 10,
@@ -50,9 +43,9 @@ class User extends Controller {
     }
 
     function editProfile() {
-        $this->view->user = $this->model->editProfile(Session::get('userid'));
+        $this->view->user = $this->model->editProfile(Session::get('user_id'));
         $this->view->title = 'Edit Profile';
-        $this->view->render('user/editprofile');
+        $this->view->render('account/editprofile');
     }
 
     function saveProfile() {
@@ -63,7 +56,7 @@ class User extends Controller {
             $this->valid->changeLabel($this->change_label);
             $this->view->title = 'Có lỗi xảy ra';
             if ($this->valid->isValid()) {
-                if ($this->model->updateProfile($_POST, Session::get('userid'))) {
+                if ($this->model->updateProfile($_POST, Session::get('user_id'))) {
                     $this->view->title = 'Thay đổi thông tin thành công';
                     $this->view->message = $this->util->alertMessage('Bạn đã cập nhật thành công', 'Thành công', 'success');
                 } else {
@@ -80,14 +73,14 @@ class User extends Controller {
             }
             $this->view->user = $_POST;
             $this->view->util = $this->util;
-            $this->view->render('user/editprofile');
+            $this->view->render('account/editprofile');
         } else {
             Util::redirectTo('backend');
         }
     }
 
     function changePassword() {
-        $this->view->render('user/changepassword');
+        $this->view->render('account/changepassword');
     }
 
     function savePassword() {
@@ -114,10 +107,10 @@ class User extends Controller {
             $this->valid->changeLabel(array('old' => 'Mật khẩu cũ', 'new' => 'Mật khẩu mới'));
             if ($this->valid->isValid()) {
                 $this->view->title = 'Có lỗi xảy ra';
-                if (Request::existsPost('old') && $this->model->checkPassword(HASH::create('sha1', $_POST['old'], HASH_PASSWORD_KEY), Session::get('userid'))) {
+                if (Request::existsPost('old') && $this->model->checkPassword(HASH::create('sha1', $_POST['old'], HASH_PASSWORD_KEY), Session::get('user_id'))) {
                     if (Request::post('new') == Request::post('confirm') && !is_null(Request::post('new'))) {
                         $password = HASH::create('sha1', Request::post('new'), HASH_PASSWORD_KEY);
-                        if ($this->model->savePassword(array('password' => $password), Session::get('userid'))) {
+                        if ($this->model->savePassword(array('password' => $password), Session::get('user_id'))) {
                             $this->view->title = 'Thay đổi thông tin thành công';
                             $this->view->message = $this->util->alertMessage('Bạn đã cập nhật thành công', 'Thành công', 'success');
                         } else {
@@ -140,15 +133,33 @@ class User extends Controller {
             }
 
             $this->view->util = $this->util;
-            $this->view->render('user/changepassword');
+            $this->view->render('account/changepassword');
         } else {
             Util::redirectTo('backend');
         }
     }
 
+    function login() {
+        $this->view->layout = 'login';
+        if (Request::isPost()) {
+            $data = array(
+                'username' => $_POST['username'],
+                'password' => HASH::create('sha1', "{$_POST['password']}", HASH_PASSWORD_KEY)
+            );
+            if ($this->model->checkLogin($data) == true) {
+                Util::redirectTo('backend');
+            } else {
+                $this->view->data = $_POST;
+                $this->view->title = 'Có lỗi xảy ra';
+            }
+        }
+         $this->view->title = 'Đăng nhập tài khoản';
+            $this->view->render('account/login');
+    }
+
     function logout() {
         Session::destroy();
-        Util::redirectTo('backend/login');
+        Util::redirectTo('backend/account/login');
     }
 
 }

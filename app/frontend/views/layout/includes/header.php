@@ -58,7 +58,11 @@
                                 <div class="row-fluid">
                                     <div class="span6 hidden-phone" id="welcome">
                                         <div class="pav-welcome pull-right">
-                                            Xin chào, bạn có thể <a href="<?php echo URL .'account/register/dang-ky-tai-khoan.html' ?>">đăng ký</a> hoặc <a href="<?php echo URL .'account/login/dang-nhap-tai-khoan.html' ?>">đăng nhập</a>.
+                                            <?php if (Session::get('auth') == 1): ?>
+                                                Xin chào <?php echo Session::get('username') ?>, <a href="<?php echo URL . 'account/logout/' . Util::toSlug('dang xuat tai khoan'); ?>">đăng xuất</a>.
+                                            <?php else: ?>
+                                                Xin chào, bạn có thể <a href="<?php echo URL . 'account/register/' . Util::toSlug('dang ky tai khoan'); ?>">đăng ký</a> hoặc <a href="<?php echo URL . 'account/login/' . Util::toSlug('dang nhap tai khoan'); ?>">đăng nhập</a>.
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="span6" id="links">
