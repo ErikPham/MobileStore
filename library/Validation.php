@@ -106,6 +106,9 @@ class Validation {
                     case 'exists':
                         $this->validateExists($var, $opt[$var], $opt['value'], $opt['table']);
                         break;
+                    case 'select':
+                        $this->validateSelect($var, $opt['required']);
+                        break;
                         
                 }
             }
@@ -305,6 +308,16 @@ class Validation {
         $exists = new CheckExists();
         if($exists->check($value, $name, $table)){
             $this->errors[$var] = ' đã tồn tại';
+        }
+    }
+    
+    private function validateSelect($var, $required){
+        if ($required == false) {
+            return;
+        }
+        
+        if($this->source[$var] == ""){
+            $this->errors[$var] = 'Bạn phải lựa chọn một giá trị.';
         }
     }
 
