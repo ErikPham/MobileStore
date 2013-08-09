@@ -6,6 +6,7 @@ class Util {
 
     public static function redirectTo($page = 'index') {
         header('Location: ' . URL . $page);
+        exit();
     }
 
     public function alertErrorField($key) {
@@ -27,7 +28,7 @@ class Util {
                 $class .= 'error';
                 break;
         }
-        $message = '<div id="mgt8" class="alert ' . $class . '">
+        $message = '<div class="alert ' . $class . '">
                     <button data-dismiss="alert" class="close" type="button">×</button>
                     <strong>' . $name . '! </strong>' . $notice . '</div>';
         return $message;

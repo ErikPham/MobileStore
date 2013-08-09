@@ -6,15 +6,21 @@ class index_model extends Model {
         parent::__construct();
     }
 
-    function getProductLatests() {
-        $options = array('limit' => '10', 'order' => 'id DESC');
+    function getProductHighUp() {
+        $options = array('where' => 'price > 10000', 'order' => 'price DESC');
         return $this->selectAll(array('id', 'name', 'price', 'thumb'), 'products_temp_5', $options, null, MYSQLI_ASSOC);
     }
 
-    function getProductHighPrices() {
-        $options = array('where' => ' price > 5000', 'order' => 'price DESC');
+    function getProductMid() {
+        $options = array('where' => 'price < 10000 and price > 4000', 'order' => 'price DESC');
         return $this->selectAll(array('id', 'name', 'price', 'thumb'), 'products_temp_5', $options, null, MYSQLI_ASSOC);
-    }
+    } 
+    function getProductAppellative() {
+         $options = array('where' => 'price < 4000', 'order' => 'price DESC');
+        return $this->selectAll(array('id', 'name', 'price', 'thumb'), 'products_temp_5', $options, null, MYSQLI_ASSOC);
+    } 
+	
+
 }
 
 ?>

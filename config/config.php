@@ -4,11 +4,12 @@ return $config = array(
         'host' => 'localhost',
         'user' => 'root',
         'password' => '',
-        'dbName' => 'mobilestore'
+        'dbName' => 'mobile_store'
     ),
     'import' => array(
         'util.subutil.cainaynua.*',
         'util.*'
-    )
+    ),
+    'timezone' => 'Asia/Ho_Chi_Minh'
 )
 ?>

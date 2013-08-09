@@ -1,87 +1,74 @@
-$(document).ready(function() {
-    /* Search */
-    $('.button-search').bind('click', function() {
-        url = $('base').attr('href') + 'index.php?route=product/search';
+(function($) {
+    $.fn.PavOffCavasmenu = function(opts) {
+        // default configuration
+        var config = $.extend({}, {
+            opt1: null,
+            text_warning_select: 'Please select One to remove?',
+            text_confirm_remove: 'Are you sure to remove footer row?',
+            JSON: null
+        }, opts);
+        // main function
+        function DoSomething(e) {
 
-        var search = $('input[name=\'search\']').attr('value');
-
-        if (search) {
-            url += '&search=' + encodeURIComponent(search);
         }
 
-        location = url;
+        // initialize every element
+        this.each(function() {
+            var $btn = $('#mainnav .btn-navbar');
+            var $nav = null;
+
+
+            //	if (!$btn.length) return;
+            var $nav = $('<nav class="pavo-mainnav" ></nav>').appendTo($('<section id="off-canvas-nav"></sections>').appendTo($("body")));
+            $('#off-canvas-nav .pavo-mainnav').append('<div id="off-canvas-button"><span class="icon-remove-sign"></span></div>');
+            var $menucontent = $($btn.data('target')).find('.megamenu').clone();
+            $('#off-canvas-nav').hide();
+
+
+            $menucontent.appendTo($nav);
+
+            $('html').addClass('off-canvas');
+            $("#off-canvas-button").click(function() {
+                $btn.click();
+            });
+            $btn.toggle(function() {
+                $("body > #page-container").animate({'left': '70%'}, 500, function() {
+                    $('#off-canvas-nav').show();
+                });
+            }, function() {
+                $("body > #page-container").animate({'left': '0'}, 500, function() {
+
+                });
+                $('#off-canvas-nav').hide();
+
+            });
+
+        });
+        return this;
+    };
+
+})(jQuery);
+
+
+$(window).ready(function() {
+    /*  Fix First Click Menu */
+    $(document.body).on('click', '#mainnav [data-toggle="dropdown"]', function() {
+        if (!$(this).parent().hasClass('open') && this.href && this.href != '#') {
+            window.location.href = this.href;
+        }
+
     });
 
-    $('#header input[name=\'search\']').bind('keydown', function(e) {
-        if (e.keyCode == 13) {
-            url = $('base').attr('href') + 'index.php?route=product/search';
+    $("#mainnav").PavOffCavasmenu();
 
-            var search = $('input[name=\'search\']').attr('value');
-
-            if (search) {
-                url += '&search=' + encodeURIComponent(search);
+    $(".quantity-adder .add-action").click(function() {
+        if ($(this).hasClass('add-up')) {
+            $("[name=quantity]", '.quantity-adder').val(parseInt($("[name=quantity]", '.quantity-adder').val()) + 1);
+        } else {
+            if (parseInt($("[name=quantity]", '.quantity-adder').val()) > 1) {
+                $("input", '.quantity-adder').val(parseInt($("[name=quantity]", '.quantity-adder').val()) - 1);
             }
-
-            location = url;
         }
     });
 
-    /* Ajax Cart */
-    $('#cart > .heading a').live('click', function() {
-        $('#cart').addClass('active');
-
-        $('#cart').load('index.php?route=module/cart #cart > *');
-
-        $('#cart').live('mouseleave', function() {
-            $(this).removeClass('active');
-        });
-    });
-
-    /* Mega Menu */
-    $('#menu ul > li > a + div').each(function(index, element) {
-        // IE6 & IE7 Fixes
-        if ($.browser.msie && ($.browser.version == 7 || $.browser.version == 6)) {
-            var category = $(element).find('a');
-            var columns = $(element).find('ul').length;
-
-            $(element).css('width', (columns * 143) + 'px');
-            $(element).find('ul').css('float', 'left');
-        }
-
-        var menu = $('#menu').offset();
-        var dropdown = $(this).parent().offset();
-
-        i = (dropdown.left + $(this).outerWidth()) - (menu.left + $('#menu').outerWidth());
-
-        if (i > 0) {
-            $(this).css('margin-left', '-' + (i + 5) + 'px');
-        }
-    });
-
-    // IE6 & IE7 Fixes
-    if ($.browser.msie) {
-        if ($.browser.version <= 6) {
-            $('#column-left + #column-right + #content, #column-left + #content').css('margin-left', '195px');
-
-            $('#column-right + #content').css('margin-right', '195px');
-
-            $('.box-category ul li a.active + ul').css('display', 'block');
-        }
-
-        if ($.browser.version <= 7) {
-            $('#menu > ul > li').bind('mouseover', function() {
-                $(this).addClass('active');
-            });
-
-            $('#menu > ul > li').bind('mouseout', function() {
-                $(this).removeClass('active');
-            });
-        }
-    }
-
-    $('.success img, .warning img, .attention img, .information img').live('click', function() {
-        $(this).parent().fadeOut('slow', function() {
-            $(this).remove();
-        });
-    });
 });

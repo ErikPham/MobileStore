@@ -200,7 +200,7 @@
             </div>
             <div class="span7">
                 <address>
-                    Copyright &copy; 2013 Opencart theme by <a title="pavothemes - opencart themes clubs" target="_blank" href="#">Pavothemes.com</a>
+                    Copyright &copy; <?php echo date('Y');?> Mobile store by <a title="Mobile Store" target="_blank" href="#">MobileStore.com</a>
                     All reversed.
                 </address>
             </div>

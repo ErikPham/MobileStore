@@ -45,8 +45,9 @@ class Validation {
                 switch ($opt['type']) {
                     case 'email':
                         $this->validateEmail($var, $opt['required']);
-                        if (!array_key_exists($var, $this->errors)) {
-                            $this->sanitizedEmail($var);
+                        if(!array_key_exists($var, $this->errors) && array_key_exists('exists', $opt)){
+                            $this->validateExists($var,$this->source[$var], $var ,$opt['exists']);
+                            $this->sanitizedString($var);
                         }
                         break;
 
@@ -66,7 +67,8 @@ class Validation {
                         break;
                     case 'string':
                         $this->validateString($var, $opt['min'], $opt['max'], $opt['required']);
-                        if (!array_key_exists($var, $this->errors)) {
+                        if(!array_key_exists($var, $this->errors) && array_key_exists('exists', $opt)){
+                            $this->validateExists($var,$this->source[$var], $var ,$opt['exists']);
                             $this->sanitizedString($var);
                         }
                         break;
@@ -98,6 +100,16 @@ class Validation {
                             $this->sanitized[$var] = (bool) $this->source[$var];
                         }
                         break;
+                    case 'equals':
+                        $this->validateEquals($var, $opt['key']);
+                        break;
+                    case 'exists':
+                        $this->validateExists($var, $opt[$var], $opt['value'], $opt['table']);
+                        break;
+                    case 'select':
+                        $this->validateSelect($var, $opt['required']);
+                        break;
+                        
                 }
             }
         }else{
@@ -246,7 +258,7 @@ class Validation {
         }
 
         if (filter_var($this->source[$var], FILTER_VALIDATE_EMAIL) === FALSE) {
-            $this->errors[$var] = " không phải là một email";
+            $this->errors[$var] = " không phải đúng định dạng";
         }
     }
 
@@ -282,6 +294,30 @@ class Validation {
         }
         if (filter_var($this->source[$var], FILTER_VALIDATE_URL) === FALSE) {
             $this->errors[$var] = ' không phải là một địa chỉ URL';
+        }
+    }
+    
+    
+    private function validateEquals($var1, $var2){
+        if($this->source[$var1] != $this->source[$var2]){
+            $this->errors[$var1] = ' không trùng nhau.';
+        }
+    }
+    
+    private function validateExists($var, $value, $name , $table){
+        $exists = new CheckExists();
+        if($exists->check($value, $name, $table)){
+            $this->errors[$var] = ' đã tồn tại';
+        }
+    }
+    
+    private function validateSelect($var, $required){
+        if ($required == false) {
+            return;
+        }
+        
+        if($this->source[$var] == ""){
+            $this->errors[$var] = 'Bạn phải lựa chọn một giá trị.';
         }
     }
 
