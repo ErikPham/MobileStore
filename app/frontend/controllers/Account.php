@@ -86,7 +86,8 @@ class Account extends Controller {
             if ($this->valid->isValid()) {
                 $key = Hash::create('md5', uniqid(rand(), true), HASH_GENERAL_KEY);
                 $flag = true;
-                if (Request::post('subscribe') == 1) {
+                $exists = new CheckExists();
+                if (Request::post('subscribe') == 1 && !$exists->check(Request::post('email'), 'email', 'subscribes')) {
                     $data = array('email' => Request::post('email'));
                     $flag = $this->model->subscribe($data);
                 }
@@ -97,7 +98,15 @@ class Account extends Controller {
                 unset($_POST['confirm']);
                 if ($this->model->register($_POST) && $flag) {
                     $this->view->title = 'Đăng ký tài khoản thành công';
-                    $this->view->message = $this->util->alertMessage('Bạn đã đăng ký tài khoản thành công. Vui lòng kiểm tra email để kích hoạt', 'Thành công', 'success');
+                    $message = "Chúc mừng bạn đã đăng ký tài khoản thành công tại MobileStore.Com\n. Để hoành thành việc đăng ký bạn vui lòng vào đường link sau: ".URL."account/active/{$key}/kich-hoat-tai-khoan.html";
+                    $mail = new Mail();
+                    if($mail->Send(Request::post('email'), Request::post('fullname'), 'Đăng ký tài khoản thành công', $message)){
+                        $this->view->message = $this->util->alertMessage('Bạn đã đăng ký tài khoản thành công. Vui lòng kiểm tra email để kích hoạt', 'Thành công', 'success');
+                    }else{
+                        $this->view->message = $this->util->alertMessage('Chúng tôi không thể gửi được email kích hoạt cho bạn. Bạn vui lòng sử dụng chức năng gửi lại mã kích hoạt. Xin cảm ơn', 'Có lỗi', 'error');
+                    }
+                    
+                    
                     $_POST = array();
                 } else {
                     $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
