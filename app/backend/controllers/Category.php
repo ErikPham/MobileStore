@@ -29,20 +29,12 @@ class Category extends Controller {
             'min' => 0,
             'max' => 999,
             'trim' => false
-        ),
-        'type' => array(
-            'type' => 'numeric',
-            'required' => true,
-            'min' => 0,
-            'max' => 999,
-            'trim' => true
         )
     );
     private $change_lable = array(
         'name' => 'Tên chuyên mục',
         'summary' => 'Tóm tắt',
-        'position' => 'Vị trí',
-        'type' => 'Phân loại'
+        'position' => 'Vị trí'
     );
 
     function __construct() {
@@ -58,7 +50,6 @@ class Category extends Controller {
     }
 
     function add() {
-        $this->view->type = $this->model->getArrayType();
         $this->view->position = $this->model->getCountPosition();
         $this->view->title = 'Thêm mới chuyên mục';
         $this->view->render('category/add');
@@ -120,7 +111,6 @@ class Category extends Controller {
                     $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
                     $this->util->errors = $this->valid->errors;
                 }
-                $this->view->type = $this->model->getArrayType();
                 $this->view->position = $this->model->getCountPosition();
                 $this->view->category = $_POST;
                 $this->view->util = $this->util;
@@ -158,7 +148,6 @@ class Category extends Controller {
                 $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
                 $this->util->errors = $this->valid->errors;
             }
-            $this->view->type = $this->model->getArrayType();
             $this->view->position = $this->model->getCountPosition();
             $this->view->category = $_POST;
             $this->view->util = $this->util;

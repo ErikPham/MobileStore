@@ -15,7 +15,6 @@
                             <th>Tên chuyên mục</th>
                             <th class="hidden-350">Mô tả</th>
                             <th class="hidden-1024">Vị trí</th>
-                            <th class="hidden-480">Phân loại</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -30,15 +29,6 @@
                                 <td><?php echo $cate['name']; ?></td>
                                 <td><?php echo $cate['summary']; ?></td>
                                 <td><?php echo $cate['position']; ?></td>
-                                <td>
-                                    <?php
-                                    if ($cate['type'] == 1) {
-                                        echo 'Sản phẩm';
-                                    } else {
-                                        echo 'Tin tức';
-                                    }
-                                    ?>
-                                </td>
                                 <td>
                                     <a class="" href="<?php echo URL . 'backend/category/edit/' . $cate['id'] . '/' . Util::toSlug($cate['name']); ?>">Sửa</a>
                                     <a class="del" href="<?php echo URL . 'backend/category/delete/' . $cate['id'] . '/' . Util::toSlug($cate['name']); ?>">Xóa</a>

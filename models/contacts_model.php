@@ -17,7 +17,11 @@ class contacts_model extends Model {
     }
 
     public function getAllContacts() {
-        return $this->selectAllTable('*', 'contacts', MYSQLI_ASSOC);
+        return $this->selectAllTable('*', 'contacts ORDER BY ID DESC', MYSQLI_ASSOC);
+    }
+
+    public function getAllReply() {
+        return $this->selectAllTable('rep.*,ac.id,ac.fullname as fullname,ct.id as idct,ct.title as title', 'reply_contacts as rep join accounts as ac on rep.account_id = ac.id join contacts as ct on ct.id = rep.id_contact', MYSQLI_ASSOC);
     }
 
     public function getCountContactsNew() {
@@ -30,8 +34,17 @@ class contacts_model extends Model {
         return $this->selectOneRow('*', 'contacts', $options, null, MYSQLI_ASSOC);
     }
 
+    public function getCountReply() {
+        return $countReply = $this->selectCount('id', 'count_reply', 'reply_contacts', null, null, MYSQLI_NUM);
+    }
+
+    public function getIdReply($id) {
+        $options = array('where' => 'id_contact = ' . $id);
+        return $this->selectAll('rep.*,ac.id,ac.fullname as fullname', 'reply_contacts as rep join accounts as ac on rep.account_id = ac.id', $options, null, MYSQLI_ASSOC);
+    }
+
     public function updateStatus($id) {
-        $data = array('status =1');
+        $data = array('status' => 1);
         return $this->update($data, 'contacts', 'id=' . $id);
     }
 
@@ -42,8 +55,8 @@ class contacts_model extends Model {
     public function deleteContact($id) {
         return $this->delete('contacts', 'id=' . $id);
     }
-    
-    public function sendContact($data){
+
+    public function sendContact($data) {
         return $this->insert($data, 'contacts');
     }
 

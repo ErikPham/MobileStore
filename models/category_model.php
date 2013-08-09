@@ -10,11 +10,6 @@ class Category_Model extends Model {
         parent::__construct();
     }
 
-    public function getArrayType() {
-        $data = array('1' => 'Sản phẩm', '2' => 'Tin tức');
-        return $type = $this->selectArray($data);
-    }
-
     public function getAllCategory() {
         $categorys = $this->selectAllTable('*', 'category', MYSQLI_ASSOC);
         return $categorys;

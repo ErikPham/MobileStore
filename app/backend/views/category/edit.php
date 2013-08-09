@@ -45,21 +45,6 @@
                             <?php if (isset($this->util->errors)) $this->util->alertErrorField('position'); ?>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="select">Phân loại</label>
-                        <div class="controls">
-                            <select class="input-large" id="select" name="type">
-                                <option value="">Lựa chọn</option>
-                                <?php foreach ($this->type as $key => $value) { ?>
-                                    <option value="<?php echo $key; ?>"
-                                            <?php if (isset($this->category['type']) && $this->category['type'] == $key) echo "selected='selected'" ?>>
-                                                <?php echo $value; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('type'); ?>
-                        </div>
-                    </div>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Sửa</button>
                     </div>

@@ -10,10 +10,10 @@
             <div class="box-content">
                 <ul>
                     <li><i class="icon-envelope"></i>
-                        <a href="">Hộp thư đến <span>(<?php echo $this->count; ?>)</span></a>
+                        <a href="<?php echo URL ?>backend/contacts">Hộp thư đến <span>(<?php echo $this->count; ?>)</span></a>
                     </li>
                     <li><i class="icon-reply"></i>
-                        <a href="">Thư đã gửi</a>
+                        <a href="<?php echo URL ?>backend/contacts/replys">Thư đã gửi <span>(<?php echo $this->countReply; ?>)</span></a>
                     </li>
                 </ul>
             </div>
@@ -69,13 +69,13 @@
                                         <a style="color: green;" href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['title']; ?></a>
                                     </td>
                                     <td>
-                                        <a style="color: green;" href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['content']; ?></a>
+                                        <a style="color: green;" href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo String::theExcerpt($contact['content']); ?></a>
                                     </td>
                                     <td class="table-icon hidden-350">
                                         <i class="icon-paper-clip"></i>
                                     </td>
                                     <td class="table-date hidden-350">
-                                        <?php echo $contact['contact_date']; ?>
+                                        <?php echo Date::getDate($contact['contact_date']); ?>
                                     </td>
                                 </tr>
                             <?php } else { ?>
@@ -88,13 +88,13 @@
                                         <a href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['title']; ?></a>
                                     </td>
                                     <td>
-                                        <a  href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['content']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['content']; ?></a>
+                                        <a  href="<?php echo URL . 'backend/contacts/detail/' . $contact['id'] . '/' . Util::toSlug($contact['title']); ?>" class="accordion_contact" title="<?php echo $contact['title']; ?>"> <?php echo $contact['content']; ?></a>
                                     </td>
                                     <td class="table-icon hidden-350">
                                         <i class="icon-paper-clip"></i>
                                     </td>
                                     <td class="table-date hidden-350">
-                                        <?php echo $contact['contact_date']; ?>
+                                        <?php echo Date::getDate($contact['contact_date']); ?>
                                     </td>
                                 </tr>
                                 <?php

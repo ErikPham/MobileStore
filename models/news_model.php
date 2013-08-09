@@ -12,7 +12,7 @@ class news_model extends Model {
     }
 
     public function getAllNews() {
-        $news = $this->selectAllTable('news.*,category.id as idcate, name', ' news join category on news.category_id = category.id where type= 2', MYSQLI_ASSOC);
+        $news = $this->selectAllTable('news.*,category.id as idcate, name', ' news join category on news.category_id = category.id', MYSQLI_ASSOC);
         return $news;
     }
 
@@ -21,8 +21,7 @@ class news_model extends Model {
     }
 
     public function getCategoryNews() {
-        $options = array('where' => 'type = 2');
-        return $cate = $this->selectAll('id, type, name', 'category', $options, null, MYSQLI_ASSOC);
+        return $cate = $this->selectAll('id, name', 'category', null, null, MYSQLI_ASSOC);
     }
 
     public function getEdit($id) {
@@ -72,7 +71,7 @@ class news_model extends Model {
     //View Most
     function viewMost() {
         $options = array(
-            'order' => ' views DESC', 
+            'order' => ' views DESC',
             'limit' => '0, 10'
         );
         return $this->selectAll('id, title', 'news', $options, null, 1);
