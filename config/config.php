@@ -7,9 +7,19 @@ return $config = array(
         'dbName' => 'mobile_store'
     ),
     'import' => array(
-        'util.subutil.cainaynua.*',
+        'util.mailer.*',
         'util.*'
     ),
-    'timezone' => 'Asia/Ho_Chi_Minh'
+    'timezone' => 'Asia/Ho_Chi_Minh',
+    'mail' => array(
+        'Host' => 'smtp.gmail.com',
+        'SMTPDebug' => 0,
+        'SMTPAuth' => true,
+        'SMTPSecure' => 'ssl',
+        'Port' => 465,
+        'Username' => 'phucpm.services@gmail.com',
+        'Password' => 'phucpm095',
+        'SetFrom' => array('admin@mobilestore.com', 'no-reply')
+    )
 )
 ?>

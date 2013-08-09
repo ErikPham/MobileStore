@@ -104,7 +104,7 @@ class Validation {
                         $this->validateEquals($var, $opt['key']);
                         break;
                     case 'exists':
-                        $this->validateExists($var, $opt[$var], $opt['value'], $opt['table']);
+                        $this->validateExists($var, $opt[$var], $opt['name'], $opt['table']);
                         break;
                     case 'select':
                         $this->validateSelect($var, $opt['required']);
