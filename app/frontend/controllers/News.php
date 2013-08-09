@@ -17,12 +17,8 @@ class News extends Controller {
             $start = 0;
         }
         $pagination->setStart($start);
-        $data = $this->model->getAllNewsLimit($start, 1);
-        
-        print_r($data);
-        
-        //echo $pagination->createLinks();
-        exit();
+        $this->view->news = $this->model->getAllNewsLimit($start, 1);
+        $this->view->pagination = $pagination->createLinks();
         $this->view->render('news/index');
     }
 

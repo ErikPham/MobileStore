@@ -12,7 +12,6 @@ class Model extends Connection {
             is_null($data) ? $stmt->execute() : $stmt->execute($data);
             return $stmt;
         } else {
-            echo $sql;
             return $result = mysqli_query($this->dsn, $sql);
         }
     }
