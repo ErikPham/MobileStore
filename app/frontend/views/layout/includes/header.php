@@ -121,8 +121,8 @@
                                                             <div class="dropdown-menu level1">
                                                                 <div class="dropdown-menu-inner">
                                                                     <ul>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Xã hội</span></a></li>
-                                                                        <li class=" "><a href="#"><span class="menu-title">Startup</span></a></li>
+                                                                        <li class=""><a href="#"><span class="menu-title">Xã hội</span></a></li>
+                                                                        <li class=""><a href="#"><span class="menu-title">Startup</span></a></li>
                                                                         
                                                                     </ul>
                                                                 </div>

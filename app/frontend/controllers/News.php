@@ -15,11 +15,14 @@ class News extends Controller {
     function view() {
         $display = 10;
         $this->view->viewmosts = $this->model->viewMost();
-        $total = is_numeric(URI::getSegment(3)) ? URI::getSegment(3) : $this->model->getContNews();
-        $pagination = new Pagination($total, $display);
-        $start = is_numeric(URI::getSegment(2)) ? URI::getSegment(2) : 0;
-        $pagination->setStart($start);
+        
+        $pagination = new Pagination($display);
+        $pagination->setTotal($this->model->getContNews());
+        $currentPage = is_numeric(URI::getSegment(2)) ? URI::getSegment(2) : 1;
+        $start = $display * ($currentPage-1);
+        $pagination->setStart($currentPage);
         $data = $this->model->getAllNewsLimit($start, $display);
+        
         if (!empty($data)) {
             $this->view->news = $data;
             $pagination->link = URL . 'news/view/';
@@ -51,12 +54,12 @@ class News extends Controller {
     function category() {
         $display = 10;
         $id = is_numeric(URI::getSegment(2)) ? URI::getSegment(2) : Util::redirectTo('error');
-        $total = is_numeric(URI::getSegment(4)) ? URI::getSegment(4) : $this->model->getCountCategory($id);
-
-        $pagination = new Pagination($total, $display);
-        $start = is_numeric(URI::getSegment(3)) ? URI::getSegment(3) : 0;
-        $pagination->setStart($start);
-
+        $pagination = new Pagination($display);
+        $pagination->setTotal($this->model->getCountCategory($id));
+        $currentPage = is_numeric(URI::getSegment(3)) ? URI::getSegment(3) : 1;
+        $start = $display * ($currentPage-1);
+        $pagination->setStart($currentPage);
+     
         $data = $this->model->getAllNewsCategoryLimit($id, $start, $display);
         if (!empty($data)) {
             $this->view->viewmosts = $this->model->viewMost();
