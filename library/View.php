@@ -10,12 +10,15 @@ class View {
         $this->viewFile = $name;
         $layout = LAYOUT . $this->layout . '.php';
         if (file_exists($layout)) {
-            require LAYOUT . $this->layout . '.php';
+            require $layout;
         }
     }
 
     public function loadView() {
-        require VIEW . $this->viewFile . '.php';
+        $view = VIEW . $this->viewFile . '.php';
+        if (file_exists($view)) {
+            require $view;
+        }
     }
 
 }

@@ -64,6 +64,55 @@ class Account extends Controller {
         'mobile' => 'Số điện thoại',
         'address' => 'Địa chỉ',
     );
+    private $rules_updateInfo = array(
+        'fullname' => array(
+            'type' => 'string',
+            'required' => true,
+            'min' => 10,
+            'max' => 50,
+            'trim' => true
+        ),
+        'mobile' => array(
+            'type' => 'string',
+            'required' => true,
+            'min' => 10,
+            'max' => 11,
+            'trim' => true
+        ),
+        'address' => array(
+            'type' => 'string',
+            'required' => true,
+            'min' => 10,
+            'max' => 255,
+            'trim' => true
+        )
+    );
+    private $rules_changepassword = array(
+        'old' => array(
+            'type' => 'string',
+            'required' => true,
+            'min' => 6,
+            'max' => 32,
+            'trim' => true
+        ),
+        'new' => array(
+            'type' => 'string',
+            'required' => true,
+            'min' => 6,
+            'max' => 32,
+            'trim' => true
+        ),
+        'confirm' => array(
+            'type' => 'equals',
+            'required' => true,
+            'key' => 'new'
+        ),
+    );
+    private $label_changepass = array(
+        'new' => 'Mật khẩu mới',
+        'old' => 'Mật khẩu cũ',
+        'confirm' => 'Hai mật khẩu'
+    );
 
     function __construct() {
         parent::__construct();
@@ -73,7 +122,83 @@ class Account extends Controller {
     }
 
     function index() {
-        Util::redirectTo('index');
+        $this->myaccount();
+    }
+
+    function changepassword() {
+        if (Session::get('auth') == 1) {
+            if (Request::isPost()) {
+                $this->valid->addRules($this->rules_changepassword);
+                $this->valid->addSource($_POST, true);
+                $this->valid->run();
+                $this->valid->changeLabel($this->label_changepass);
+                if ($this->valid->isValid()) {
+                    if (Request::existsPost('old') && $this->model->checkPassword(HASH::create('sha1', $_POST['old'], HASH_PASSWORD_KEY), Session::get('user_id'))) {
+                        if (Request::post('old') != Request::post('new')) {
+                            $password = HASH::create('sha1', Request::post('new'), HASH_PASSWORD_KEY);
+                            if ($this->model->savePassword(array('password' => $password), Session::get('user_id'))) {
+                                $this->view->title = 'Thay đổi mật khẩu thành công';
+                                $this->view->message = $this->util->alertMessage('Bạn đã cập nhật thành công', 'Thành công', 'success');
+                            } else {
+                                $this->view->message = $this->util->alertMessage('Bạn chưa thay đổi thông tin hoặc đã xảy ra lỗi. Vui lòng thử lại', 'Có lỗi', 'error');
+                            }
+                        } else {
+                            $this->view->message = $this->util->alertMessage('Mật khẩu mới phải khác mật khẩu cũ', 'Có lỗi', 'error');
+                        }
+                    } else {
+                        $this->view->message = $this->util->alertMessage('Mật khẩu cũ không đúng. Vui lòng kiểm tra lại', 'Có lỗi', 'error');
+                    }
+                } else {
+                    if (isset($this->valid->error['diff_key'])) {
+                        $message = 'Dữ liệu đầu vào không hợp lệ';
+                    } else {
+                        $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu.';
+                    }
+                    $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
+                    $this->util->errors = $this->valid->errors;
+                    $this->view->util = $this->util;
+                }
+            }
+            $this->view->layout = 'account';
+            $this->view->title = "Thay đổi mật khẩu";
+            $this->view->render('account/changepassword');
+        } else {
+            Util::redirectTo();
+        }
+    }
+
+    function myaccount() {
+        if (Session::get('auth') == 1) {
+            $id = Session::get('user_id');
+            if (Request::isPost()) {
+                $this->valid->addRules($this->rules_updateInfo);
+                $this->valid->addSource($_POST);
+                $this->valid->run();
+                $this->valid->changeLabel($this->change_label);
+                if ($this->valid->isValid()) {
+                    if ($this->model->updateProfile($_POST, $id)) {
+                        $this->view->message = $this->util->alertMessage('Bạn đã cập nhật thông tin thành công', 'Thành công', 'success');
+                    } else {
+                        $this->view->message = $this->util->alertMessage('Có lỗi xảy ra hoặc bạn chưa thay đổi thông tin. Bạn vui lòng thử lại', 'Có lỗi', 'error');
+                    }
+                } else {
+                    if (isset($this->valid->error['diff_key'])) {
+                        $message = 'Dữ liệu đầu vào không hợp lệ';
+                    } else {
+                        $message = 'Bạn vui lòng kiểm tra lại các trường dữ liệu.';
+                    }
+                    $this->view->message = $this->util->alertMessage($message, 'Có lỗi', 'error');
+                    $this->util->errors = $this->valid->errors;
+                }
+            }
+
+            $this->view->account = $this->model->editProfile($id);
+            $this->view->layout = 'account';
+            $this->view->title = "Thông tin tài khoản";
+            $this->view->render('account/myaccount');
+        } else {
+            Util::redirectTo();
+        }
     }
 
     public function register() {
@@ -107,8 +232,6 @@ class Account extends Controller {
                         } else {
                             $this->view->message = $this->util->alertMessage('Chúng tôi không thể gửi được email kích hoạt cho bạn. Bạn vui lòng sử dụng chức năng gửi lại mã kích hoạt. Xin cảm ơn', 'Có lỗi', 'error');
                         }
-
-
                         $_POST = array();
                     } else {
                         $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
@@ -134,12 +257,13 @@ class Account extends Controller {
     public function login() {
         if (Session::get('auth') != 1) {
             if (Request::isPost()) {
+                $url = Request::post('redirect') ? Request::post('redirect') : 'index';
                 $data = array(
                     'username' => $_POST['username'],
                     'password' => HASH::create('sha1', "{$_POST['password']}", HASH_PASSWORD_KEY)
                 );
                 if ($this->model->checkLogin($data) == true) {
-                    Util::redirectTo('index');
+                    Util::redirectTo($url);
                 } else {
                     $this->view->message = Util::alertMessage('Tên tài khoản, mật khẩu sai. Hoặc tài khoản của bạn chưa được kích hoạt', 'Có lỗi');
                 }
@@ -156,7 +280,7 @@ class Account extends Controller {
         Util::redirectTo();
     }
 
-    public function active() {
+    function active() {
         $email = base64_decode(URI::getSegment(2));
         $key = URI::getSegment(3);
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -170,6 +294,46 @@ class Account extends Controller {
         } else {
             Util::redirectTo('index');
         }
+    }
+
+    function order() {
+        if (Session::get('auth') == 1) {
+            $id = Session::get('user_id');
+            $this->model->getAllOrder($id);
+            $this->view->order = $this->model->getAllOrder($id);
+            $this->view->layout = 'account';
+            $this->view->title = "Danh sách hóa đơn";
+            $this->view->render('account/order_list');
+        } else {
+            Util::redirectTo();
+        }
+    }
+
+    function orderdeail() {
+        if ((Session::get('auth') == 1) && $id = URI::getSegment(2)) {
+            $order = $this->model->getInfoOrder($id);
+            $this->view->order = $order;
+            $this->view->items = $this->model->getInfoOrderDetail($id);
+            $this->view->total = $order['total_amout'];
+            $this->view->layout = 'account';
+            $this->view->title = "Danh sách hóa đơn";
+            $this->view->render('account/order_detail');
+        }
+    }
+
+    function confirmorder() {
+        if ((Session::get('auth') == 1) && $id = URI::getSegment(2)) {
+            $status = $this->model->getOrderStatus($id);
+            if (!empty($status)) {
+                if ($status[0] == 1) {
+                    $data = array('status' => 2);
+                    $this->model->updateStatus($data, $id);
+                    $url = 'account/orderdeail/' . $id . '/xem-chi-tiet-hoa-don.html';
+                    Util::redirectTo($url);
+                }
+            }
+        }
+        Util::redirectTo();
     }
 
 }

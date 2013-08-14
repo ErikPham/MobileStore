@@ -197,6 +197,9 @@ div[class*="pavcol"] {
 /**
 * Module
 */
+#content .header-new h1{
+    top: -110px;
+}
 .pavblogs-comments-box .pav-comment {
 	padding: 10px;
 	border-bottom: 1px solid #F4F4F4

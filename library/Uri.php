@@ -35,6 +35,7 @@ class URI {
             return URI::$segments[$index];
         }
     }
+    
 
 }
 

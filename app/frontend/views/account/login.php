@@ -30,8 +30,14 @@
                                         <h2>Khách hàng cũ</h2>
                                         <form enctype="multipart/form-data" method="post" action="<?php echo URL .'account/login/dang-nhap-tai-khoan.html' ?>">
                                             <div class="content clearfix">
+                                                <?php
+                                                    $url = base64_decode(URI::getSegment(2));
+                                                    $urlSplit = explode('=', $url);
+                                                    $redirect = (isset($urlSplit[0]) && $urlSplit[0]=='url') ? $urlSplit[1] : 'index';
+                                                ?>
                                                 <b>Tài khoản:</b><br>
                                                 <input type="text" value="" name="username">
+                                                <input type="hidden" value="<?php echo $redirect; ?>" name="redirect" />
                                                 <br>
                                                 <br>
                                                 <b>Mật khẩu:</b><br>

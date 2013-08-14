@@ -7,6 +7,7 @@ class Model extends Connection {
     }
 
     public function execute($sql, $data = null) {
+        //echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->dsn->prepare($sql);
             is_null($data) ? $stmt->execute() : $stmt->execute($data);
@@ -130,12 +131,27 @@ class Model extends Connection {
             $fieldValues = "('" . implode("', '", $data) . "')";
         }
 
-        return "INSERT INTO {$tableName} {$fieldNames} VALUES {$fieldValues}";
+        return "INSERT INTO `{$tableName}` {$fieldNames} VALUES {$fieldValues}";
     }
 
-    public function insert($data, $table) {
+    public function formatInsertMultiple($data, $tableName) {
+        $columns = $data['columns'];
+        $column = '(`' . implode('`, `', $columns) . '`)';
+        unset($data['columns']);
+
+        $new = array();
+        foreach ($data as $value) {
+            $new[] = "'" . implode("', '", $value) . "'";
+        }
+        
+        $value = "(" . implode("), (", $new) . ")";
+        return "INSERT INTO `{$tableName}` {$column} VALUES $value";
+    }
+
+    public function insert($data, $table, $multiValues = false) {
         $tmp = false;
-        $sql = $this->formatInsert($data, $table);
+        $sql = (!$multiValues) ? $this->formatInsert($data, $table) : $this->formatInsertMultiple($data, $table);
+        echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->execute($sql, $data);
             if ($stmt->rowCount() > 0) {
@@ -202,7 +218,7 @@ class Model extends Connection {
         $tmp = false;
         $where = (!is_null($criteria)) ? " WHERE {$criteria}" : "";
         $sql = "DELETE FROM {$tableName} {$where}";
-        
+
         echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->execute($sql);

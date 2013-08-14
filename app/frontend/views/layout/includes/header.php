@@ -68,9 +68,13 @@
                                     <div class="span6" id="links">
                                         <div class="pav-links pull-right">
                                             <!-- <a href="" class="first"></a> -->
-                                            <a id="wishlist-total" href="#">Sản phẩm yêu thích</a>
-                                            <a href="<?php echo URL . 'account'?>">Quản lý tài khoản</a>
-                                            <a href="#">Giỏ hàng</a>
+                                            <?php
+                                            if (Session::get('auth') == 1):
+                                                ?>
+                                                <a id="wishlist-total" href="<?php echo URL . 'account/wishlist/' . Util::toSlug('san pham yeu thich ' . Session::get('username')); ?>">Sản phẩm yêu thích</a>
+                                                <a href="<?php echo URL . 'account/myaccount/' . Util::toSlug('tai khoan ca nhan ' . Session::get('username')); ?>">Quản lý tài khoản</a>
+                                            <?php endif; ?>
+                                            <a href="<?php echo URL . 'checkout/viewcart/' . Util::toSlug('gio hang cua ban'); ?>">Giỏ hàng</a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,10 +82,7 @@
                                     <div class="heading">
                                         <span class="pav-icon"></span>
                                         <span class="pav-label">Giỏ hàng</span>
-                                        <a><span id="cart-total">0 sản phẩm - 0.00 VNĐ</span></a>
-                                    </div>
-                                    <div class="content">
-                                        <div class="empty">Giỏ hàng đang trống!</div>
+                                        <a><span id="cart-total"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -115,21 +116,21 @@
                                                         <li>
                                                             <a href="#"><span class="menu-title">Sản phẩm</span></a>
                                                         </li>
-                                                      
+
                                                         <li class="parent dropdown pav-parrent">
-                                                            <a href="<?php echo URL.'news/view/tin-tuc.html' ?>" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
+                                                            <a href="<?php echo URL . 'news/view/tin-tuc.html' ?>" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
                                                             <div class="dropdown-menu level1">
                                                                 <div class="dropdown-menu-inner">
                                                                     <ul>
                                                                         <li class=""><a href="#"><span class="menu-title">Xã hội</span></a></li>
                                                                         <li class=""><a href="#"><span class="menu-title">Startup</span></a></li>
-                                                                        
+
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="pav-blog-menu">
-                                                            <a href="<?php echo URL . 'contacts/send/'. Util::toSlug('lien he voi chung toi')?>"><span class="menu-title">Liên hệ</span></a>
+                                                            <a href="<?php echo URL . 'contacts/send/' . Util::toSlug('lien he voi chung toi') ?>"><span class="menu-title">Liên hệ</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>

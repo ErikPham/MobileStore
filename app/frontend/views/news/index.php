@@ -9,7 +9,7 @@
                         <a href="#">Account</a> &raquo;
                         <a href="#">Register</a>
                     </div>
-                    <div class="pav-header">
+                    <div class="pav-header header-new">
                         <h1><?php echo isset($this->pavHeader) ? $this->pavHeader : ''; ?></h1>
                         <a href="#" class="rss-wrapper"><span class="icon-rss">Rss</span></a>	
                     </div>

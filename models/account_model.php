@@ -34,7 +34,7 @@ class Account_Model extends Model {
     //Edit Profile, change password
     public function editProfile($id) {
         $options = array('where' => 'id = ' . $id);
-        $user = $this->selectOneRow('*', 'accounts', $options, null, MYSQLI_ASSOC);
+        $user = $this->selectOneRow('fullname, sex, mobile, address', 'accounts', $options, null, 1);
         return $user;
     }
 
@@ -56,7 +56,31 @@ class Account_Model extends Model {
         $data = array('key' => null, 'active' => 1);
         return $this->update($data, 'accounts', "`email` ='$email' and `key` = '$key'");
     }
-
+    
+    //list order
+    function getAllOrder($id){
+        $options = array('where' => "customer_id = {$id}");
+        return $this->selectAll('id, order_date, customer_id, total_amout, total_quantity, `status`', '`order`', $options, null, 1);
+    }
+    
+    function getInfoOrder($id){
+        $options = array('where' => "`order`.id = {$id}");
+        return $this->selectOneRow('`order`.*, name', '`order` join payment on `order`.payment_id = payment.id', $options, null, 1);
+    }
+    
+    function getInfoOrderDetail($id){
+        $options = array('where' => "order_id = {$id}");
+        return $this->selectAll('*', 'order_detail', $options, null, 1);
+    }
+    
+    function getOrderStatus($id){
+        $options = array('where' => "id = {$id}");
+        return  $this->selectOneRow('status', '`order`', $options, null, 2);
+    }
+    
+    function updateStatus($data, $id){
+        return $this->update($data, '`order`', "id = {$id}");
+    }
 }
 
 ?>

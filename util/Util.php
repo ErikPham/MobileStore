@@ -9,11 +9,12 @@ class Util {
         exit();
     }
 
-    public function alertErrorField($key) {
+    public function alertErrorField($key, $noSpan = false) {
         if (isset($this->errors) && array_key_exists($key, $this->errors)) {
-            echo '<span for="textfield" class="help-block error">' . $this->errors[$key] . '</span>';
+            echo  ($noSpan == true) ? $this->errors[$key] : '<span for="textfield" class="help-block error">' . $this->errors[$key] . '</span>';
         }
     }
+    
 
     public function alertMessage($notice, $name, $type = 'error') {
         $class = 'alert-';
@@ -67,5 +68,12 @@ class Util {
         $strReplate = $strReplate . $type;
         return $strReplate;
     }
+
+    public static function priceFormat($price, $end = '1000') {
+        $totalPrice = $price * $end;
+        return number_format($totalPrice);
+    }
+
 }
+
 ?>

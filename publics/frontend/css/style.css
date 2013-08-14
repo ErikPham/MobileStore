@@ -30,12 +30,38 @@ body, td, th, input, textarea, select, a, font {
 label, input, button, select, textarea {
     font-size: 12px;
 }
+.text-red{
+    color: red;
+    font-weight: bold;
+}
+.text-bold{
+    font-weight: 700;
+}
+.darkblue{color: #267AB7;}
 table th, table td {
     padding: 3px;
+}
+
+table.border{
+    width: 100%;
+}
+table.border th, table.border td{
+    border: 1px solid #e1e1e1;
+    
+}
+table tr.center{
+    text-align: center;
+}
+td.top{
+    vertical-align: top;
+}
+.twoCol{
+    width: 50%;
 }
 .radio input[type="radio"], .checkbox input[type="checkbox"] {
     margin: 0;
 }
+
 .navbar .nav li.dropdown > .dropdown-toggle .caret {
     border: 0;
     background: url("../images/arrow_menu.png") no-repeat 0 0;
@@ -167,7 +193,7 @@ form .buttons a:hover {
 form .buttons input[type='checkbox'] {
     margin: 0 5px;
 }
-input[type='text'] {
+input[type='text'],.form input[type="password"] {
     height: 25px;
     line-height: 15px;
 }
@@ -322,7 +348,7 @@ ul, ul li, ol, ol li {
 #header #logo {
     padding: 0;
     margin: 0;
-    top: 74px;
+    top: 73px;
     position: absolute;
     z-index: 1;
 }
@@ -1306,7 +1332,7 @@ ul.box-filter > li ul {
     margin-bottom: 0;
     margin-top: 40px;
     position: absolute;
-    top: -105px;
+    top: -90px;
     text-align: center;
     width: auto;
     margin-left: 0;

@@ -1,5 +1,6 @@
 <?php
 @session_start();
+@ob_start();
 define('SITE_PATH', realpath(dirname(__FILE__)) . '/');
 define('URL', "http://localhost/mobilestore/");
 define('Publics',  URL . 'publics/');

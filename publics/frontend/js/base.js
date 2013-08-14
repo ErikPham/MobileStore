@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var url = "http://localhost/mobilestore/";
     /* Search */
     $('.button-search').bind('click', function() {
         url = $('base').attr('href') + 'index.php?route=product/search';
@@ -27,11 +28,39 @@ $(document).ready(function() {
     });
 
     /* Ajax Cart */
+    function notification(type, notice) {
+        $('#notification').html('<div class="' + type + '" style="display: none;">' + notice + '<img src="publics/frontend/images/close.png" alt="" class="close" /></div>');
+        $('.' + type + '').fadeIn('slow');
+        $('html, body').animate({scrollTop: 0}, 'slow');
+    }
+    $.getJSON(url + 'CheckOut/xhrTotal', function(json) {
+        total = json['quantity'] + ' sản phẩm ' + json['total'] + ' vnđ';
+        $('#cart-total').text(total);
+    });
+    $('.cart').click(function(e) {
+        e.preventDefault();
+        id = $(this).find('a').attr('id');
+        quantiy = 1;
+        $.ajax({
+            type: "POST",
+            url: url + "CheckOut/xhrAdd",
+            data: {id: id, qty: quantiy},
+            success: function(json) {
+                if (json['success']) {
+                    notification('success', json['success']);
+                    $('#cart-total').html(json['total']);
+                } else if (json['error']) {
+                    notification('error', json['error']);
+                    $('html, body').animate({scrollTop: 0}, 'slow');
+                }
+            },
+            dataType: 'json'
+        });
+    });
+
     $('#cart > .heading a').live('click', function() {
         $('#cart').addClass('active');
-
-        $('#cart').load('index.php?route=module/cart #cart > *');
-
+        $('#cart').load(url + 'CheckOut/xhrCart');
         $('#cart').live('mouseleave', function() {
             $(this).removeClass('active');
         });
@@ -84,13 +113,13 @@ $(document).ready(function() {
             $(this).remove();
         });
     });
-    
-    
+
+
     //slider
     $('#pavcontentslider').carousel({interval: 8000, auto: true, pause: 'hover'});
     $('#productcarousel1,#productcarousel2,#productcarousel3').carousel({interval: false, auto: false, pause: 'hover'});
 
-    
+
 });
 
 function getURLVar(key) {
