@@ -111,6 +111,9 @@ class CheckOut extends Controller {
                         }else{
                             $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
                         }
+                    }else{
+                        Session::set('error_cart', $errors);
+                        Util::redirectTo('checkout/viewcart/gio-hang-cua-ban.html');
                     }
                 }else{
                     if (isset($this->val->error['diff_key'])) {
@@ -167,7 +170,11 @@ class CheckOut extends Controller {
         }
         if (!empty($errors)) {
             $this->util->errors = $errors;
+        }elseif(!is_null(Session::get('error_cart'))){
+            $this->util->errors = Session::get('error_cart');
         }
+        
+        
 
         $this->view->layout = 'home';
         $this->view->title = 'Giỏ hàng của bạn';
