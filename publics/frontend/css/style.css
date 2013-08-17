@@ -47,7 +47,7 @@ table.border{
 }
 table.border th, table.border td{
     border: 1px solid #e1e1e1;
-    
+
 }
 table tr.center{
     text-align: center;
@@ -3924,4 +3924,270 @@ ul.nav li.deeper a.dropdown-toggle b.arrow {
     width: 450px;
 }
 
-/* Custom  pagination */
+/* Custom  Tabs */
+.filterWrapper{
+    border: 1px solid #e1e1e1;
+    margin: 0px 0px 10px;
+}
+.filterWrapper .filter{
+    float: left;
+    margin: 0xp 5px 0px 0px;
+    font-size: 14px;
+    position: relative;
+}
+
+.title-filter
+{
+    background-image: url(../images/arrow11.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    float: left;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.title-filter .filter-by-type
+{
+    padding: 6px 5px 6px 0;
+    line-height: 24px;
+    font-size: 13px;
+    background-color: #eee;
+    margin-right: 14px;
+}
+.title-filter .filter-by-type span.left
+{
+    margin-left: 9px;
+    margin-right: 3px;
+}
+
+
+.filter-list-wrapper{
+    display: none;
+}
+.filter-name{
+    background: url(../images/arrow-down-new.png) no-repeat right center;
+    margin: 0px 20px 0px 0px;
+}
+
+.filter-name h4{
+    font: 700 12px/36px Helvetica,​Arial,​sans-serif;
+    padding: 0px 10px 0 0;
+    margin: 0px;
+    cursor: pointer;
+    margin: 0px 5px 0px 0px;
+}
+
+.filter-list-wrapper{
+    border: 1px solid #e1e1e1;
+    padding: 5px;
+    float: left;
+    position: absolute;
+}
+.filter-list{
+    background-color: #FFFFFF;
+    border: 1px solid #D6D6D6;
+    left: 0;
+    overflow-x: auto;
+    position: absolute;
+    top: -1px;
+    width: 200px;
+    z-index: 999;
+}  
+.filter-list li{
+    padding: 5px 0px;
+}
+
+.filter-list li a{
+    display: block;
+    padding-left: 25px;
+}
+
+.filter-list li.checked{
+    background: url(../images/product-filter-checked.png) no-repeat 8px center;
+}
+
+
+#postClassisFied{
+    float: right;
+    border-radius: 0px;
+    height: 36px;
+    padding: 0px 20px;
+    line-height: 36px;
+    background: #DC032C;
+    margin-right: 0;
+    color: #fff;
+}
+
+#list-city{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+
+.tabs-wrapper{
+    border: 1px solid #e1e1e1;
+}
+
+.title-tabs{
+    border-bottom: 1px solid #e1e1e1;
+    line-height: 31px;
+}
+
+.btnTab a{
+    display: inline-block;
+    padding: 8px 16px;
+    font-weight: bold;
+    color: #616161;
+    background: none repeat scroll 0 0 #DEDEDE;
+    margin: 0px 5px 0px 0px;
+}
+
+.btnTab a.selected{
+    background: #30ADE7;
+    color: #fff;
+}
+
+.nopadding{
+    padding: 0px;
+}
+
+.tab-content .no-post{
+    padding: 5px 10px;
+}
+
+.itemClassified{
+    padding: 5px 0px 0px;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.itemClassified .title{
+    padding-left: 10px;
+}
+
+.itemClassified .title h3{
+    margin: 0px 0px 5px 0px;
+    padding: 0px;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.itemClassified .title span.price{
+    color: red;
+}
+
+.itemClassified .title h3 a{
+    font-weight: bold;
+}
+.itemClassified .creator span{
+    display: block;
+    margin: 0px 0px 5px 0px;
+}
+.itemClassified .time{
+    padding-right: 5px;
+}
+
+/* Class**/
+.on-hover{
+    display: block;
+}
+.pagiAjax{
+    border-bottom: 1px solid #E1E1E1;
+    margin: 10px 0 5px;
+    padding-bottom: 5px;
+}
+
+.noBorderBottom{
+    border-bottom: none;
+}
+
+.tab-content .odd{
+    background: none repeat scroll 0 0 #F8F8F8;
+}
+
+.boxSidebar{
+    border: 1px solid #e1e1e1;
+}
+
+.boxSidebar h3.title{
+    font: 700 12px/30px Arial;
+    min-height: 30px;
+    margin: 0px;
+    padding: 0px 5px;
+}
+.boxSidebar div.contentBox{
+    padding: 0px 5px;
+}
+.boxSidebar div.contentBox ul{
+    list-style: none;
+}
+
+.boxSidebar div.contentBox ul li{
+    line-height: 20px;
+    margin: 0px 0px 10px 0px;
+    background: url(../images/check-icon.png) no-repeat left 2px;
+    padding-left: 20px;
+}
+
+
+/*view detail classified*/
+.titleAds{
+    border-bottom: 1px solid #E1E1e1;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 5px;
+}
+
+.titleAds ul li{
+    float: left;
+    margin: 0px 20px 0px 0px;
+}
+
+.contentAds{
+    margin: 0px 0px 20px 0px;
+}
+
+.relateAds h5{
+    margin: 0px 0px 10px 0px;
+}
+
+.relateAds ul li{
+    margin: 0px 0px 10px 0px;
+    font-size: 14px;
+}
+.relateAds ul li a{
+    color: #26A7E5;
+}
+.relateAds ul li a:hover{
+    color: #818181;
+}
+
+.detailInfoAds{
+    border: 1px solid #E1E1e1;
+    padding: 10px;
+}
+.userWrapper ul{
+    border-bottom: 1px dashed #D3D3D3;
+    margin: 0px 0px 10px;
+}
+.userWrapper ul li a{
+    color: #26A7E5;
+}
+
+.detailInfoAds ul li{
+    margin: 0px 0px 10px 0px;
+}
+
+.safetyInfo li.tit{
+    text-transform: uppercase;
+    font-size: 14px;
+    padding-left: 0px;
+    background: none;
+}
+
+.safetyInfo li{
+    padding-left: 10px;
+    background: url(../images/icon-arrow-right.png) no-repeat left 2px;
+}
+
+.noticePost{
+    margin-top: 30px;
+}

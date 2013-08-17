@@ -7,7 +7,6 @@ class Model extends Connection {
     }
 
     public function execute($sql, $data = null) {
-        //echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->dsn->prepare($sql);
             is_null($data) ? $stmt->execute() : $stmt->execute($data);

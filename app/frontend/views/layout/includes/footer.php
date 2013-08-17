@@ -7,7 +7,7 @@
                     <div class="box pav-custom  pav_social">
                         <section class="box-content">
                             <div class="pav-social">
-                                <h3><span>Socialize</span></h3>
+                                <h3><span>Kết nối</span></h3>
                                 <ul>
                                     <li>
                                         <a title="Facebook" href="#" class="facebook">Facebook</a> <a title="" href="#" class="twitte">Twitte</a>
@@ -30,7 +30,7 @@
                     <div class="box pav-custom  pav-about-us">
                         <section class="box-content">
                             <div class="pav-about">
-                                <h3><span>About us</span></h3>
+                                <h3><span>Giới thiệu</span></h3>
                                 <ul>
                                     <li><a title="" href="#">Dolor sit amet</a></li>
                                     <li><a title="" href="#">Nam cursus nunc</a></li>
@@ -136,10 +136,10 @@
                     <div class="box pav-custom  pav_newsletter">
                         <section class="box-content">
                             <div class="pav-newsletter">
-                                <h3><span>Newsletter</span></h3>
+                                <h3><span>Bản tin</span></h3>
                                 <form method="POST" action="#">
-                                    <label>Sign Up for Our Newsletter:</label>
-                                    <p>Get the word out Share this page with your friends and family. Enter your email address...</p>
+                                    <label>Đăng ký nhận bản tin của chúng tôi:</label>
+                                    <p>Bạn sẽ nhận được bản tin mỗi khi chúng tôi có thông báo mới hãy nhập địa chỉ email của bạn...</p>
                                     <div class="subscribe row-fluid">
                                         <input type="text" value="" name="subscribe"> <input type="button" value="&nbsp;">
                                     </div>

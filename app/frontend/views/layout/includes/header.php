@@ -129,8 +129,11 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <li class="pav-blog-menu">
+                                                        <li>
                                                             <a href="<?php echo URL . 'contacts/send/' . Util::toSlug('lien he voi chung toi') ?>"><span class="menu-title">Liên hệ</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="<?php echo URL . 'classified/view/' . Util::toSlug('thong tin rao vat') ?>"><span class="menu-title">Rao vặt</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>

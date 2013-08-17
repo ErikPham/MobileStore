@@ -1,5 +1,8 @@
 <?php
-
+include './library/Captcha.php';
+include './library/Session.php';
+define('SESSION_KEY', 'PhucPM');
+/*
 include './library/Connection.php';
 include './library/Model.php';
 
@@ -12,5 +15,15 @@ $data = array(
 );
 
 $insert = $model->formatInsertMultiple($data, 'user');
-echo $insert;
+echo $insert;/*
+ * 
+ * 
+
+echo strtotime('-1days') . '<br/>';
+echo strtotime('-1weeks'). '<br/>';
+echo strtotime('-1months'). '<br/>';
+echo strtotime('-3months'). '<br/>';
+*/
+echo Captcha::getCaptcha();
+
 ?>

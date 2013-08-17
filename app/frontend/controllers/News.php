@@ -13,7 +13,7 @@ class News extends Controller {
     }
 
     function view() {
-        $display = 10;
+        $display = 2;
         $this->view->viewmosts = $this->model->viewMost();
         
         $pagination = new Pagination($display);
@@ -52,7 +52,7 @@ class News extends Controller {
     }
 
     function category() {
-        $display = 10;
+        $display = 5;
         $id = is_numeric(URI::getSegment(2)) ? URI::getSegment(2) : Util::redirectTo('error');
         $pagination = new Pagination($display);
         $pagination->setTotal($this->model->getCountCategory($id));

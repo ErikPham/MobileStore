@@ -1255,6 +1255,14 @@ table.compare-info td,  table.compare-info th,  table.pav-checkout-product td,  
 	height: 140px;
 	height: auto !important;
 }
+.itemClassified .title{
+    padding: 0px;
+}
+.btnTab a{
+    width: 100%;
+    margin: 0px;
+    display: block;
+}
 }
 /* Iphone 4 + 5 Portrait */
 @media only screen and (min-width: 240px) and (max-width: 320px) {
@@ -1516,5 +1524,14 @@ ul.dropdown-menu li {
 #header .button-search {
 	width: 30px;
 	height: 30px;
+}
+.itemClassified .title{
+    padding: 0px;
+}
+
+.btnTab a{
+    width: 100%;
+    margin: 0px;
+    display: block;
 }
 }
