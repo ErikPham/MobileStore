@@ -2,46 +2,29 @@
     <div class="container">
         <div class="carousel slid pavcontentslider" id="pavcontentslider">
             <div class="carousel-inner">
-                <div class="item">
-                    <div class="banner-info">
-                        <h4>Mauris sed 2013 donec</h4>
-                        <div class="banner-desc">
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing quis; habitant morbi tristique senectus et netus et malesuada fames ac urpis egestas.</p>
+                <?php
+                $fileSlider = CACHE . 'slider_home.txt';
+                $sliders = File::read($fileSlider, 'r', true);
+                $sliders = json_decode($sliders, true);
+                if (!empty($sliders)):
+                    $index = 0;
+                    foreach ($sliders as $slider):
+                        $index++;
+                        ?>
+                        <div class="item <?php echo ($index==1) ? 'active' : '' ?>">
+                            <div class="banner-info">
+                                <h2><a href="<?php echo $slider['link']; ?>"><?php echo $slider['title']; ?></a></h2>
+                                <div class="banner-desc">
+                                    <p><?php echo $slider['summary']; ?></p>
+                                </div>
+                            </div>
+                            <div class="banner-image"><img alt="<?php echo $slider['title']; ?>" src="<?php echo $slider['image']; ?>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="banner-image"><img alt="Mauris sed 2013 donec" src="<?php echo Publics . 'frontend/'; ?>images/1-940x457.png">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="banner-info">
-                        <h4>Mauris sed 2014 donec</h4>
-                        <div class="banner-desc">
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing quis; habitant morbi tristique senectus et netus et malesuada fames ac urpis egestas.</p>
-                        </div>
-                    </div>
-                    <div class="banner-image"><img alt="Mauris sed 2013 donec" src="<?php echo Publics . 'frontend/'; ?>images/2-940x457.png">
-                    </div>
-                </div>
-                <div class="item active">
-                    <div class="banner-info">
-                        <h4>Mauris sed 2013 donec</h4>
-                        <div class="banner-desc">
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing quis; habitant morbi tristique senectus et netus et malesuada fames ac urpis egestas.</p>
-                        </div>
-                    </div>
-                    <div class="banner-image"><img alt="Mauris sed 2013 donec" src="<?php echo Publics . 'frontend/'; ?>images/3-940x457.png">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="banner-info">
-                        <h4>Mauris sed 2013 donec</h4>
-                        <div class="banner-desc">
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing quis; habitant morbi tristique senectus et netus et malesuada fames ac urpis egestas.</p>
-                        </div>
-                    </div>
-                    <div class="banner-image"><img alt="Mauris sed 2013 donec" src="<?php echo Publics . 'frontend/'; ?>images/4-940x457.png">
-                    </div>
-                </div>
+                        <?php
+                    endforeach;
+                endif;
+                ?>
             </div>
             <a data-slide="prev" href="#pavcontentslider" class="carousel-control left hidden-tablet hidden-phone">‹</a>
             <a data-slide="next" href="#pavcontentslider" class="carousel-control right hidden-tablet hidden-phone">›</a> 

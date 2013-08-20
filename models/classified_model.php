@@ -28,6 +28,10 @@ class Classified_Model extends Model {
         $options = array('limit' => '0,5', 'order' => 'id DESC');
         return $this->selectAll('id, title', 'classifieds_adv', $options, null, 1);
     }
+    
+    function post($data){
+        return $this->insert($data, 'classifieds_adv');
+    }
 
 }
 ?>

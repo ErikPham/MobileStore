@@ -5,6 +5,7 @@
             <div class="span9">
                 <div id="content">
                     <?php
+                    
                     echo isset($this->message) ? $this->message : "";
                     ?>
                     <div class="breadcrumb">
@@ -12,9 +13,9 @@
                         <a href="#">Account</a> &raquo;
                         <a href="#">Register</a>
                     </div>
-                    <div class="account-register">
+                    <div class="classified-register">
                         <h1>Đăng tin rao vặt</h1>
-                        <form enctype="multipart/form-data" method="post" action="#" class="form">
+                        <form enctype="multipart/form-data" method="post"  class="form">
                             <h2>Thông tin sản phẩm</h2>
                             <div class="content">
                                 <table class="form">
@@ -24,10 +25,11 @@
                                             <td>
                                                 <div class="form-inline">
                                                     <select name="post_type" class="span2">
-                                                        <option>Cần mua</option>
-                                                        <option>Cần bán</option>
+                                                        <option value="1">Cần mua</option>
+                                                        <option value="2">Cần bán</option>
                                                     </select>
-                                                    <input type="text" name="username" class="span10" value=""/>
+                                                    <input type="text" name="title" class="span10" value="<?php echo isset($this->classified['title']) ? $this->classified['title'] : ''; ?>"/>
+                                                    <?php if (isset($this->util->errors)) $this->util->alertErrorField('title'); ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -35,23 +37,33 @@
                                         <tr>
                                             <td><span class="required">*</span> Nội dung:</td>
                                             <td>
-                                                <textarea name="content" class="span12"></textarea>
+                                                <textarea name="content" class="span12"><?php echo isset($this->classified['content']) ? $this->classified['content'] : ''; ?></textarea>
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('content'); ?>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td><span class="required">*</span> Giá:</td>
                                             <td>
-                                                <input name="content" class="span5" /> đ
+                                                <p>Bạn không cần điền đơn vị hàng nghìn</p>
+                                                <input name="price" class="span5" value="<?php echo isset($this->classified['price']) ? $this->classified['price'] : ''; ?>" /> .000 đ
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('price'); ?>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td><span class="required">*</span> Phạm vi:</td>
                                             <td>
-                                                <select name="content" class="span5">
-                                                    <option>Toàn quốc</option>
-                                                    <option>Hà Nội</option>
+                                                <select name="location_id" class="span5">
+                                                    <?php
+                                                    if (!empty($this->locations)):
+                                                        foreach ($this->locations as $location):
+                                                            ?>
+                                                            <option value="<?php echo $location['id']; ?>"><?php echo $location['label']; ?></option>
+                                                            <?php
+                                                        endforeach;
+                                                    endif;
+                                                    ?>
                                                 </select>
                                             </td>
                                         </tr>
@@ -66,26 +78,30 @@
                                     <tr>
                                         <td><span class="required">*</span> Họ tên:</td>
                                         <td>
-                                            <input name="content" class="span5" />
+                                            <input name="name" class="span5" value="<?php echo isset($this->classified['name']) ? $this->classified['name'] : ''; ?>" />
+                                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('name'); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span class="required">*</span> Điện thoại:</td>
                                         <td>
-                                            <input name="content" class="span5" />
+                                            <input name="mobile" class="span5" value="<?php echo isset($this->classified['mobile']) ? $this->classified['mobile'] : ''; ?>" />
+                                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('mobile'); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span class="required">*</span> Email:</td>
                                         <td>
-                                            <input name="content" class="span5" />
+                                            <input name="email" class="span5" value="<?php echo isset($this->classified['email']) ? $this->classified['email'] : ''; ?>" />
+                                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('email'); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span class="required">*</span> Xác nhân:</td>
                                         <td>
-                                            <p>Bạn hãy trả lời câu hỏi sau: <strong class="text-red"><?php echo Captcha::getCaptcha(); ?></strong></p>
-                                            <input name="content" class="span5" />
+                                            <p>Bạn hãy trả lời câu hỏi sau (Đáp án là số): <strong class="text-red"><?php echo Captcha::getCaptcha(); ?></strong></p>
+                                            <input name="captcha" class="span5" />
+                                            <?php if (isset($this->util->errors)) $this->util->alertErrorField('captcha'); ?>
                                         </td>
                                     </tr>
                                 </table>
@@ -93,7 +109,7 @@
 
                             <div class="buttons">
                                 <div class="right">
-                                    <input type="submit" class="button" value="Continue">
+                                    <input type="submit" class="button" value="Đăng tin"/>
                                 </div>
                             </div>
                         </form>

@@ -143,8 +143,8 @@ class Account extends Controller {
         $this->view->layout = 'login';
         if (Request::isPost()) {
             $data = array(
-                'username' => $_POST['username'],
-                'password' => HASH::create('sha1', "{$_POST['password']}", HASH_PASSWORD_KEY)
+                'username' => Request::post('username'),
+                'password' => HASH::create('sha1', Request::post('password'), HASH_PASSWORD_KEY)
             );
             if ($this->model->checkLogin($data) == true) {
                 Util::redirectTo('backend');
@@ -153,8 +153,8 @@ class Account extends Controller {
                 $this->view->title = 'Có lỗi xảy ra';
             }
         }
-         $this->view->title = 'Đăng nhập tài khoản';
-            $this->view->render('account/login');
+        $this->view->title = 'Đăng nhập tài khoản';
+        $this->view->render('account/login');
     }
 
     function logout() {

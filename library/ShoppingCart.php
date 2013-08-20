@@ -39,10 +39,7 @@ class ShoppingCart {
         $this->items[$id]['quantity'] = $quantity;
     }
 
-    /*
-     * Get Info
-     */
-
+   
     public function getItems() {
         return $this->items;
     }
@@ -87,10 +84,7 @@ class ShoppingCart {
         return $total;
     }
 
-    /*
-     * Delete Item
-     */
-
+   
     public function deleteItem($id) {
         if ($this->hasItem($id)) {
             unset($this->items[$id]);

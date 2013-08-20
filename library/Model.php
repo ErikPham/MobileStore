@@ -7,6 +7,7 @@ class Model extends Connection {
     }
 
     public function execute($sql, $data = null) {
+        //echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->dsn->prepare($sql);
             is_null($data) ? $stmt->execute() : $stmt->execute($data);
@@ -150,7 +151,7 @@ class Model extends Connection {
     public function insert($data, $table, $multiValues = false) {
         $tmp = false;
         $sql = (!$multiValues) ? $this->formatInsert($data, $table) : $this->formatInsertMultiple($data, $table);
-        echo $sql;
+        //echo $sql;
         if ($this->type == 'pdo') {
             $stmt = $this->execute($sql, $data);
             if ($stmt->rowCount() > 0) {

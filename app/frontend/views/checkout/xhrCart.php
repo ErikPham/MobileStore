@@ -47,7 +47,7 @@
             </table>
         </div>
         <div class="checkout">
-            <a href="#">Xem giỏ hàng</a>  <a href="#">Mua hàng</a>
+            <a href="<?php echo URL . 'checkout/viewcart/gio-hang-cua-ban.html' ?>">Xem giỏ hàng</a>  <a href="<?php echo URL . 'checkout/step1/thanh-toan-buoc-1.html'; ?>">Thanh toán</a>
         </div>
     <?php else: ?>
         <div class="empty">Giỏ hàng của bạn đang trống</div>

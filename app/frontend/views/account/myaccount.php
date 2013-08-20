@@ -8,14 +8,14 @@
                     echo isset($this->message) ? $this->message : '';
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                         <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="account-register">
                         <h1>Thông tin tài khoản</h1>
                         <p>Nếu quý khách muốn thay đổi thông tin cá nhân điền thông tin theo mẫu.</p>
-                        <form enctype="multipart/form-data" method="post" action="#">
+                        <form enctype="multipart/form-data" method="post" >
                             <h2>Thông tin cá nhân</h2>
                             <div class="content">
                                 <table class="form">

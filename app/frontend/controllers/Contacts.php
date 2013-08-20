@@ -32,6 +32,12 @@ class Contacts extends Controller {
             'min' => 20,
             'max' => 1000,
             'trim' => true
+        ), 'captcha' => array(
+            'type' => 'numeric',
+            'required' => true,
+            'min' => 0,
+            'max' => 1000,
+            'trim' => true
         )
     );
     private $label = array(
@@ -49,20 +55,28 @@ class Contacts extends Controller {
     }
 
     function send() {
+        $breadcrum = array(
+            array('name' => 'Liên hệ')
+        );
         if (Request::isPost()) {
             $this->valid->addRules($this->rules);
             $this->valid->addSource($_POST);
             $this->valid->run();
             $this->valid->changeLabel($this->label);
             if ($this->valid->isValid()) {
-                $_POST['contact_date'] = time();
-                $_POST['status'] = 0;
-                if ($this->model->sendContact($_POST)) {
-                    $this->view->title = 'Đăng ký tài khoản thành công';
-                    $this->view->message = $this->util->alertMessage('Chúng mừng bạn đã gửi liên hệ thành công. Chúng tôi sẽ liên hệ lại với bạn qua email. Xin cảm ơn!', 'Thành công', 'success');
-                    $_POST = array();
+                if (Captcha::checkAnswer(Request::post('captcha'))) {
+                    unset($_POST['captcha']);
+                    $_POST['contact_date'] = time();
+                    $_POST['status'] = 0;
+                    if ($this->model->sendContact($_POST)) {
+                        $this->view->title = 'Đăng ký tài khoản thành công';
+                        $this->view->message = $this->util->alertMessage('Chúng mừng bạn đã gửi liên hệ thành công. Chúng tôi sẽ liên hệ lại với bạn qua email. Xin cảm ơn!', 'Thành công', 'success');
+                        $_POST = array();
+                    } else {
+                        $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng gửi lại sau.', 'Có lỗi');
+                    }
                 } else {
-                    $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng gửi lại sau.', 'Có lỗi');
+                    $this->view->message = $this->util->alertMessage('Câu trả lời xác nhận của bạn không chính xác. Lưu ý: Câu trả lời là số', 'Có lỗi', 'error');
                 }
             } else {
                 if (isset($this->valid->error['diff_key'])) {
@@ -77,6 +91,7 @@ class Contacts extends Controller {
         }
         $this->view->util = $this->util;
         $this->view->title = 'Liên hệ với chúng tôi';
+        $this->view->breadcrums = Breadcrumb::view($breadcrum);
         $this->view->render('contacts/index');
     }
 

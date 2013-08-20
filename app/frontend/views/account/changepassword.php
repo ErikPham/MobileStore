@@ -5,16 +5,16 @@
             <div class="span9">
                 <div id="content">
                     <?php
-                        echo isset($this->message) ? $this->message : '';
+                    echo isset($this->message) ? $this->message : '';
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="account-register">
                         <h1>Thay đổi mật khẩu</h1>
-                        <form enctype="multipart/form-data" method="post" action="#">
+                        <form enctype="multipart/form-data" method="post" >
                             <h2>Thay đổi mật khẩu</h2>
                             <div class="content">
                                 <table class="form">

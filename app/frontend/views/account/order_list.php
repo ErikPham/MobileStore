@@ -5,9 +5,9 @@
             <div class="span9">
                 <div id="content">
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="acontent">
                         <h1>Danh sách hóa đơn</h1>

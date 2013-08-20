@@ -8,9 +8,9 @@
                     echo isset($this->message) ? $this->message : "";
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <h1><?php echo $this->data['title']; ?></h1>
 

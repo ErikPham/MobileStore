@@ -14,6 +14,18 @@ class Captcha {
         3 => array(
             'question' => 'Việt nam có bao nhiêu tỉnh thành?',
             'answer' => 63
+        ),
+        4 => array(
+            'question' => 'Một cộng năm trừ hai bằng?',
+            'answer' => 4
+        ),
+        5 => array(
+            'question' => 'Bốn nhân bốn bằng?',
+            'answer' => 16
+        ),
+        6 => array(
+            'question' => 'Con chó có bao nhiêu chân?',
+            'answer' => 4
         )
     );
 
@@ -30,7 +42,7 @@ class Captcha {
     public static function checkAnswer($answer) {
         $tmp = false;
         $captcha = Session::get('captcha');
-        if ($captcha['answer'] != $answer) {
+        if ($captcha['answer'] == $answer) {
             $tmp = true;
         }
         return $tmp;

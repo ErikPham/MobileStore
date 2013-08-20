@@ -3,7 +3,7 @@
 class Validation {
 
     public $errors = array();
-    private $validation_rules = array();
+    public $validation_rules = array();
     public $sanitized = array();
     private $source = array();
     private $isValid = false;

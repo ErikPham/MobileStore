@@ -4,6 +4,7 @@ class Account extends Controller {
 
     private $util;
     private $valid;
+    private $url;
     private static $rules = array(
         'username' => array(
             'type' => 'string',
@@ -52,6 +53,13 @@ class Account extends Controller {
             'required' => true,
             'min' => 10,
             'max' => 255,
+            'trim' => true
+        ),
+        'captcha' => array(
+            'type' => 'numeric',
+            'required' => true,
+            'min' => 0,
+            'max' => 1000,
             'trim' => true
         )
     );
@@ -119,6 +127,7 @@ class Account extends Controller {
         $this->view->layout = 'home';
         $this->util = new Util();
         $this->valid = new Validation();
+        $this->url = "account/myaccount/" . Util::toSlug('tai-khoan-ca-nhan-' . Session::get('username'));
     }
 
     function index() {
@@ -159,8 +168,13 @@ class Account extends Controller {
                     $this->view->util = $this->util;
                 }
             }
+            $breadcrum = array(
+                array('url' => $this->url, 'name' => 'Tài khoản'),
+                array('name' => 'Thay đổi mật khẩu')
+            );
             $this->view->layout = 'account';
             $this->view->title = "Thay đổi mật khẩu";
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/changepassword');
         } else {
             Util::redirectTo();
@@ -192,9 +206,15 @@ class Account extends Controller {
                 }
             }
 
+
+            $breadcrum = array(
+                array('name' => 'Tài khoản cá nhân')
+            );
+
             $this->view->account = $this->model->editProfile($id);
             $this->view->layout = 'account';
             $this->view->title = "Thông tin tài khoản";
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/myaccount');
         } else {
             Util::redirectTo();
@@ -210,31 +230,35 @@ class Account extends Controller {
                 $this->valid->run();
                 $this->valid->changeLabel($this->change_label);
                 if ($this->valid->isValid()) {
-                    $key = Hash::create('md5', uniqid(rand(), true), HASH_GENERAL_KEY);
-                    $flag = true;
-                    $exists = new CheckExists();
-                    if (Request::post('subscribe') == 1 && !$exists->check(Request::post('email'), 'email', 'subscribes')) {
-                        $data = array('email' => Request::post('email'));
-                        $flag = $this->model->subscribe($data);
-                    }
-                    $_POST['key'] = $key;
-                    $_POST['active'] = 0;
-                    $_POST['password'] = Hash::create('sha1', Request::post('password'), HASH_PASSWORD_KEY);
-                    unset($_POST['subscribe']);
-                    unset($_POST['confirm']);
-                    if ($this->model->register($_POST) && $flag) {
-                        $this->view->title = 'Đăng ký tài khoản thành công';
-                        $email = base64_encode(Request::post('email'));
-                        $message = "Chúc mừng bạn đã đăng ký tài khoản thành công tại MobileStore.Com.\nClick vào đường link " . URL . "account/active/{$email}/{$key}/kich-hoat-tai-khoan.html  để kích hoạt tài khoản";
-                        $mail = new Mail();
-                        if ($mail->Send(Request::post('email'), Request::post('fullname'), 'Đăng ký tài khoản thành công', $message)) {
-                            $this->view->message = $this->util->alertMessage('Bạn đã đăng ký tài khoản thành công. Vui lòng kiểm tra email để kích hoạt', 'Thành công', 'success');
-                        } else {
-                            $this->view->message = $this->util->alertMessage('Chúng tôi không thể gửi được email kích hoạt cho bạn. Bạn vui lòng sử dụng chức năng gửi lại mã kích hoạt. Xin cảm ơn', 'Có lỗi', 'error');
+                    if (Captcha::checkAnswer(Request::post('captcha'))) {
+                        $key = Hash::create('md5', uniqid(rand(), true), HASH_GENERAL_KEY);
+                        $flag = true;
+                        $exists = new CheckExists();
+                        if (Request::post('subscribe') == 1 && !$exists->check(Request::post('email'), 'email', 'subscribes')) {
+                            $data = array('email' => Request::post('email'));
+                            $flag = $this->model->subscribe($data);
                         }
-                        $_POST = array();
+                        $_POST['key'] = $key;
+                        $_POST['active'] = 0;
+                        $_POST['password'] = Hash::create('sha1', Request::post('password'), HASH_PASSWORD_KEY);
+                        unset($_POST['subscribe']);
+                        unset($_POST['confirm']);
+                        if ($this->model->register($_POST) && $flag) {
+                            $this->view->title = 'Đăng ký tài khoản thành công';
+                            $email = base64_encode(Request::post('email'));
+                            $message = "Chúc mừng bạn đã đăng ký tài khoản thành công tại MobileStore.Com.\nClick vào đường link " . URL . "account/active/{$email}/{$key}/kich-hoat-tai-khoan.html  để kích hoạt tài khoản";
+                            $mail = new Mail();
+                            if ($mail->Send(Request::post('email'), Request::post('fullname'), 'Đăng ký tài khoản thành công', $message)) {
+                                $this->view->message = $this->util->alertMessage('Bạn đã đăng ký tài khoản thành công. Vui lòng kiểm tra email để kích hoạt', 'Thành công', 'success');
+                            } else {
+                                $this->view->message = $this->util->alertMessage('Chúng tôi không thể gửi được email kích hoạt cho bạn. Bạn vui lòng sử dụng chức năng gửi lại mã kích hoạt. Xin cảm ơn', 'Có lỗi', 'error');
+                            }
+                            $_POST = array();
+                        } else {
+                            $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
+                        }
                     } else {
-                        $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
+                        $this->view->message = $this->util->alertMessage('Câu trả lời xác nhận của bạn không chính xác. Lưu ý: Câu trả lời là số', 'Có lỗi', 'error');
                     }
                 } else {
                     if (isset($this->valid->error['diff_key'])) {
@@ -248,6 +272,7 @@ class Account extends Controller {
                 }
             }
             $this->view->util = $this->util;
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/register');
         } else {
             Util::redirectTo();
@@ -256,19 +281,25 @@ class Account extends Controller {
 
     public function login() {
         if (Session::get('auth') != 1) {
+            $breadcrum = array(
+                array('name' => 'Đăng nhập tài khoản')
+            );
             if (Request::isPost()) {
                 $url = Request::post('redirect') ? Request::post('redirect') : 'index';
                 $data = array(
                     'username' => $_POST['username'],
                     'password' => HASH::create('sha1', "{$_POST['password']}", HASH_PASSWORD_KEY)
                 );
+
                 if ($this->model->checkLogin($data) == true) {
                     Util::redirectTo($url);
                 } else {
                     $this->view->message = Util::alertMessage('Tên tài khoản, mật khẩu sai. Hoặc tài khoản của bạn chưa được kích hoạt', 'Có lỗi');
                 }
             }
+            
             $this->view->title = 'Đăng nhập tài khoản';
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/login');
         } else {
             Util::redirectTo();
@@ -284,11 +315,15 @@ class Account extends Controller {
         $email = base64_decode(URI::getSegment(2));
         $key = URI::getSegment(3);
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $breadcrum = array(
+                array('name' => 'Kích hoạt tài khoản')
+            );
             if ($this->model->activeAccount($email, $key)) {
                 $this->view->message = $this->util->alertMessage('Chúc mừng bạn đã kích hoạt thành công. Bây giờ bạn có thể đăng nhập tài khoản', 'Thành công', 'success');
             } else {
                 $this->view->message = $this->util->alertMessage('Đường link kích hoạt của bạn không hợp lệ. Vui lòng kiểm tra lại', 'Có lỗi');
             }
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->title = 'Kích hoạt tài khoản';
             $this->view->render('account/login');
         } else {
@@ -298,11 +333,16 @@ class Account extends Controller {
 
     function order() {
         if (Session::get('auth') == 1) {
+            $breadcrum = array(
+                array('url' => $this->url, 'name' => 'Tài khoản'),
+                array('name' => 'Hóa đơn')
+            );
             $id = Session::get('user_id');
             $this->model->getAllOrder($id);
             $this->view->order = $this->model->getAllOrder($id);
             $this->view->layout = 'account';
             $this->view->title = "Danh sách hóa đơn";
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/order_list');
         } else {
             Util::redirectTo();
@@ -311,12 +351,18 @@ class Account extends Controller {
 
     function orderdeail() {
         if ((Session::get('auth') == 1) && $id = URI::getSegment(2)) {
+            $breadcrum = array(
+                array('url' => $this->url, 'name' => 'Tài khoản'),
+                array('url' => 'account/order/' . Util::toSlug('hoa don mua hang' . Session::get('username')), 'name' => 'Hóa đơn'),
+                array('name' => 'Chi tiết hóa đơn #' . $id)
+            );
             $order = $this->model->getInfoOrder($id);
             $this->view->order = $order;
             $this->view->items = $this->model->getInfoOrderDetail($id);
             $this->view->total = $order['total_amout'];
             $this->view->layout = 'account';
             $this->view->title = "Danh sách hóa đơn";
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->render('account/order_detail');
         }
     }

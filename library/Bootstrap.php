@@ -11,6 +11,7 @@ class Bootstrap extends URI {
         define('CONTRONLLER', PATH . 'controllers/');
         define('VIEW', PATH . 'views/');
         define('LAYOUT', VIEW . 'layout/');
+        define('CACHE', SITE_PATH . 'cache/');
         define('MODEL', 'models/');
     }
 

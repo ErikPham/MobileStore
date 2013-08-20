@@ -5,16 +5,16 @@
             <div class="span12">
                 <div id="content">
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="pav-header">
                         <h1>Giỏ hàng</h1>
                     </div>
                     <div class="checkout">
                         <?php if (!empty($this->cart)) : ?>
-                            <form enctype="multipart/form-data" method="post" action="#">
+                            <form enctype="multipart/form-data" method="post">
                                 <div class="cart-info">
                                     <table class="pav-shop-cart">
                                         <thead class="hidden-phone">

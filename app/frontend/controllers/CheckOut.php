@@ -41,6 +41,9 @@ class CheckOut extends Controller {
 
     function step1() {
         if (Session::get('auth') == 1) {
+            $breadcrum = array(
+                array('name' => 'Thông tin đơn hàng')
+            );
             $cart = new ShoppingCart('cart');
             if ($cart->hasItems()) {
                 $customer = $this->model->getInfoCustomer(Session::get('user_id'));
@@ -50,6 +53,7 @@ class CheckOut extends Controller {
                 $this->view->title = 'Thanh toán đơn hàng';
                 $this->view->step = "Bước 1/3:  Xem lại thông tin đơn hàng";
                 $this->view->layout = 'home';
+                $this->view->breadcrums = Breadcrumb::view($breadcrum);
                 $this->view->render('checkout/step1');
             } else {
                 Util::redirectTo('');
@@ -63,6 +67,9 @@ class CheckOut extends Controller {
     function step2() {
         $cart = new ShoppingCart('cart');
         if (Session::get('auth') == 1 && $cart->hasItems()) {
+            $breadcrum = array(
+                array('name' => 'Thông tin thanh toán')
+            );
             if (Request::isPost()) {
                 $this->val->addRules(self::$rules);
                 $this->val->addSource($_POST);
@@ -78,8 +85,8 @@ class CheckOut extends Controller {
                             $errors[$id] = $this->util->alertMessage($notice, 'Có lỗi');
                         }
                     }
-                    
-                    if(empty($errors)){
+
+                    if (empty($errors)) {
                         $order = array(
                             'order_date' => time(),
                             'customer_id' => Session::get('user_id'),
@@ -88,34 +95,34 @@ class CheckOut extends Controller {
                             'note' => Request::post('note'),
                             'total_amout' => $cart->getTotalPrice(),
                             'total_quantity' => $cart->getTotalQuantity(),
-                            'status' => 0
+                            'status' => 1
                         );
                         $order_id = $this->model->addOrder($order);
-                        if(is_numeric($order_id)){
+                        if (is_numeric($order_id)) {
                             $order_detail = array();
-                            foreach ($items as $id => $items) {
+                            foreach ($items as $id => $item) {
                                 $data = array(
                                     'quantity' => ($this->model->checkQuantity($id) - $item['quantity'])
                                 );
                                 $this->model->updateQuantiyProduct($data, $id);
-                                $order_detail[] = array($order_id,$id,$item['price'],$item['quantity'],$item['name'],$item['thumb']);
+                                $order_detail[] = array($order_id, $id, $item['price'], $item['quantity'], $item['name'], $item['thumb']);
                             }
-                            $order_detail['columns'] = array('order_id','product_id','price', 'quantity','name','image');
-                            if($this->model->addOrderDetail($order_detail)){
+                            $order_detail['columns'] = array('order_id', 'product_id', 'price', 'quantity', 'name', 'image');
+                            if ($this->model->addOrderDetail($order_detail)) {
                                 Session::set('token_order_step3', true);
                                 $cart->deleteCart();
                                 Util::redirectTo('checkout/step3/thanh-toan-buoc-3.html');
-                            }else{
+                            } else {
                                 $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
                             }
-                        }else{
+                        } else {
                             $this->view->message = $this->util->alertMessage('Có lỗi xảy ra. Bạn vui lòng thử lại', 'Có lỗi', 'error');
                         }
-                    }else{
+                    } else {
                         Session::set('error_cart', $errors);
                         Util::redirectTo('checkout/viewcart/gio-hang-cua-ban.html');
                     }
-                }else{
+                } else {
                     if (isset($this->val->error['diff_key'])) {
                         $message = 'Dữ liệu đầu vào không hợp lệ';
                     } else {
@@ -126,8 +133,11 @@ class CheckOut extends Controller {
                     $this->view->checkout = $_POST;
                 }
             }
+            $payments = $this->model->getPayment();
             $cart = new ShoppingCart('cart');
+            $this->view->payments = $payments;
             $this->view->title = 'Thanh toán đơn hàng';
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->step = "Bước 2 / 3: Thanh toán đơn hàng";
             $this->view->layout = 'home';
             $this->view->render('checkout/step2');
@@ -137,13 +147,17 @@ class CheckOut extends Controller {
     }
 
     function step3() {
-        if(Session::get('token_order_step3')){
+        if (Session::get('token_order_step3')) {
+            $breadcrum = array(
+                array('name' => 'Hoàn tất gửi đơn')
+            );
             $this->view->title = 'Thanh toán đơn hàng';
+            $this->view->breadcrums = Breadcrumb::view($breadcrum);
             $this->view->step = "Bước 2 / 3: Thanh toán đơn hàng";
             $this->view->layout = 'home';
             $this->view->render('checkout/step3');
             Session::set('token_order_step3', '');
-        }else{
+        } else {
             Util::redirectTo('');
         }
     }
@@ -151,6 +165,9 @@ class CheckOut extends Controller {
     function viewCart() {
         $errors = array();
         $cart = new ShoppingCart('cart');
+        $breadcrum = array(
+                array('name' => 'Giỏ hàng')
+            );
         if (Request::isPost()) {
             $data = Request::post('quantity');
             if (!empty($data)) {
@@ -170,14 +187,13 @@ class CheckOut extends Controller {
         }
         if (!empty($errors)) {
             $this->util->errors = $errors;
-        }elseif(!is_null(Session::get('error_cart'))){
+        } elseif (!is_null(Session::get('error_cart'))) {
             $this->util->errors = Session::get('error_cart');
         }
-        
-        
 
         $this->view->layout = 'home';
         $this->view->title = 'Giỏ hàng của bạn';
+        $this->view->breadcrums = Breadcrumb::view($breadcrum);
         $this->view->cart = $cart->getItems();
         $this->view->total = $cart->getTotalPrice();
         $this->view->util = $this->util;
@@ -188,10 +204,11 @@ class CheckOut extends Controller {
         $cart = new ShoppingCart('cart');
         $id = Request::post('id');
         $qty = ($cart->hasItem($id)) ? $cart->getQuantity($id) + Request::post('qty') : Request::post('qty');
+
         $qtyProduct = $this->model->checkQuantity($id);
         if ($qtyProduct >= $qty) {
             $info = $this->model->getInfoProduct($id);
-            $info['quantity'] = $qty;
+            $info['quantity'] = Request::post('qty');
 
             $cart->setItem($id, $info);
             $cart->saveCart();

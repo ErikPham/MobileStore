@@ -8,6 +8,7 @@
         <meta charset="UTF-8" />
         <title><?php echo $this->title; ?></title>
         <meta name="description" content="Pavo Metro - Responsive Opencart theme" />
+        <base href="<?php echo URL; ?>"/>
         <link href="http://www.pavothemes.com/demo/pav_metro_store/image/data/cart.png" rel="icon" />
         <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Publics; ?>frontend/css/style.css" />
@@ -27,8 +28,6 @@
         <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/base.js"></script>
         <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/common.js"></script>
         <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/bootstrap/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox.js"></script>
-        <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/colorbox/jquery.colorbox-min.js"></script>
         <script type="text/javascript" src="<?php echo Publics; ?>frontend/js/jquery/tabs.js"></script>
         <!--[if lt IE 9]>
         <script src="catalog/view/javascript/html5.js"></script>
@@ -119,15 +118,22 @@
 
                                                         <li class="parent dropdown pav-parrent">
                                                             <a href="<?php echo URL . 'news/view/tin-tuc.html' ?>" data-toggle="dropdown" class="dropdown-toggle"><span class="menu-title">Tin tức</span><b class="caret"></b></a>
+                                                            <?php
+                                                            $fileNew = CACHE . 'category_news.txt';
+                                                            $menuNews = File::read($fileNew, 'r', true);
+                                                            $menuNews = json_decode($menuNews, true);
+                                                            if(!empty($menuNews)):
+                                                            ?>
                                                             <div class="dropdown-menu level1">
                                                                 <div class="dropdown-menu-inner">
                                                                     <ul>
-                                                                        <li class=""><a href="#"><span class="menu-title">Xã hội</span></a></li>
-                                                                        <li class=""><a href="#"><span class="menu-title">Startup</span></a></li>
-
+                                                                        <?php foreach($menuNews as $menuNew): ?>
+                                                                        <li><a href="<?php echo URL . 'news/category/'.$menuNew['id'].'/'.Util::toSlug($menuNew['name']); ?>"><span class="menu-title"><?php echo $menuNew['name']; ?></span></a></li>
+                                                                        <?php endforeach; ?>
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <?php endif;?>
                                                         </li>
                                                         <li>
                                                             <a href="<?php echo URL . 'contacts/send/' . Util::toSlug('lien he voi chung toi') ?>"><span class="menu-title">Liên hệ</span></a>

@@ -5,17 +5,17 @@
             <div class="span12">
                 <div id="content">
                     <?php
-                        echo isset($this->message) ? $this->message : '';
+                    echo isset($this->message) ? $this->message : '';
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="account-register">
                         <h1>Đăng ký tài khoản</h1>
                         <p>Nếu bạn đã có tài khoản, xin vui lòng vào trang <a href="#"> đăng nhập</a>.</p>
-                        <form enctype="multipart/form-data" method="post" action="#">
+                        <form enctype="multipart/form-data" method="post" >
                             <h2>Thông tin tài khoản</h2>
                             <div class="content">
                                 <table class="form">
@@ -86,7 +86,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h2>Bản tin</h2>
+                            <h2>Thông tin khác</h2>
                             <div class="content">
                                 <table class="form">
                                     <tbody>
@@ -95,6 +95,14 @@
                                             <td>
                                                 <input type="radio" value="1" name="subscribe"> Có  
                                                 <input type="radio" checked="0" value="0" name="subscribe"> Không
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="required">*</span> Xác nhân:</td>
+                                            <td>
+                                                <p>Bạn hãy trả lời câu hỏi sau (Đáp án là số): <strong class="text-red"><?php echo Captcha::getCaptcha(); ?></strong></p>
+                                                <input name="captcha" class="span5" />
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('captcha'); ?>
                                             </td>
                                         </tr>
                                     </tbody>

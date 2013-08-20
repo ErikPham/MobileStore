@@ -32,13 +32,13 @@
                             <div class="pav-about">
                                 <h3><span>Giới thiệu</span></h3>
                                 <ul>
-                                    <li><a title="" href="#">Dolor sit amet</a></li>
-                                    <li><a title="" href="#">Nam cursus nunc</a></li>
-                                    <li><a title="" href="#">Fermentum</a></li>
-                                    <li><a title="" href="#">Consequat</a></li>
-                                    <li><a title="" href="#">Morbi mauris</a></li>
-                                    <li><a title="" href="#">Praesent felis</a></li>
-                                    <li><a title="" href="#">Molestie nec nibh</a></li>
+                                    <li><a title="" href="#">Về chúng tôi</a></li>
+                                    <li><a title="" href="#">Giao hàng</a></li>
+                                    <li><a title="" href="#">Bảo hành</a></li>
+                                    <li><a title="" href="#">Tuyển dụng</a></li>
+                                    <li><a title="" href="#">Thanh toán</a></li>
+                                    <li><a title="" href="#">Điều khoản sử dụng</a></li>
+                                    <li><a title="" href="#">Ưu đãi doanh nghiệp</a></li>
                                 </ul>
                             </div>
                         </section>
@@ -46,98 +46,65 @@
                 </div>
                 <div class="span3">
                     <div class="box pav-blog-latest">
-                        <h3 class="box-heading"><span class="tcolor">Latest</span></h3>
+                        <h3 class="box-heading"><span class="tcolor">Tin mới</span></h3>
                         <div class="box-content">
                             <div class="pavblog-latest clearfix">
                                 <!-- <div class="pavcol1"> -->
-                                <div class="pavcol">
-                                    <div class="media">
-                                        <a title="" href="#" class="pull-left">
-                                            <img alt="thumb" title="Donec tellus Nulla lorem Nullam elit id ut" src="<?php echo Publics . 'frontend/'; ?>images/pav-i1-32x32.jpg"/>
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <a title="Donec tellus Nulla lorem Nullam elit id ut" href="#">Donec tellus Nulla lorem Nullam elit id ut</a>
-                                            </h4>
+                                <?php
+                                $fileNew = CACHE . 'latest_news.txt';
+                                $news = File::read($fileNew, 'r', true);
+                                $news = json_decode($news, true);
+                                if (!empty($news)):
+                                    foreach ($news as $new):
+                                        ?>
+                                        <div class="pavcol">
+                                            <div class="media">
+                                                <a title="<?php echo $new['title']; ?>" href="<?php echo URL . 'news/viewdetail/' . $new['id'] . '/' . Util::toSlug($new['title']); ?>" class="pull-left">
+                                                    <img alt="thumb" title="<?php echo $new['title']; ?>" src="<?php echo Publics . 'frontend/data/' . $new['thumb']; ?>"/>
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">
+                                                        <a title="<?php echo $new['title']; ?>" href="<?php echo URL . 'news/viewdetail/' . $new['id'] . '/' . Util::toSlug($new['title']); ?>"><?php echo $new['title']; ?></a>
+                                                    </h4>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="clearfix"></div> -->
-                                <!-- <div class="pavcol1"> -->
-                                <div class="pavcol">
-                                    <div class="media">
-                                        <a title="" href="#" class="pull-left">
-                                            <img alt="thumb" title="Neque porro quisquam est, qui dolorem ipsum" src="<?php echo Publics . 'frontend/'; ?>images/pav-i1-32x32.jpg"/>
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <a title="Neque porro quisquam est, qui dolorem ipsum" href="#">Neque porro quisquam est, qui dolorem ipsum</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="clearfix"></div> -->
-                                <!-- <div class="pavcol1"> -->
-                                <div class="pavcol">
-                                    <div class="media">
-                                        <a title="" href="#" class="pull-left">
-                                            <img alt="thumb" title="Commodo laoreet semper tincidunt lorem " src="<?php echo Publics . 'frontend/'; ?>images/pav-i1-32x32.jpg"/>
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <a title="Commodo laoreet semper tincidunt lorem " href="#">Commodo laoreet semper tincidunt lorem </a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="clearfix"></div> -->
+                                        <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="span3">
                     <div class="box gallery">
-                        <h3 class="box-heading"><span class="tcolor">My</span> Gallery</h3>
+                        <h3 class="box-heading">Hãng sản xuất</h3>
                         <div class="box-content clearfix">
-                            <a title="Palm" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/palm_logo-68x54.jpg"/>
-                            </a>
-                            <a title="Sony" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/sony_logo-68x54.jpg"/>
-                            </a>
-                            <a title="Canon" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/canon_logo-68x54.jpg"/>
-                            </a>
-                            <a title="Apple" class="group344099038 cboxElement" href="h#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/apple_logo-68x54.jpg"/>
-                            </a>
-                            <a title="HTC" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/htc_logo-68x54.jpg"/>
-                            </a>
-                            <a title="Hewlett-Packard" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/hp_logo-68x54.jpg"/>
-                            </a>
-                            <a title="Dell" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/dell-68x54.jpg"/>
-                            </a>
-                            <a title="Intel" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/intel-68x54.jpg"/>
-                            </a>
-                            <a title="Microsoft" class="group344099038 cboxElement" href="#">
-                                <img alt="Palm" src="<?php echo Publics . 'frontend/'; ?>images/microsoft-68x54.jpg"/>
-                            </a>
+                            
+                            <?php
+                            $fileBrand = CACHE . 'brand_footer.txt';
+                            $brands = File::read($fileBrand, 'r', true);
+                            $brands = json_decode($brands, true);
+                            if (!empty($brands)):
+                                //foreach ($brands as $brand):
+                                    ?>
+                                    <a title="<?php echo $brand['name']; ?>" class="group964427569 cboxElement" href="<?php echo URL . 'product/brand/' . $brand['id'] . '/' . Util::toSlug($brand['name']); ?>">
+                                        <img alt="<?php echo $brand['name']; ?>" title="<?php echo $brand['name']; ?>" src="<?php echo Publics . $brand['logo']; ?>"/>
+                                    </a>
+                                    <?php
+                                //endforeach;
+                            endif;
+                            ?>
                         </div>
                     </div>
-                    <script type="text/javascript">
-                        $(".group344099038").colorbox({rel: 'group344099038', slideshow: true});
-                    </script>
                 </div>
                 <div class="span3">
                     <div class="box pav-custom  pav_newsletter">
                         <section class="box-content">
                             <div class="pav-newsletter">
                                 <h3><span>Bản tin</span></h3>
-                                <form method="POST" action="#">
+                                <form method="POST" >
                                     <label>Đăng ký nhận bản tin của chúng tôi:</label>
                                     <p>Bạn sẽ nhận được bản tin mỗi khi chúng tôi có thông báo mới hãy nhập địa chỉ email của bạn...</p>
                                     <div class="subscribe row-fluid">
@@ -161,20 +128,19 @@
 <section id="powered">
     <div class="container">
         <div class="row-fluid">
-            <div class="span5">
+            <div class="span6">
                 <nav class="clearfix">
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Brands</a></li>
-                        <li><a href="#">Site Map</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Specials</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Khuyến mại</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="span7">
+            <div class="span6">
                 <address>
-                    Copyright &copy; <?php echo date('Y');?> Mobile store by <a title="Mobile Store" target="_blank" href="#">MobileStore.com</a>
+                    Copyright &copy; <?php echo date('Y'); ?> Mobile store by <a title="Mobile Store" target="_blank" href="#">MobileStore.com</a>
                     All reversed.
                 </address>
             </div>

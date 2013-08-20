@@ -1,3 +1,4 @@
+<script src="<?php echo Publics ?>frontend/js/classified.js" type="text/javascript"></script>
 <section id="pav-page-title"></section>
 <section id="columns">
     <div class="container">
@@ -8,9 +9,9 @@
                     echo isset($this->message) ? $this->message : "";
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <h1>Rao vặt</h1>
                     <div class="row-fluid filterWrapper">
@@ -69,7 +70,7 @@
                             </div>
                         </div>
                         <div class="span2">
-                            <a href="#postAds" data-toggle="modal" id="postClassisFied" class="btn">
+                            <a href="<?php echo URL . 'classified/post/' . Util::toSlug('dang tin rao vat'); ?>" id="postClassisFied" class="btn">
                                 <i class="icon-edit"></i> Đăng tin
                             </a>
                         </div>

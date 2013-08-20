@@ -1,0 +1,1 @@
+[{"id":1,"name":"Apple","logo":""},{"id":2,"name":"Samsung","logo":""}]

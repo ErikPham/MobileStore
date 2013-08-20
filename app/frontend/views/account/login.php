@@ -8,9 +8,9 @@
                         echo isset($this->message) ? $this->message : "";
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="account-login">
                         <h1>Account Login</h1>
@@ -28,7 +28,7 @@
                                 <div class="span6">
                                     <div class="inner pav-col-2">
                                         <h2>Khách hàng cũ</h2>
-                                        <form enctype="multipart/form-data" method="post" action="<?php echo URL .'account/login/dang-nhap-tai-khoan.html' ?>">
+                                        <form enctype="multipart/form-data" method="post">
                                             <div class="content clearfix">
                                                 <?php
                                                     $url = base64_decode(URI::getSegment(2));

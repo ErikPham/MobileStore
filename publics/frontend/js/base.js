@@ -1,4 +1,4 @@
-var url = "http://localhost/mobilestore/";
+var url = "http://mobilestore.com/";
 $(document).ready(function() {
 
     /* Search */
@@ -34,6 +34,7 @@ $(document).ready(function() {
         $('.' + type + '').fadeIn('slow');
         $('html, body').animate({scrollTop: 0}, 'slow');
     }
+    
     $.getJSON(url + 'CheckOut/xhrTotal', function(json) {
         total = json['quantity'] + ' sản phẩm ' + json['total'] + ' vnđ';
         $('#cart-total').text(total);
@@ -109,7 +110,7 @@ $(document).ready(function() {
         }
     }
 
-    $('.success img, .warning img, .attention img, .information img').live('click', function() {
+    $('.success img, .warning img, .attention img, .information img, .error img').live('click', function() {
         $(this).parent().fadeOut('slow', function() {
             $(this).remove();
         });
@@ -119,29 +120,6 @@ $(document).ready(function() {
     //slider
     $('#pavcontentslider').carousel({interval: 8000, auto: true, pause: 'hover'});
     $('#productcarousel1,#productcarousel2,#productcarousel3').carousel({interval: false, auto: false, pause: 'hover'});
-
-
-    //filter post classified
-    $('.filter').hover(function() {
-        $(this).children('.filter-list-wrapper').addClass('on-hover');
-    }, function() {
-        $(this).children('.filter-list-wrapper').removeClass('on-hover');
-    });
-
-    $('.filter-list').on("click", "li:not(.checked)", function(event) {
-        event.preventDefault();
-        $(".checked", event.delegateTarget).removeClass("checked");
-        $(this).addClass('checked');
-        loadClassified(0, 1);
-        loadClassified(1, 1);
-        loadClassified(2, 1);
-    });
-
-    loadLocation();
-    loadClassified(0, 1);
-    loadClassified(1, 1);
-    loadClassified(2, 1);
-    
 
 });
 

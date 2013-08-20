@@ -5,9 +5,9 @@
             <section class="span9">
                 <div class="pavblogs" id="content">
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="pav-header header-new">
                         <h1><?php echo isset($this->pavHeader) ? $this->pavHeader : ''; ?></h1>
@@ -70,4 +70,3 @@
                 </div>
             </section>
 
-            

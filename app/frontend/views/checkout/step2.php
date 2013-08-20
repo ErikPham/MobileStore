@@ -5,15 +5,15 @@
             <div class="span12">
                 <div id="content">
                     <?php
-                        echo isset($this->message) ? $this->message : '';
+                    echo isset($this->message) ? $this->message : '';
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="pav-header">
-                        <h1>Thanh toán đơn hàng</h1>
+                        <h1>Thanh toán thanh toán</h1>
                     </div>
                     <div class="checkout">
                         <h3 class="text-center text-red"><?php echo $this->step; ?></h3>
@@ -29,18 +29,17 @@
                             </table>
                             <h5>2. Phương thức thanh toán</h5>
                             <table class="form content">
-                                <tr>
-                                    <td><input type="radio" name="shipping_method" value="1"/> Thanh toán bằng thẻ Visa qua Ngân Lượng</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="shipping_method" value="2"/> Thanh toán bằng Ví điện tử NgânLượng</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="shipping_method" value="3"/> Thanh toán tại cửa hàng</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="shipping_method" value="4"/> Chuyển khoản qua ngân hàng</td>
-                                </tr>
+                                <?php
+                                if (!empty($this->payments)):
+                                    foreach ($this->payments as $payment):
+                                        ?>
+                                        <tr>
+                                            <td><input type="radio" name="shipping_method" value="<?php echo $payment['id']; ?>"/> <?php echo $payment['name']; ?></td>
+                                        </tr>
+                                <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </table>
                             <h5>3. Ghi chú đơn hàng</h5>
                             <div class="content">

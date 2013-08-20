@@ -8,14 +8,14 @@
                     echo isset($this->message) ? $this->message : '';
                     ?>
                     <div class="breadcrumb">
-                        <a href="#">Home</a> &raquo;
-                        <a href="#">Account</a> &raquo;
-                        <a href="#">Register</a>
+                        <?php
+                            echo isset($this->breadcrums) ? $this->breadcrums : '';
+                        ?>
                     </div>
                     <div class="contact-register">
                         <h1>Liên hệ với chúng tôi</h1>
                         <p>Quý khách có thắc mắc cần giải đáp hoặc góp ý vui lòng điền biểu mẫu phía dưới để gửi cho chúng tôi</p>
-                        <form enctype="multipart/form-data" method="post" action="#">
+                        <form enctype="multipart/form-data" method="post" >
                             <h2>Thông tin của chúng tôi</h2>
                             <div class="content">
                                 <div class="left">
@@ -39,28 +39,37 @@
                                                 <?php if (isset($this->util->errors)) $this->util->alertErrorField('name'); ?>
                                             </td>
                                         </tr>
-                                        
-                                         <tr>
+
+                                        <tr>
                                             <td><span class="required">*</span> Email:</td>
                                             <td>
                                                 <input type="text"  name="email" value="<?php echo isset($this->contact['email']) ? $this->contact['email'] : ''; ?>">
                                                 <?php if (isset($this->util->errors)) $this->util->alertErrorField('email'); ?>
                                             </td>
                                         </tr>
-                                        
-                                         <tr>
+
+                                        <tr>
                                             <td><span class="required">*</span> Tiêu đề:</td>
                                             <td>
                                                 <input type="text"  name="title" class="long" value="<?php echo isset($this->contact['title']) ? $this->contact['title'] : ''; ?>">
                                                 <?php if (isset($this->util->errors)) $this->util->alertErrorField('title'); ?>
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td><span class="required">*</span> Nội dung:</td>
                                             <td>
                                                 <textarea name="content" rows="5" cols="40" class="long"><?php echo isset($this->contact['content']) ? $this->contact['content'] : ''; ?></textarea>
                                                 <?php if (isset($this->util->errors)) $this->util->alertErrorField('content'); ?>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><span class="required">*</span> Xác nhân:</td>
+                                            <td>
+                                                <p>Bạn hãy trả lời câu hỏi sau (Đáp án là số): <strong class="text-red"><?php echo Captcha::getCaptcha(); ?></strong></p>
+                                                <input type="text"  name="captcha" value="">
+                                                <?php if (isset($this->util->errors)) $this->util->alertErrorField('captcha'); ?>
                                             </td>
                                         </tr>
                                     </tbody>
